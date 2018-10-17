@@ -1,12 +1,12 @@
 import React from 'react';
 import './Toolbar.scss'
 import Logo from '../Logo/Logo';
-import { Navbar, Nav, NavDropdown,MenuItem } from 'react-bootstrap'
-import NavigationItem from '../NavigationItem/NavigationItem'
+import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
+import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
 
 const toolbar = (props) => (
     <header className="Toolbar">
-        <Navbar  collapseOnSelect>
+        <Navbar collapseOnSelect>
             <Navbar.Header>
                 <Navbar.Brand>
                     <Logo />
@@ -19,15 +19,15 @@ const toolbar = (props) => (
                         <NavigationItem link="/about">About</NavigationItem>
                         <NavigationItem link="/features">Features</NavigationItem>
                         <NavigationItem link="/prices">Prices</NavigationItem>
-                     </NavDropdown>
-                     <NavigationItem link="/templates">Templates</NavigationItem>
+                    </NavDropdown>
+                    <NavigationItem link="/templates">Templates</NavigationItem>
                     <NavDropdown eventKey={3} title="Support" id="basic-nav-dropdown">
                         <NavigationItem link="/how">How To</NavigationItem>
                         <NavigationItem link="/faq">FAQ</NavigationItem>
-                     </NavDropdown>
+                    </NavDropdown>
                     <NavigationItem link="/contact">Contact</NavigationItem>
                 </Nav>
-                <Nav pullRight>
+                <Nav pullRight id="login-links">
                     <NavigationItem link="/registration">Sign Up</NavigationItem>
                     <NavigationItem link="/login">Login</NavigationItem>
                 </Nav>

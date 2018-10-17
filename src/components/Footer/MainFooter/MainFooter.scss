@@ -1,0 +1,275 @@
+footer {
+    border-top-style:solid !important;
+    border-top-color:rgba(181, 187, 183, 0.60) !important;
+    border-top-width: 4px !important;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  
+  ul.footer-nav  {
+    list-style-type: none;
+    margin-left:0;
+    padding-left:0;
+  }
+  
+  .mini-title {
+    font-weight:600;
+    text-transform: uppercase;
+  }
+  ul.footer-nav a {
+    color:#069 !important;
+  }
+  
+  ul.footer-nav a:hover, ul.footer-nav a:focus {
+    color: #eb3812 !important;
+    text-decoration:none;
+  }
+  .social-media-links > a {
+    background-image:url('../../../assets/images/strip.png');
+    width: 40px;
+    height: 40px;
+    background-repeat:no-repeat;
+    display:block;
+    float:right;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+  }
+  @media (max-width:768px) {
+    .social-media-links {
+      width: 220px;  /*44px times number of icons*/
+      margin-left:auto;
+      margin-right:auto;
+    }
+    ul.footer-nav {
+      text-align:center;
+    }
+  }
+  a.sm-link-1 {
+    background-position: 0 0;
+  }
+  a.sm-link-1:hover {
+    background-position: 0px -45px;
+  }
+  a.sm-link-2 {
+    background-position: -48px 0px;
+  }
+  a.sm-link-2:hover {
+    background-position: -48px -45px;
+  }
+  a.sm-link-3 {
+    background-position: -96px 0px;
+  }
+  a.sm-link-3:hover {
+    background-position: -96px -45px;
+  }
+  a.sm-link-4 {
+    background-position: -144px 0px;
+  }
+  a.sm-link-4:hover {
+    background-position: -144px -45px;
+  }
+  a.sm-link-5 {
+    background-position: -192px 0px;
+  }
+  a.sm-link-5:hover {
+    background-position: -192px -45px;
+  }
+  /* Additional STYLES */
+  /* Overwriting - keep line at the bottom of nav */
+  .navbar {
+    border-bottom-style:solid !important;
+    border-bottom-color:rgba(181, 187, 183, 0.60) !important;
+    border-bottom-width: 1px !important;
+  }
+  
+  #templates {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  
+  /* Contact Form - Error Message */
+  .help-block {
+    font-size: 0.9em;
+  }
+  .search-button {
+    display: block;
+    height: 44px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.62857143;
+    color: #FFF;
+    background-color: #f05f40 !important;
+    background-image: none;
+    border: 1px solid  #f05f40;
+    border-top-right-radius: 16px;
+    border-bottom-right-radius: 16px;
+  }
+  .search-button:focus, .search-button:hover {
+    outline: 0;
+    background-color: #ee4b28!important;
+  }
+  .template-categories h4 {
+    padding-left: 5px;
+  }
+  ul.template-categories-list {
+   /* list-style-image: url(../img/bullet-1.png);*/
+    line-height: 1.62857143;
+  }
+  
+  .template-categories-list a {
+    color:#069 !important;
+    font-size: 1.1em;
+  }
+  .template-categories-list a:hover,.template-categories-list a:focus {
+    color: #eb3812 !important;
+    text-decoration:none;
+    padding-left: 10px;
+  }
+  ul.templates-container {
+    list-style-type: none;
+  
+  }
+  ul.templates-container > li {
+    float:left;
+    padding: 5px;
+  }
+  .portfolio-box-caption1 {
+    width: 230px;
+  }
+  .template-title {
+    width: 243px;
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top: -25px;
+  }
+  
+  ul.faq-list {
+   /* list-style-image: url(../img/bullet-1.png);*/
+    line-height: 1.62857143;
+  }
+  
+  .faq-list a {
+    color:#069 !important;
+    font-size: 1.3em;
+  }
+  .faq-list a:hover {
+    color: #eb3812 !important;
+    text-decoration:none;
+    padding-left: 10px;
+  }
+  .faq-list a:focus {
+    text-decoration:none;
+  }
+  
+  
+  /* Fix for Safari */
+  a.portfolio-box:hover {
+    text-decoration: none !important;
+  }
+  
+  /* To move the headings up - especially for Safari */
+  .project-category {
+    margin-top: -18px;
+  }
+  
+  .bordered-info-box {
+    border-color:#CCC;
+    border-style:solid;
+    border-radius: 10px;
+    border-width: 1px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+  
+  .screen-shot-holder {
+    width: 50%;
+    height: 160px;
+    background-color:#FF9;
+    border-style:solid;
+    border-color:#CCC;
+  }
+  
+  .template-info {
+    color: #063 !important;
+    font-weight:700;
+  }
+  
+  hr.full-widht-line {
+    min-width: 100% !important;
+    border-color: #CCC;
+    border-width: 1px;
+  }
+  .popular-icons {
+    width:88px;
+    display: inline-block;
+    text-align: center;
+  }
+  .popular-icons span {
+    color: #00B2EF !important;
+    font-size: 36px;
+    border-style:solid;
+    border-color: #00B2EF;
+    border-width: 1px;
+    border-radius: 16%;
+    padding-top: 16px;
+    text-align:center;
+    width: 86px;
+    height: 86px;
+  }
+  
+  
+  .popular-icons span p {
+    font-size: 12px !important;
+    text-transform: uppercase;
+    font-family: Arial;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 0px;
+    margin-left: 0;
+    margin-right: 0;
+    color: #00B2EF;
+  }
+  .popular-icons span:hover, .popular-icons span:focus  {
+    color:#f05f40 !important;
+    border-color: #f05f40 !important;
+  }
+  .switch-text-color {
+    color:#f05f40 !important;
+  }
+  .special-headers {
+    font-family: 'Montserrat', sans-serif;
+    color:#369 !important;
+    font-weight: bolder !important;
+    font-size: 65px;
+    -webkit-text-stroke: 1px black;
+    text-shadow:
+      3px 3px 0 #000,
+      -1px -1px 0 #000,
+      1px -1px 0 #000,
+      -1px 1px 0 #000,
+      1px 1px 0 #000;
+  }
+  .bg-additional {
+    background-color:#069;
+  }
+  .special-headers-db {
+    font-family: 'Montserrat', sans-serif;
+    color:#FFF !important;
+    font-weight: bolder !important;
+    text-shadow:
+      -1px -1px 0 #f05f40,
+      1px -1px 0 #f05f40,
+      -1px 1px 0 #f05f40,
+      1px 1px 0 #f05f40;
+  
+  }
+  .btn {
+    font-family: 'Montserrat', sans-serif;
+  }
+  

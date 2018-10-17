@@ -1,3 +1,54 @@
 .navbar {
-   padding: .5rem 1rem;
+   padding: 1rem;
+   margin-bottom: 0;
+   .navbar-nav {
+       margin-left: 10px;
+       margin-top: 5px;
+   }
+   .NavigationItem {
+       a {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        color: #2b303b!important;
+        transition: all .35s;
+        &:hover {
+         text-decoration: underline;
+        }
+       }
+       
+   }
+   
+}
+
+#basic-nav-dropdown{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2b303b!important;
+    &:hover {
+        text-decoration: underline;
+    }
+}
+#login-links{
+    display: flex;
+    li {
+        margin-top: 5px;
+        a{
+            border: 2px solid #ccc;
+            display: inline-block;
+            margin: 2px 5px;
+            padding: 3px 6px;
+            border-radius: 20px;
+            width: 100px;
+            text-align: center;
+            color: #f05f40!important;
+            padding: 3px 6px;
+            font-size: 14px;
+            &:hover {
+                border: 2px solid #eb3812;
+            }
+        }
+    }
+ 
 }
