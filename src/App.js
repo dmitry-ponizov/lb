@@ -1,27 +1,62 @@
 import React, { Component } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
-import Logout from './containers/Auth/Logout/Logout';
 import { connect } from 'react-redux'
 import * as actions from './store/actions/index'
 import AsyncComponent from './hoc/AsyncComponent/AsyncComponent'
 import HomePage from './containers/HomePage/HomePage'
 import SignIn from './containers/Auth/SignIn/SignIn'
 import SignUp from './containers/Auth/SignUp/SignUp'
+import Dashboard from './containers/Dashboard/Dashboard'
+import Logout from './containers/Auth/Logout/Logout';
+
 
 
 class App extends Component {
+
+  componentDidMount() {
+    this.props.onTryAutoSignUp(); 
+  }
+
   render() {
-    return (
-      <div className="App">
-        <Switch>
-          <Route path="/"  exact component={HomePage} /> 
+
+    let routes = (
+      <Switch>
+         
           <Route path="/login" component={SignIn} />
           <Route path="/registration" component={SignUp} />
+          <Route path="/"  exact component={HomePage} /> 
           <Redirect to='/' />
-         </Switch>
+      </Switch>
+    )
+    if(this.props.isAuth) {
+      routes = (
+      <Switch>
+          <Route path="/"  exact component={HomePage} /> 
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/logout" component={Logout} />
+          <Redirect to='/' />
+      </Switch>
+      )
+    }
+    return (
+      <div className="App">
+         { routes }
       </div>
     );
   }
 }
 
-export default withRouter(connect(null, null)(App));
+
+const mapStateToProps = state => {
+  return {
+    isAuth: state.auth.token !== null
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+      onTryAutoSignUp: () => dispatch(actions.authCheckState())
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

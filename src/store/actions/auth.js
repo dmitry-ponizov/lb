@@ -1,5 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios'
+import { apiUrl } from '../../apiAdapter'
+
 
 export const authStart = () => {
     return {
@@ -38,26 +40,53 @@ export const logout = () => {
     }   
 }
 
-export const auth = (email, password, isSignUp) => {
+export const registrationStart = () => {
+    return {
+        type: actionTypes.REGISTRATION_START
+    }
+}
+
+export const registrationSuccess = () => {
+    return {
+        type: actionTypes.REGISTRATION_SUCCESS,
+    }
+}
+
+export const registrationFail = (error) => {
+    return {
+        type: actionTypes.REGISTRATION_FAIL,
+        error: error
+    }
+}
+
+
+export const registration = (regData) => {
     return dispatch => {
-        dispatch(authStart())
-        const authData = {
-            email: email,
-            password: password,
-            returnSecureToken: true
-        }
-        let url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/signupNewUser?key=AIzaSyA-XI8E1tNMRaomu9FjF3Mz4wkLfcUlnbA'
-        if (!isSignUp){
-            url = 'https://www.googleapis.com/identitytoolkit/v3/relyingparty/verifyPassword?key=AIzaSyA-XI8E1tNMRaomu9FjF3Mz4wkLfcUlnbA'
-        }
-        axios.post(url, authData)
+        dispatch(registrationStart())
+
+        axios.post(apiUrl() + 'registration', regData)
+              .then(response => {
+                dispatch(registrationSuccess())
+              })
+              .catch(error => {
+                  dispatch(registrationFail(error.response.data.error))
+              })
+    }
+}
+
+export const auth = (authData) => {
+    return dispatch => {
+        dispatch(authStart()) 
+      
+        axios.post(apiUrl() + 'login', authData)
              .then(response => {
                 const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-                localStorage.setItem('token', response.data.idToken)
+                localStorage.setItem('token', response.data.token)
                 localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('userId', response.data.localId)
-                dispatch(authSuccess(response.data.idToken, response.data.localId))
+                localStorage.setItem('userId', response.data.userId)
+                dispatch(authSuccess(response.data.token, response.data.userId))
                 dispatch(checkAuthTimeOut(response.data.expiresIn))
+        
              })
              .catch(error => {
                 dispatch(authFail(error.response.data.error))
@@ -85,6 +114,7 @@ export const authCheckState = () => {
                  const userId = localStorage.getItem('userId');
                  dispatch(authSuccess(token, userId ))
                  dispatch(checkAuthTimeOut((expirationDate.getTime() - new Date().getTime()/1000)))
+             
             }
         }
     }

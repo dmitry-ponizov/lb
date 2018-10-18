@@ -2,6 +2,7 @@ export {
     auth,
     logout,
     setAuthRedirectPath,
-    authCheckState
+    authCheckState,
+    registration
 }
 from './auth' 

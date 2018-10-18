@@ -9,6 +9,7 @@ import porfolio5 from '../../assets/images/portfolio/5.jpg'
 import porfolio6 from '../../assets/images/portfolio/6.jpg'
 import MainFooter from '../../components/Footer/MainFooter/MainFooter'
 
+
 class HomePage extends Component {
     render() {
         return (

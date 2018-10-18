@@ -6,7 +6,7 @@ export const updateObject = (oldObject, updatedProps) => {
  }
 
 
- export const checkValidity = (value, rules) => {
+ export const checkValidity = (value, rules, secondValue = null) => {
 
         let isValid = true;
 
@@ -34,6 +34,11 @@ export const updateObject = (oldObject, updatedProps) => {
             const pattern = /^\d+$/;
             isValid = pattern.test(value) && isValid
         }
+
+        if (rules.isConfirmed) {
+            isValid = secondValue && value === secondValue && isValid 
+        }
+        
         return isValid;
    
 }

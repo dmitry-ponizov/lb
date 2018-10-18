@@ -3,6 +3,8 @@ import './Toolbar.scss'
 import Logo from '../Logo/Logo';
 import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
 import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
+import Aux from '../../../../hoc/Aux/Aux'
+import { connect } from 'react-redux'
 
 const toolbar = (props) => (
     <header className="Toolbar">
@@ -28,12 +30,20 @@ const toolbar = (props) => (
                     <NavigationItem link="/contact">Contact</NavigationItem>
                 </Nav>
                 <Nav pullRight id="login-links">
-                    <NavigationItem link="/registration">Sign Up</NavigationItem>
-                    <NavigationItem link="/login">Login</NavigationItem>
+                    {!props.isAuth 
+                    ? <Aux>
+                      <NavigationItem link="/registration">Sign Up</NavigationItem>
+                      <NavigationItem link="/login">Login</NavigationItem></Aux> 
+                    : <NavigationItem link="/logout">Logout</NavigationItem> }
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
     </header>
 )
 
-export default toolbar;
+const mapStateToProps = state => {
+    return {
+      isAuth: state.auth.token !==  null
+    }
+}
+export default connect(mapStateToProps, null)(toolbar);
