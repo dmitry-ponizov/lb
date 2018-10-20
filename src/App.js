@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter } from 'react-router-dom'
+import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions/index'
 import HomePage from './containers/HomePage/HomePage'
@@ -25,6 +25,7 @@ class App extends Component {
               <Route path='/logout' component={Logout} />
               <Route path='/registration' component={SignUp} />
               <PrivateRoute path="/dashboard" component={Dashboard} isAuth={this.props.isAuth}/>
+              <Redirect to="/" />
           </Switch>
       </div>
     );

@@ -7,6 +7,7 @@ import NavigationItem from '../../../components/UI/NavigationItem/NavigationItem
 import * as actions from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
+import ErrorMessage from '../../../components/UI/ErrorMessage/ErrorMessage'
 
 class SignIn extends Component {
 
@@ -101,6 +102,7 @@ class SignIn extends Component {
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}
+                <ErrorMessage errors={this.props.errors}/>
                 <div className="btnBlock">
                     <Button clicked={this.loginHandler} btnType="Submit" disabled={!this.state.formIsValid}>Send</Button>
                 </div>
@@ -136,7 +138,8 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath
+        authRedirectPath: state.auth.authRedirectPath,
+        errors: state.auth.error
     }
 }
 

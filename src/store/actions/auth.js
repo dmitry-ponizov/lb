@@ -90,7 +90,7 @@ export const auth = (authData) => {
         
              })
              .catch(error => {
-                dispatch(authFail(error.response.data.error))
+                dispatch(authFail(error.response.data.meta.errors))
              })
     }
 }
