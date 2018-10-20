@@ -1,46 +1,31 @@
 import React, { Component } from 'react';
-import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
+import { Route, Switch, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions/index'
-import AsyncComponent from './hoc/AsyncComponent/AsyncComponent'
 import HomePage from './containers/HomePage/HomePage'
 import SignIn from './containers/Auth/SignIn/SignIn'
 import SignUp from './containers/Auth/SignUp/SignUp'
 import Dashboard from './containers/Dashboard/Dashboard'
 import Logout from './containers/Auth/Logout/Logout';
-
-
+import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.onTryAutoSignUp(); 
+    this.props.onTryAutoSignUp();
   }
 
   render() {
 
-    let routes = (
-      <Switch>
-         
-          <Route path="/login" component={SignIn} />
-          <Route path="/registration" component={SignUp} />
-          <Route path="/"  exact component={HomePage} /> 
-          <Redirect to='/' />
-      </Switch>
-    )
-    if(this.props.isAuth) {
-      routes = (
-      <Switch>
-          <Route path="/"  exact component={HomePage} /> 
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/logout" component={Logout} />
-          <Redirect to='/' />
-      </Switch>
-      )
-    }
     return (
       <div className="App">
-         { routes }
+          <Switch>
+              <Route path="/" exact component={HomePage}  />
+              <Route path='/login' component={SignIn} />
+              <Route path='/logout' component={Logout} />
+              <Route path='/registration' component={SignUp} />
+              <PrivateRoute path="/dashboard" component={Dashboard} isAuth={this.props.isAuth}/>
+          </Switch>
       </div>
     );
   }

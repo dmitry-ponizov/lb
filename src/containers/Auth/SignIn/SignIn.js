@@ -113,14 +113,13 @@ class SignIn extends Component {
         if (this.props.loading) {
             // form = < Spinner />
         }
-        let authRedirect = null;
-
-        if(this.props.isAuthenticated)  {
-            authRedirect = <Redirect to={this.props.authRedirectPath} />
+        if (this.props.isAuthenticated === true) {
+            return (
+                <Redirect to='/dashboard' />
+            )
         }
         return (
             <div className="ContactData" >
-                { authRedirect }
                 {form}
             </div>
         )
