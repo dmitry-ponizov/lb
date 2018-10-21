@@ -8,7 +8,6 @@ const initialState = {
     loading: false,
     error: null,
     authRedirectPath: '/',
-    registred: false
 }
 
 
