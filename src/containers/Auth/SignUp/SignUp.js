@@ -24,7 +24,8 @@ class SignUp extends Component {
                     isEmail: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Please enter a valid email'
             },
             password: {
                 elementType: 'input',
@@ -38,7 +39,8 @@ class SignUp extends Component {
                     minLength: 5,
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Please enter a min 6 characters'
             },
             repeatPassword: {
                 elementType: 'input',
@@ -52,7 +54,8 @@ class SignUp extends Component {
                     isConfirmed: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Passwords not confirmed'
             },
             firstName: {
                 elementType: 'input',
@@ -65,7 +68,8 @@ class SignUp extends Component {
                     required: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Field is required'
             },
             lastName: {
                 elementType: 'input',
@@ -78,7 +82,8 @@ class SignUp extends Component {
                     required: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Field is required'
             },
         },
         formIsValid: false,
@@ -144,6 +149,7 @@ class SignUp extends Component {
                         invalid={!formElement.config.valid}
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
+                        errorMsg={formElement.config.errorMsg}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
                 ))}

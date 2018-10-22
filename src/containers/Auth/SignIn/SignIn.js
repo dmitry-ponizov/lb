@@ -8,6 +8,7 @@ import * as actions from '../../../store/actions/index'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router-dom'
 import ErrorMessage from '../../../components/UI/ErrorMessage/ErrorMessage'
+import Spinner from '../../../components/UI/Spinner/Spinner'
 
 class SignIn extends Component {
 
@@ -25,7 +26,8 @@ class SignIn extends Component {
                     isEmail: true
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Please enter a valid email'
             },
             password: {
                 elementType: 'input',
@@ -39,7 +41,8 @@ class SignIn extends Component {
                     minLength: 5,
                 },
                 valid: false,
-                touched: false
+                touched: false,
+                errorMsg: 'Please enter a min 6 characters'
             },
         },
         formIsValid: false,
@@ -99,8 +102,10 @@ class SignIn extends Component {
                         invalid={!formElement.config.valid}
                         shouldValidate={formElement.config.validation}
                         touched={formElement.config.touched}
+                        errorMsg={formElement.config.errorMsg}
                         changed={(event) => this.inputChangedHandler(event, formElement.id)}
                     />
+                    
                 ))}
                 <ErrorMessage errors={this.props.errors}/>
                 <div className="btnBlock">
@@ -113,7 +118,7 @@ class SignIn extends Component {
             </form>
         );
         if (this.props.loading) {
-            // form = < Spinner />
+            form = <Spinner />
         }
         if (this.props.isAuthenticated === true) {
             return (

@@ -9,11 +9,10 @@ export const authStart = () => {
     }
 }
 
-export const authSuccess = (token, userId) => {
+export const authSuccess = (token) => {
     return {
         type: actionTypes.AUTH_SUCCESS,
         idToken: token,
-        userId: userId
     }
 }
 export const authFail = (error) => {
@@ -27,15 +26,14 @@ export const checkAuthTimeOut = (expirationTime) => {
 
     return dispatch => {
         setTimeout(() => {
-            // dispatch(logout())
-        }, expirationTime * 1000 )
+            dispatch(logout())
+        }, expirationTime)
     }
 }
 
 export const logout = () => {
     localStorage.removeItem('token')
     localStorage.removeItem('expirationDate')
-    localStorage.removeItem('userId')
     return {
         type: actionTypes.AUTH_LOGOUT
     }   
@@ -81,13 +79,11 @@ export const auth = (authData) => {
       
         axios.post(apiUrl() + 'login', authData)
              .then(response => {
-                 let expiresIn = 3600;
-                const expirationDate = new Date(new Date().getTime() + expiresIn * 1000)
+                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
                 localStorage.setItem('token', response.data.token)
                 localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('userId', 3222)
-                dispatch(authSuccess(response.data.token, 3222))
-                dispatch(checkAuthTimeOut(expiresIn))
+                dispatch(authSuccess(response.data.token))
+                dispatch(checkAuthTimeOut(response.data.expiresIn))
         
              })
              .catch(error => {
@@ -113,9 +109,8 @@ export const authCheckState = () => {
             if (expirationDate <= new Date()) {
                  dispatch(logout());
             } else {
-                 const userId = localStorage.getItem('userId');
-                 dispatch(authSuccess(token, userId ))
-                 dispatch(checkAuthTimeOut(((expirationDate.getTime() - new Date().getTime())/1000)))
+                 dispatch(authSuccess(token))
+                 dispatch(checkAuthTimeOut(((expirationDate.getTime() - new Date().getTime()))))
              
             }
         }

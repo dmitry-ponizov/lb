@@ -6,3 +6,8 @@ export {
     registration
 }
 from './auth' 
+
+export {
+    userProfile
+}
+from './dashboard'

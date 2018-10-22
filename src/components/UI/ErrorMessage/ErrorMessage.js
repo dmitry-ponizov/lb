@@ -5,7 +5,7 @@ const errorMessage = (props) => {
 
     let errors = null;
     if(props.errors) {
-        errors = Object.values(props.errors).map(error => (<p className="error">{error}</p>))
+        errors = Object.values(props.errors).map((error,index) => (<p key={index} className="error">{error}</p>))
     }
     return errors;
 }
