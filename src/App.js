@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import * as actions from './store/actions/index'
-import AsyncComponent from './hoc/AsyncComponent/AsyncComponent'
 import HomePage from './containers/HomePage/HomePage'
 import SignIn from './containers/Auth/SignIn/SignIn'
 import SignUp from './containers/Auth/SignUp/SignUp'
@@ -20,8 +19,7 @@ class App extends Component {
   render() {
 
     let routes = (
-      <Switch>
-         
+      <Switch>  
           <Route path="/login" component={SignIn} />
           <Route path="/registration" component={SignUp} />
           <Route path="/"  exact component={HomePage} /> 
@@ -31,10 +29,9 @@ class App extends Component {
     if(this.props.isAuth) {
       routes = (
       <Switch>
-          <Route path="/"  exact component={HomePage} /> 
-          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/dashboard" exact component={Dashboard} />
           <Route path="/logout" component={Logout} />
-          <Redirect to='/' />
+          <Redirect to='/dashboard' />
       </Switch>
       )
     }

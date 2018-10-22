@@ -32,11 +32,11 @@ const mainFooter = () => (
 
             <div className="col-sm-3">
                 <p className="social-media-links">
-                <a href="/" className="sm-link-1"></a>
-                <a href="/" className="sm-link-2"></a>
-                <a href="/" className="sm-link-3"></a>
-                <a href="/" className="sm-link-4"></a>
-                <a href="/" className="sm-link-5"></a>
+                <a href="/" className="sm-link-1"> </a>
+                <a href="/" className="sm-link-2"> </a>
+                <a href="/" className="sm-link-3"> </a>
+                <a href="/" className="sm-link-4"> </a>
+                <a href="/" className="sm-link-5"> </a>
                 </p>
                 <div className="clearfix"></div>
 

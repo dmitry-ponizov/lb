@@ -6,7 +6,7 @@ import Button from '../../../components/UI/Button/Button'
 import NavigationItem from '../../../components/UI/NavigationItem/NavigationItem'
 import { connect } from 'react-redux'
 import * as actions from '../../../store/actions/index'
-
+import Spinner from '../../../components/UI/Spinner/Spinner'
 
 class SignUp extends Component {
 
@@ -91,8 +91,15 @@ class SignUp extends Component {
         for (let formElement in this.state.regForm) {
             formData[formElement] = this.state.regForm[formElement].value
         }
-
-        this.props.onRegistration(formData, this.props.token)
+        
+        const regData = {
+            email: formData.email,
+            first_name: formData.firstName,
+            last_name: formData.lastName,
+            password: formData.password,
+            password_confirmation: formData.repeatPassword,
+        }
+        this.props.onRegistration(regData, this.props.token)
     }
 
 
@@ -150,11 +157,18 @@ class SignUp extends Component {
             </form>
         );
         if (this.props.loading) {
-            // form = < Spinner />
+            form = <Spinner />
         }
+        let successMessage = (
+            <div className="success centredBlock" >
+                <p>Registration completed successfully! </p>
+                <p>Please login.</p>
+                <NavigationItem link="login">Login</NavigationItem>
+            </div>
+        )
         return (
             <div className="ContactData" >
-                {form}
+                { !this.props.registred ? form : successMessage }
             </div>
         )
     }
@@ -163,8 +177,13 @@ class SignUp extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        onRegistration: (formData) => dispatch(actions.registration(formData))
+        onRegistration: (formData) => dispatch(actions.registration(formData)),
     }   
 }
 
-export default connect(null, mapDispatchToProps)(SignUp);
+const mapStateToProps = state => {
+    return {
+        registred: state.auth.registred
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(SignUp);

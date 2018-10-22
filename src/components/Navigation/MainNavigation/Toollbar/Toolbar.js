@@ -1,7 +1,7 @@
 import React from 'react';
 import './Toolbar.scss'
 import Logo from '../Logo/Logo';
-import { Navbar, Nav, NavDropdown, MenuItem } from 'react-bootstrap'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
 import Aux from '../../../../hoc/Aux/Aux'
 import { connect } from 'react-redux'

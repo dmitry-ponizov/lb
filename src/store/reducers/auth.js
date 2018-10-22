@@ -7,7 +7,7 @@ const initialState = {
     userId: null,
     loading: false,
     error: null,
-    authRedirectPath: '/',
+    authRedirectPath: '/dashboard',
     registred: false
 }
 

@@ -58,3 +58,40 @@
         }
     }
 }
+
+.success {
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    font-size: 18px;
+    cursor: default;
+    font-weight: bold;
+    font-family: 'Montserrat', sans-serif;
+    li{
+        list-style: none;
+    }
+  
+    a {
+        font-family: 'Montserrat', sans-serif;
+        display: inline-block;
+        margin: 20px auto 0;
+        padding: 10px 20px;
+        color: #616060;
+        font-size: 16px;
+        text-decoration: none;
+        border: none;
+        border-radius: 6px;
+        background: #ddd;
+        outline: none;
+        transition: background-color .5s;
+    }
+
+  
+    a:hover {
+        background-color: #efeded;
+        cursor: pointer;
+    }
+
+  
+}
+ 

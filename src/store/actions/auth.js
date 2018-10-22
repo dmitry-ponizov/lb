@@ -24,9 +24,10 @@ export const authFail = (error) => {
 }
 
 export const checkAuthTimeOut = (expirationTime) => {
+
     return dispatch => {
         setTimeout(() => {
-            dispatch(logout())
+            // dispatch(logout())
         }, expirationTime * 1000 )
     }
 }
@@ -64,7 +65,7 @@ export const registration = (regData) => {
     return dispatch => {
         dispatch(registrationStart())
 
-        axios.post(apiUrl() + 'registration', regData)
+        axios.post(apiUrl() + 'user/register', regData)
               .then(response => {
                 dispatch(registrationSuccess())
               })
