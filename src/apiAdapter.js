@@ -1,4 +1,4 @@
-export const apiUrl = () =>  process.env.NODE_ENV === 'development' ?   'http://localhost:8800/api/' :  'http://zeeasy-beta.entenso.com/api'
+export const apiUrl = () =>  process.env.NODE_ENV === 'development' ?   'http://zeeasy-beta.entenso.com/api/' :  'http://zeeasy-beta.entenso.com/api'
 
 
 

@@ -7,37 +7,25 @@ import SignIn from './containers/Auth/SignIn/SignIn'
 import SignUp from './containers/Auth/SignUp/SignUp'
 import Dashboard from './containers/Dashboard/Dashboard'
 import Logout from './containers/Auth/Logout/Logout';
-
-
+import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.onTryAutoSignUp(); 
+    this.props.onTryAutoSignUp();
   }
 
   render() {
-
-    let routes = (
-      <Switch>  
-          <Route path="/login" component={SignIn} />
-          <Route path="/registration" component={SignUp} />
-          <Route path="/"  exact component={HomePage} /> 
-          <Redirect to='/' />
-      </Switch>
-    )
-    if(this.props.isAuth) {
-      routes = (
-      <Switch>
-          <Route path="/dashboard" exact component={Dashboard} />
-          <Route path="/logout" component={Logout} />
-          <Redirect to='/dashboard' />
-      </Switch>
-      )
-    }
     return (
       <div className="App">
-         { routes }
+          <Switch>
+              <Route path="/" exact component={HomePage}  />
+              <Route path='/login' component={SignIn} />
+              <Route path='/logout' component={Logout} />
+              <Route path='/registration' component={SignUp} />
+              <PrivateRoute path="/dashboard" component={Dashboard} isAuth={this.props.isAuth}/>
+              <Redirect to="/" />
+          </Switch>
       </div>
     );
   }
