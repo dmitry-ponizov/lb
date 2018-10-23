@@ -1,7 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios'
-import { apiUrl } from '../../apiAdapter'
-
 
 export const authStart = () => {
     return {
@@ -23,21 +20,23 @@ export const authFail = (error) => {
 }
 
 export const checkAuthTimeOut = (expirationTime) => {
-
-    return dispatch => {
-        setTimeout(() => {
-            dispatch(logout())
-        }, expirationTime)
-    }
+    return {
+        type: actionTypes.AUTH_CHECK_TIMEOUT,
+        expirationTime: expirationTime
+    };
 }
 
 export const logout = () => {
-    localStorage.removeItem('token')
-    localStorage.removeItem('expirationDate')
     return {
-        type: actionTypes.AUTH_LOGOUT
-    }   
+        type: actionTypes.AUTH_INITIATE_LOGOUT
+    };
 }
+
+export const logoutSucceed = () => {
+    return {
+      type: actionTypes.AUTH_LOGOUT
+    };
+  };
 
 export const registrationStart = () => {
     return {
@@ -60,35 +59,16 @@ export const registrationFail = (error) => {
 
 
 export const registration = (regData) => {
-    return dispatch => {
-        dispatch(registrationStart())
-
-        axios.post(apiUrl() + 'user/register', regData)
-              .then(response => {
-                dispatch(registrationSuccess())
-              })
-              .catch(error => {
-                  dispatch(registrationFail(error.response.data.error))
-              })
+    return {
+        type: actionTypes.REGISTRATION_USER,
+        regData: regData
     }
 }
 
 export const auth = (authData) => {
-    return dispatch => {
-        dispatch(authStart()) 
-      
-        axios.post(apiUrl() + 'login', authData)
-             .then(response => {
-                const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000)
-                localStorage.setItem('token', response.data.token)
-                localStorage.setItem('expirationDate', expirationDate)
-                dispatch(authSuccess(response.data.token))
-                dispatch(checkAuthTimeOut(response.data.expiresIn))
-        
-             })
-             .catch(error => {
-                dispatch(authFail(error.response.data.meta.errors))
-             })
+    return {
+        type: actionTypes.AUTH_USER,
+        authData: authData
     }
 }
 
@@ -100,19 +80,7 @@ export const setAuthRedirectPath = (path) => {
 }
 
 export const authCheckState = () => {
-    return dispatch => {
-        const token = localStorage.getItem('token')
-        if(!token) {
-            dispatch(logout());
-        } else {
-            const expirationDate = new Date(localStorage.getItem('expirationDate'))
-            if (expirationDate <= new Date()) {
-                 dispatch(logout());
-            } else {
-                 dispatch(authSuccess(token))
-                 dispatch(checkAuthTimeOut(((expirationDate.getTime() - new Date().getTime()))))
-             
-            }
-        }
+    return {
+        type: actionTypes.AUTH_CHECK_STATE
     }
 }

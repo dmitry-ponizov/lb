@@ -8,7 +8,8 @@ describe('auth reducer', () => {
             token: null,
             loading: false,
             error: null,
-            authRedirectPath: '/'
+            authRedirectPath: '/',
+            registred: false
         })
     })
 
@@ -17,7 +18,8 @@ describe('auth reducer', () => {
             token: null,
             loading: false,
             error: null,
-            authRedirectPath: '/'
+            authRedirectPath: '/',
+            registred: false
         }, {
             type: actionTypes.AUTH_SUCCESS,
             idToken: 'some-token',
@@ -25,7 +27,8 @@ describe('auth reducer', () => {
             token: 'some-token',
             loading: false,
             error: null,
-            authRedirectPath: '/'
+            authRedirectPath: '/',
+            registred: false
         })
     })
 })

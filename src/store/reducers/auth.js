@@ -6,7 +6,8 @@ const initialState = {
     token: null,
     loading: false,
     error: null,
-    authRedirectPath: '/'
+    authRedirectPath: '/',
+    registred: false
 }
 
 
