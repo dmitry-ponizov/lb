@@ -1,0 +1,31 @@
+.Button {
+  padding: 10px 20px;
+  color: transparent;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  outline: none;
+  transition: background-color .5s;
+  font-family: 'Arial', sans-serif;
+}
+
+.Submit {
+  color: #616060;
+  background: #ddd;
+}
+
+.Success {
+  color: #5C9210;
+  background: lightgreen;
+}
+
+.Danger {
+  color: #944317;
+}
+
+.Button:disabled {
+  color: #b5b5b5;
+  background: #f1f1f1;
+  cursor: not-allowed;
+}

@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+
+  hwl-react-app:
+    container_name: hwl-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - '.:/usr/src/app'
+      - '/usr/src/app/node_modules'
+    ports:
+      - '3300:3000'
+    environment:
+      - NODE_ENV=development

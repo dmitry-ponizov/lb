@@ -1,0 +1,36 @@
+.Input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    min-height: 80px;
+
+}
+.Label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.InputElement{
+    outline: none;
+
+}
+
+
+.InputElement:focus {
+    outline: none;
+}
+
+.Invalid {
+    border-color:  red !important;
+
+}
+.InvalidMsg {
+    color: #ff5757;
+    font-size: 12px;
+    text-align: center;
+}
+.Valid {
+    border-color:  green !important;
+}
+
