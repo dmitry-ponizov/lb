@@ -1,8 +1,4 @@
 import * as actionTypes from './actionTypes';
-import axios from 'axios'
-import { apiUrl } from '../../apiAdapter'
-
-
 
 export const userProfileStart = () => {
     return {
@@ -25,16 +21,9 @@ export const userProfileFail = (error) => {
 
 export const userProfile = (token) => {
 
-    return dispatch => {
-        dispatch(userProfileStart());
-
-        axios.get(apiUrl() + 'user-profile',  { headers: {"Authorization" : `Bearer ${token}`} })
-        .then(({data}) => {
-            dispatch(userProfileSuccess(data.data))
-        })
-        .catch(error => {
-            dispatch(userProfileFail(error.response.data.error))
-        })
+    return {
+        type: actionTypes.USER_PROFILE,
+        token: token
     }
 
 }

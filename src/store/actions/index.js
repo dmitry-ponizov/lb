@@ -16,6 +16,9 @@ export {
 from './auth' 
 
 export {
-    userProfile
+    userProfile,
+    userProfileFail,
+    userProfileStart,
+    userProfileSuccess
 }
 from './dashboard'
