@@ -12,7 +12,6 @@ import dashboardReducer from './store/reducers/dashboard'
 import createSagaMiddleware from "redux-saga";
 import { watchAuth, watchDashboard } from "./store/sagas";
 
-console.log(window.location.host)
 
 const composeEnhancers = process.env.NODE_ENV === 'development' && window.location.host === 'localhost:3300' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
