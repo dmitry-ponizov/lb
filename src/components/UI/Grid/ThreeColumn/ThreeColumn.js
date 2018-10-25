@@ -7,11 +7,13 @@ class ThreeColumn extends Component {
 
 
     render() {
+
         return(
-            <Aux>
-            <div className={classes.Column + ' col-md-4'}><Column elements={this.props.elements} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.components} /></div> 
-            <div className={classes.Column + ' col-md-4'}><Column elements={this.props.elements} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.components}/></div> 
-            <div className={classes.Column + ' col-md-4'}><Column elements={this.props.elements} onDropHandler={(id)=>this.props.onDropHandler(id)} components={this.props.components}/></div> 
+        <Aux>
+            {Object.keys(this.props.row).map((cell, index) => <div key={index} className={classes.Column + ' col-md-4'}>
+        
+            <Column elements={this.props.elements} columnName={cell} gridType={this.props.gridType}  rowNumber={this.props.rowNumber} name={cell} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.row[cell]} />
+            </div> )}
         </Aux>
         )
     }

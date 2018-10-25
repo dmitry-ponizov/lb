@@ -7,7 +7,13 @@ class Row extends Component {
     render() {
         return(
             <div className="row">
-              {this.props.columns ? <DynamicComponent tag={this.props.columns} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.components} elements={this.props.elements}
+              {this.props.columns ? <DynamicComponent 
+                                    rowNumber={this.props.rowNumber}
+                                    tag={this.props.columns} 
+                                    row={this.props.row} 
+                                    onDropHandler={(id)=>this.props.onDropHandler(id)} 
+                                    components={this.props.components} 
+                                    elements={this.props.elements}
                /> : null}
             </div>
         )
@@ -15,3 +21,4 @@ class Row extends Component {
 }
 
 export default Row;
+

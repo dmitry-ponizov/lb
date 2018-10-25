@@ -22,9 +22,18 @@ class Column extends Component {
     }
 
     onDrop = (e) => {
-                              
+        let gridType = this.props.gridType;
+        let rowNumber = this.props.rowNumber;
+        let columnName = this.props.columnName;      
         let id = e.dataTransfer.getData('id');
-      this.props.onDropHandler(id)
+
+        let newColumn = {
+          'gridType':gridType,
+          'rowNumber':rowNumber,
+          'columnName':columnName,
+          'id':id
+        }
+      this.props.onDropHandler(newColumn)
     
     }
    
