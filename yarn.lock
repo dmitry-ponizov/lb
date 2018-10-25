@@ -7030,12 +7030,6 @@ react-dom@^16.5.2:
     prop-types "^15.6.2"
     schedule "^0.5.0"
 
-react-email-editor@^0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/react-email-editor/-/react-email-editor-0.9.0.tgz#6a693202ec5675da68cb03de7c5a1d6bfc86acb3"
-  dependencies:
-    react-load-script "^0.0.6"
-
 react-error-overlay@^5.0.5:
   version "5.0.5"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-5.0.5.tgz#716ff1a92fda76bb89a39adf9ce046a5d740e71a"
@@ -7047,10 +7041,6 @@ react-is@^16.3.1, react-is@^16.3.2:
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
-
-react-load-script@^0.0.6:
-  version "0.0.6"
-  resolved "https://registry.yarnpkg.com/react-load-script/-/react-load-script-0.0.6.tgz#db6851236aaa25bb622677a2eb51dad4f8d2c258"
 
 react-overlays@^0.8.0:
   version "0.8.3"

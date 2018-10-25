@@ -3,10 +3,12 @@ import DynamicComponent from '../../../hoc/DynamicComponent/DynamicComponent'
 
 
 class Row extends Component {
+  
     render() {
         return(
             <div className="row">
-              {this.props.columns ? <DynamicComponent tag={this.props.columns} elements={this.props.elements} /> : null}
+              {this.props.columns ? <DynamicComponent tag={this.props.columns} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.components} elements={this.props.elements}
+               /> : null}
             </div>
         )
     }

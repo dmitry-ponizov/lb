@@ -10,7 +10,7 @@ class DymamicComponent extends Component {
     };
     render() {
        const TagName = this.components[this.props.tag];
-       return <TagName elements={this.props.elements }/>
+       return <TagName elements={this.props.elements }  components={this.props.components} onDropHandler={(id)=>this.props.onDropHandler(id)} />
     }
 }
 export default DymamicComponent;
