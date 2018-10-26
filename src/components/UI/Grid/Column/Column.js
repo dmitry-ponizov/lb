@@ -7,9 +7,6 @@ import Text from '../Text/Text'
 class Column extends Component {
 
 
-    state = {
-        elements: [],
-    }
 
     onDragStart = (e, id) => {
    

@@ -1,22 +1,23 @@
 import React, { Component } from 'react'
-import DynamicComponent from '../../../hoc/DynamicComponent/DynamicComponent'
-
-
+import Column from '../../../components/UI/Grid/Column/Column'
+import classes from './Row.module.css'
 class Row extends Component {
   
     render() {
         return(
             <div className="row">
-              {this.props.columns ? <DynamicComponent 
-                                     selectedHandler={(settings) => this.props.selectedHandler(settings)}
-                                    itemHandler={(item, settings) =>this.props.itemHandler(item, settings)}
-                                    rowNumber={this.props.rowNumber}
-                                    tag={this.props.columns} 
-                                    row={this.props.row} 
-                                    onDropHandler={(id)=>this.props.onDropHandler(id)} 
-                                    components={this.props.components} 
-                                    elements={this.props.elements}
-               /> : null}
+                {Object.keys(this.props.row).map((cell, index) => 
+                <div key={index} className={classes.Column + ' col-md-' + 12/(this.props.row.length)}>
+                    <Column 
+                        selectedHandler={(settings) => this.props.selectedHandler(settings)}
+                        itemHandler={(item,settings) =>this.props.itemHandler(item,settings)}
+                        columnName={cell} 
+                        gridType={this.props.columns}  
+                        rowNumber={this.props.rowNumber} 
+                        name={cell} 
+                        onDropHandler={(id)=>this.props.onDropHandler(id)}  
+                        components={this.props.row[cell]} />
+                </div> )}
             </div>
         )
     }
