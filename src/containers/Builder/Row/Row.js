@@ -8,6 +8,8 @@ class Row extends Component {
         return(
             <div className="row">
               {this.props.columns ? <DynamicComponent 
+                                     selectedHandler={(settings) => this.props.selectedHandler(settings)}
+                                    itemHandler={(item, settings) =>this.props.itemHandler(item, settings)}
                                     rowNumber={this.props.rowNumber}
                                     tag={this.props.columns} 
                                     row={this.props.row} 

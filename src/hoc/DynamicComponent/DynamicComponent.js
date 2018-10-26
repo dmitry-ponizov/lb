@@ -10,7 +10,15 @@ class DymamicComponent extends Component {
     };
     render() {
        const TagName = this.components[this.props.tag];
-       return <TagName elements={this.props.elements } gridType={this.props.tag} rowNumber={this.props.rowNumber} row={this.props.row} components={this.props.components} onDropHandler={(id)=>this.props.onDropHandler(id)} />
+       return <TagName 
+                selectedHandler={(settings) => this.props.selectedHandler(settings)}
+                itemHandler={(item,settings) =>this.props.itemHandler(item,settings)}
+                elements={this.props.elements } 
+                gridType={this.props.tag} 
+                rowNumber={this.props.rowNumber} 
+                row={this.props.row} 
+                components={this.props.components} 
+                onDropHandler={(id)=>this.props.onDropHandler(id)} />
     }
 }
 export default DymamicComponent;

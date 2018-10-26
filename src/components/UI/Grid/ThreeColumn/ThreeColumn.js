@@ -11,8 +11,16 @@ class ThreeColumn extends Component {
         return(
         <Aux>
             {Object.keys(this.props.row).map((cell, index) => <div key={index} className={classes.Column + ' col-md-4'}>
-        
-            <Column elements={this.props.elements} columnName={cell} gridType={this.props.gridType}  rowNumber={this.props.rowNumber} name={cell} onDropHandler={(id)=>this.props.onDropHandler(id)}  components={this.props.row[cell]} />
+            <Column 
+                selectedHandler={(settings) => this.props.selectedHandler(settings)}
+                itemHandler={(item,settings) =>this.props.itemHandler(item,settings)}
+                elements={this.props.elements} 
+                columnName={cell} 
+                gridType={this.props.gridType}  
+                rowNumber={this.props.rowNumber} 
+                name={cell} 
+                onDropHandler={(id)=>this.props.onDropHandler(id)}  
+                components={this.props.row[cell]} />
             </div> )}
         </Aux>
         )

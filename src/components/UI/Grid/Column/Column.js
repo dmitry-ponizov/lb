@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import image from '../../../../assets/images/logo-zeeasy.png'
 import Resizable from 're-resizable';
 import './Column.scss'
+import Text from '../Text/Text'
 
 class Column extends Component {
 
-    
+
     state = {
         elements: [],
     }
@@ -44,18 +45,17 @@ class Column extends Component {
 
       return (
         <div className="droppable" onDragOver={(e) => this.onDragOver(e)} onDrop={(e) => this.onDrop(e)} >
-        {this.props.components.map(element => {
+        {this.props.components.map((element, index) => {
                 if(element.name === 'Text') {
                     return(
-                        <textarea key={element.id}
-                          onDragStart={(e) => this.onDragStart(e, element.id)}
-                          className="draggable"
-                          style={{ backgroundColor: element.bgcolor }}
-                          draggable
-                          value={element.name}
-                          onChange={this.onChange}>
-                            {element.name}
-                        </textarea>
+                        <Text settings={{
+                          columnName:this.props.columnName,
+                          gridType:this.props.gridType,
+                          rowNumber:this.props.rowNumber,
+                          itemId:index
+                      }} 
+                      selectedHandler={(settings) => this.props.selectedHandler(settings)}
+                      itemHandler={(item,settings) =>this.props.itemHandler(item,settings)} element={element} key={element.id}/>
                       )
                   }else if(element.name === 'Image') {
                     return(

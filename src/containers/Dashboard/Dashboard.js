@@ -6,8 +6,10 @@ import Row from '../Builder/Row/Row'
 import Pannel from '../../components/UI/Grid/Pannel/Pannel'
 import ReactDOMServer from 'react-dom/server';
 import './Dashboard.scss'
+import ItemPanel from '../../components/UI/Grid/ItemPanel/ItemPanel'
 
-import ReactHtmlParser, { processNodes, convertNodeToElement, htmlparser2 } from 'react-html-parser';
+import ReactHtmlParser from 'react-html-parser';
+
 class Dashboard extends Component {
 
     state = {
@@ -25,7 +27,15 @@ class Dashboard extends Component {
         columns: null,
         html: null,
         elements: [
-            { id:1, name: 'Text',  bgcolor: 'yellow' },
+            {   id:1, 
+                name: 'Text',
+                styles:{
+                overflow: 'hidden',    
+                width: '100%',
+                color: 'black'
+             },
+            content: 'This is a new Text block. Change the text.'
+        },
             { id:2, name: 'Image', bgcolor: 'pink' },
             { id:3, name: 'Link',  bgcolor: 'skyblue' }
           ],
@@ -41,7 +51,8 @@ class Dashboard extends Component {
              }
         ],
         components: [],
-        show: false
+        show: false,
+        selectedItem: null
     }
 
     componentDidMount() {
@@ -120,8 +131,6 @@ class Dashboard extends Component {
         for(let column in columns){
             columns[column] = []
         }
-
-        console.log(columns)
      
         newRows.push(Object.assign({},{[currentColumn]:columns}))
 
@@ -147,7 +156,7 @@ class Dashboard extends Component {
 
         let elements = this.state.elements
 
-        let element = {...elements.find(element => element.id == newColumn.id)}
+        let element = {...elements.find(element => +element.id === +newColumn.id)}
 
    
         element.id = `id${new Date().getTime()}`;
@@ -180,6 +189,38 @@ class Dashboard extends Component {
             show: !prevState.show
         }))
     }
+
+    itemHandler = (item, settings) => {
+        let rows = [...this.state.rows]
+ 
+        rows[settings.rowNumber][settings.gridType][settings.columnName][settings.itemId] = item
+
+        this.setState({
+          ...this.state,
+          rows: rows
+        })
+
+    }
+
+    selectedHandler = (settings) => {
+        this.setState({
+            selectedItem:settings
+        })
+    }
+
+    stylesHandler = (param, content) => {
+        const selectedItem = Object.assign({}, this.state.selectedItem)
+        let rows = [...this.state.rows]
+        let styles = Object.assign({},rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles']);
+        styles[param] = content
+        rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles'] = styles
+
+        this.setState({
+          ...this.state,
+          rows: rows
+        })
+
+    }
     render() {
         let elements = []
 
@@ -203,25 +244,32 @@ class Dashboard extends Component {
                 <h3>Hello { this.props.userProfile ? this.props.userProfile.first_name + ' ' +   this.props.userProfile.last_name : null }</h3>
                       <div className="container-drag">
                         <div className="wip"
-                        onDragOver={(e) => this.onDragOver(e)} >
-                        <span className="task-header">Components</span>
-                        {elements}
+                            onDragOver={(e) => this.onDragOver(e)} >
+                            <span className="task-header">Components</span>
+                            {elements}
+                            {this.state.selectedItem ? <ItemPanel 
+                                                          tag={this.state.selectedItem.type} 
+                                                          stylesHandler={(param, content) => this.stylesHandler(param, content)}
+                                                            /> : null}
                         </div>
                         <div >
-                        <div className="container">
-                            {this.state.rows.map((row,rowNumber) => 
-                                <div key={rowNumber}>
-                                    {Object.values(row).map((cells,index) => <Row key={index} 
-                                    onDropHandler={(id)=>this.onDrop(id)} 
-                                    rowNumber={rowNumber}
-                                    components={this.state.components}  
-                                    columns={Object.keys(row)[0]} 
-                                    row={cells}
-                                    elements={this.state.elements} />)}
-                                </div>
-                                )
-                            }
-                        </div>
+                            <div className="container">
+                                {this.state.rows.map((row,rowNumber) => 
+                                    <div key={rowNumber}>
+                                        {Object.values(row).map((cells,index) => 
+                                        <Row key={index} 
+                                            selectedHandler={(settings) => this.selectedHandler(settings)}
+                                            itemHandler={(item, settings) => this.itemHandler(item, settings)}
+                                            onDropHandler={(id)=>this.onDrop(id)} 
+                                            rowNumber={rowNumber}
+                                            components={this.state.components}  
+                                            columns={Object.keys(row)[0]} 
+                                            row={cells}
+                                            elements={this.state.elements} />)}
+                                    </div>
+                                    )
+                                }
+                            </div>
                         </div>
                   
                     </div>
