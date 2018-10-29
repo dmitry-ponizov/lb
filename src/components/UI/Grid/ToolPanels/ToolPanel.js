@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import TextPanel from './TextPanel/TextPanel'
 
 
-class ItemPanel extends Component {
+class ToolPanel extends Component {
     components = {
         Text: TextPanel,
     };
@@ -11,4 +11,4 @@ class ItemPanel extends Component {
        return <TagName  stylesHandler={(param, content) => this.props.stylesHandler(param, content)} />
     }
 }
-export default ItemPanel;
+export default ToolPanel;

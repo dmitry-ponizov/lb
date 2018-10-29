@@ -25,11 +25,11 @@ class Text extends Component {
     }
     render() {
         return(
-            <div className="blockBuilder">
+            <div className={this.props.editable ? 'blockBuilder' : null} >
                 <ContentEditable
                     style={ this.props.element.styles } 
                     html={this.state.html} 
-                    disabled={false}       
+                    disabled={!this.props.editable}       
                     suppressContentEditableWarning={true}
                     onChange={this.handleChange} 
                     tagName='div' 

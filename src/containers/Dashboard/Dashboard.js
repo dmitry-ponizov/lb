@@ -13,9 +13,8 @@ class Dashboard extends Component {
     render() {
         
         return (
-             <div className="container">
-                <h1>Dashboard component</h1>
-                <h3>Hello { this.props.userProfile ? this.props.userProfile.first_name + ' ' +   this.props.userProfile.last_name : null }</h3>
+             <div>
+               
                 <Builder />
             </div>
         

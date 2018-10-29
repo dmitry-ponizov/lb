@@ -5,8 +5,9 @@ import classes from './Row.module.css'
 const Row = (props) => (
     <div className="row">
         {Object.keys(props.row).map((cell, index) => 
-        <div key={index} className={classes.column + ' col-md-' + 12/(props.row.length)}>
+        <div key={index} className={(props.editable ? classes.column : null) + ' col-md-' + 12/(props.row.length)}>
             <Column 
+                editable={props.editable}
                 selectedHandler={(settings) => props.selectedHandler(settings)}
                 itemHandler={(item,settings) => props.itemHandler(item,settings)}
                 columnName={cell} 
