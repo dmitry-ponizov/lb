@@ -22,3 +22,14 @@ export {
     userProfileSuccess
 }
 from './dashboard'
+
+export {
+    selectGridType,
+    addRow,
+    dropItem,
+    changeStyleItem,
+    selectItem,
+    changeContentItem,
+    templateInJson,
+    jsonInTemplate
+} from './builder'

@@ -1,0 +1,6 @@
+.column {
+    text-align: center;
+    min-height: 200px;
+    outline: 1px dashed #ddd;
+    padding: 0;
+}

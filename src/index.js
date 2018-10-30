@@ -9,16 +9,18 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import thunk from  'redux-thunk'
 import authReducer from './store/reducers/auth';
 import dashboardReducer from './store/reducers/dashboard'
+import builderReducer from './store/reducers/builder'
 import createSagaMiddleware from "redux-saga";
 import { watchAuth, watchDashboard } from "./store/sagas";
 
-console.log(window.location.host)
 
 const composeEnhancers = process.env.NODE_ENV === 'development' && window.location.host === 'localhost:3300' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
+
 const rootReducer = combineReducers({
     auth: authReducer,
-    dashboard: dashboardReducer
+    dashboard: dashboardReducer,
+    builder: builderReducer
 })
 
 
