@@ -21,11 +21,11 @@ export const dropItem = (newItem) => {
     }
 }
 
-export const changeStyleItem = (param, content) => {
+export const changeStyleItem = (style, value) => {
     return {
         type: actionTypes.CHANGE_STYLE_ITEM,
-        param: param,
-        content: content
+        style: style,
+        value: value
     }
 }
 

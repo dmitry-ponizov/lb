@@ -24,6 +24,9 @@ class Builder extends Component {
     onDragStart = (e, id) => {
         e.dataTransfer.setData('id', id)
     }
+     onDragEnd = (e) => {
+        e.preventDefault();
+      }
     
     htmlHandler = () => {
         let html =  ReactDOMServer.renderToStaticMarkup(    
@@ -49,7 +52,6 @@ class Builder extends Component {
             ...this.state,
             selectedLayout:e.target.value
         })
-
     }
     render() {
         let elements = this.props.elements.map(element => (
@@ -68,48 +70,50 @@ class Builder extends Component {
                     <div>
                         <div className="container-drag">
                             <div className="wip"
+                                onDragEnd={(e)=> this.onDragEnd(e)}
                                 onDragOver={(e) => this.onDragOver(e)} >
                                 <span className="task-header">Components</span>
                                 { elements }
                                 {this.props.selectedItem ? 
                                 <ToolPanel  
                                     tag={this.props.selectedItem.type} 
-                                    stylesHandler={(param, content) => this.props.onChangeStyleItem(param, content)}
+                                    stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
                                     /> : null}
                             </div>
-                            <Container 
-                                editable={this.state.editable}
-                                rows={this.props.rows} 
-                                selectedHandler={(item) => this.props.onSelectItem(item)}
-                                itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
-                                onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
-                                />
-                            </div>
                             <div className="container">
-                                <Pannel gridHandler={(gridType) => this.props.onSelectedGrid(gridType)} columns={this.props.gridType} />
-                                <NavigationItem link="/logout" >Logout</NavigationItem>
-                                <button onClick={() => this.props.addRowHandler(this.props.gridType)} >Add Row </button>
-                                <button onClick={this.htmlHandler}>Html</button>
-                                <button onClick={this.props.onTemplateInJson}>Json</button>
-                                <textarea cols="50" rows="10" value={this.state.html || ''} onChange={() => this.onChangeHandler(()=>{})} >{ this.state.html }</textarea>
-                                <textarea cols="50" rows="10" value={this.props.json || ''} onChange={() => this.onChangeHandler(()=>{})} ></textarea>
-                                <textarea cols="50" rows="10"  onChange={this.props.onJsonInTemplate} >{ this.props.json }</textarea>
+                                <Container 
+                                    editable={this.state.editable}
+                                    rows={this.props.rows} 
+                                    selectedHandler={(item) => this.props.onSelectItem(item)}
+                                    itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
+                                    onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
+                                    />
                             </div>
-
+                           
+                        </div>
+                        <div className="container">
+                            <Pannel buttons={Object.keys(this.props.layouts)} />
+                            <button onClick={() => this.props.addRowHandler(this.props.gridType)} >Add Row </button>
+                            <button onClick={this.htmlHandler}>Html</button>
+                            <button onClick={this.props.onTemplateInJson}>Json</button>
+                            <textarea cols="50" rows="10" value={this.state.html || ''} onChange={() => this.onChangeHandler(()=>{})} >{ this.state.html }</textarea>
+                            <textarea cols="50" rows="10" value={this.props.json || ''} onChange={() => this.onChangeHandler(()=>{})} ></textarea>
+                            <textarea cols="50" rows="10"  onChange={this.props.onJsonInTemplate} >{ this.props.json }</textarea>
+                        </div>
                     </div> :     
                     <div>
                         { ReactHtmlParser(this.state.html) }
                     </div>}
                     <div className="container">
-                  
-                    <div className="col-md-4">
-                    <button onClick={this.previewHandler}>Preview</button>
-                    <select className="form-control" value={this.state.selectedLayout || '' }onChange={this.layoutHandler}>
-                            <option value="" disabled   >Please select</option>
-                            <option value="redLayout">First layout</option>
-                            <option value="greenLayout">Second layout</option>
-                    </select>
-                    </div>
+                        <div className="col-md-4">
+                            <button onClick={this.previewHandler}>Preview</button>
+                            <select className="form-control" value={this.state.selectedLayout || '' }onChange={this.layoutHandler}>
+                                    <option value="" disabled   >Please select</option>
+                                    <option value="redLayout">First layout</option>
+                                    <option value="greenLayout">Second layout</option>
+                            </select>
+                        </div>
+                        <NavigationItem link="/logout" >Logout</NavigationItem>
                     </div>
                 </div>
         )
@@ -122,13 +126,13 @@ const mapStateToProps = state => {
         rows: state.builder.rows,
         elements: state.builder.elements,
         selectedItem: state.builder.selectedItem,
-        json: state.builder.json
+        json: state.builder.json,
+        layouts: state.builder.layouts
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        onSelectedGrid: (gridType) => dispatch(actions.selectGridType(gridType)),
         addRowHandler: (gridType) => dispatch(actions.addRow(gridType)),
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
