@@ -49,7 +49,7 @@ class Builder extends Component {
             ...this.state,
             selectedLayout:e.target.value
         })
-        console.log(e.target.value)
+
     }
     render() {
         let elements = this.props.elements.map(element => (
@@ -131,7 +131,7 @@ const mapDispatchToProps = dispatch => {
         onSelectedGrid: (gridType) => dispatch(actions.selectGridType(gridType)),
         addRowHandler: (gridType) => dispatch(actions.addRow(gridType)),
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
-        onChangeStyleItem: (params, content) => dispatch(actions.changeStyleItem(params, content)),
+        onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
         onTemplateInJson: () => dispatch(actions.templateInJson()),
