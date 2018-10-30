@@ -68,7 +68,7 @@ const changeStyleItem = (state, action) => {
     const selectedItem = Object.assign({}, state.selectedItem)
     let rows = [...state.rows]
     let styles = Object.assign({},rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles']);
-    styles[action.param] = action.content
+    styles[action.style] = action.value
     rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles'] = styles
     return updateObject(state, { rows: rows })
 }
