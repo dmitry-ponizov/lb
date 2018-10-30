@@ -1,8 +1,9 @@
 import React from 'react'
 import Row from '../Row/Row'
+import Aux from '../../../../hoc/Aux/Aux'
 
 const Container = (props) => (
-    <div className="container">
+    <Aux>
          {props.rows.map((row,rowNumber) => 
             <div key={rowNumber}>
                 {Object.values(row).map((cells,index) => 
@@ -16,7 +17,7 @@ const Container = (props) => (
                     row={cells}
                     />)}
             </div>)}
-    </div>
+    </Aux>
 )
 
 export default Container;
