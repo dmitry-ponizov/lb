@@ -6,7 +6,7 @@ const Row = (props) => (
     
     <div className="row">
         {Object.keys(props.row).map((cell, index) => 
-        <div key={index} className={(props.editable ? 'column' : '') + ' col-md-' + 12/(props.row.length)}>
+        <div key={index} className={(props.editable ? 'row-content' : '') + ' col-md-' + 12/(props.row.length)}>
             <Column 
                 editable={props.editable}
                 selectedHandler={(settings) => props.selectedHandler(settings)}

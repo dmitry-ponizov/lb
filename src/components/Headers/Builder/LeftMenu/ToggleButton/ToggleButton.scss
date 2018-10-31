@@ -1,0 +1,50 @@
+.toggleButton {
+    padding: 5px;
+    height: 60px;
+    width: 60px;
+    border-right:  solid 1px #eaeaea;
+}
+
+.hamburger-menu {
+    display: inline-block;
+    margin: 0 4px;
+    // padding: 5px 12px;
+    overflow: hidden;
+    vertical-align: middle;
+    cursor: pointer;
+    height: 48px;
+    font-size: 28px;
+    color: #000;
+    transition: all 0.3s ease-out;
+    position: relative;
+  
+}
+.line{
+    width: 20px;
+    height: 2px;
+    background-color: #000;
+    display: block;
+    margin: 8px auto;
+    transition: all 0.3s ease-in-out;
+  
+}
+
+.hamburger-menu.active{
+    background: #fff;
+    transition: all 0.3s ease-in-out;
+    transition-delay: 0.6s;
+    transform: rotate(45deg);
+    .line{
+      &:nth-child(1){
+        transform: translateY(13px);
+        transition-delay: 0.3s;
+      }
+      &:nth-child(2){
+        width: 0px;
+      }
+      &:nth-child(3){
+        transform: translateY(-7px) rotate(90deg);
+        transition-delay: 0.3s;
+      }
+    }
+  }

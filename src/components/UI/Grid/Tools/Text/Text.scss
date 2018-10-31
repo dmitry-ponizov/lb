@@ -1,8 +1,12 @@
 .blockBuilder {
+    position: relative;
     &:hover{
-        outline: #7aabc0 solid 2px;
+        outline:solid 1px #e36854;
     }
-    &:focus {
-        outline: #4CB9EA solid 2px;
+    div {
+        &:focus {
+            outline:solid 1px #e36854;
+        }
     }
+   
 }

@@ -7,13 +7,6 @@ export const selectGridType = (gridType) => {
     }
 }
 
-export const addRow = (gridType) => {
-    return {
-        type: actionTypes.ADD_ROW,
-        gridType: gridType
-    }
-}
-
 export const dropItem = (newItem) => {
     return {
         type: actionTypes.DROP_ITEM,

@@ -25,7 +25,6 @@ from './dashboard'
 
 export {
     selectGridType,
-    addRow,
     dropItem,
     changeStyleItem,
     selectItem,

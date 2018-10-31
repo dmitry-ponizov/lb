@@ -1,9 +1,31 @@
 .pannel {
     list-style: none;
     display: flex;
-    margin: 20px;
-
+    justify-content: center;
+    visibility: visible;
 }
 .pannel li {
-    margin-right: 10px;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hide-panel {
+    display: none!important;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    li {
+        width: 120px;
+        height: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        cursor: pointer;
+    }
 }
