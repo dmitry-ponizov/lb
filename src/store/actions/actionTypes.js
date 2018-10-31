@@ -15,7 +15,6 @@ export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL';
 
 //builder
 export const SELECT_GRID_TYPE = 'SELECT_GRID_TYPE';
-export const ADD_ROW = 'ADD_ROW'
 export const DROP_ITEM = 'DROP_ITEM'
 export const CHANGE_STYLE_ITEM = 'CHANGE_STYLE_ITEM'
 export const SELECT_ITEM = 'SELECT_ITEM'

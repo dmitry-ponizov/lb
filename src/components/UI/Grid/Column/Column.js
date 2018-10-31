@@ -30,7 +30,7 @@ class Column extends Component {
   }
   render() {
     return (
-      <div className='content'
+      <div className='column-content'
         onDragStart={(e) => this.onDragStart(e)}
         onDragOver={(e) => this.onDragOver(e)}
         onDrop={(e) => this.onDrop(e)} >
@@ -41,7 +41,8 @@ class Column extends Component {
               columnName: this.props.columnName,
               gridType: this.props.gridType,
               rowNumber: this.props.rowNumber,
-              itemId: index
+              itemId: index,
+              id: element.id
             }}
             editable={this.props.editable}
             selectedHandler={(settings) => this.props.selectedHandler(settings)}

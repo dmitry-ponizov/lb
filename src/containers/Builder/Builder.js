@@ -9,12 +9,16 @@ import ReactDOMServer from 'react-dom/server';
 import './Builder.scss'
 import Layout from '../../components/UI/Grid/Layouts/Layout'
 import Container from '../../components/UI/Grid/Container/Container'
+import BuilderHeader from '../../components/Headers/Builder/BuilderHeader'
+import SideBar from '../../components/SideBar/Builder/SideBar'
+import Content from '../../components/UI/Grid/Content/Content'
 
 class Builder extends Component {
     state = {
         html: null,
         editable: true,
-        selectedLayout: 'redLayout'
+        selectedLayout: 'redLayout',
+        active: true
     }
 
     onDragOver = (e) => {
@@ -53,19 +57,28 @@ class Builder extends Component {
             selectedLayout:e.target.value
         })
     }
+
+    toggleHandler = (active) => {
+        this.setState({active})
+    }
     render() {
-        let elements = this.props.elements.map(element => (
-            <div key={element.id}
-                onDragStart={(e) => this.onDragStart(e, element.id)}
+        let tools = this.props.tools.map(tool => (
+            <div key={tool.id}
+                onDragStart={(e) => this.onDragStart(e, tool.id)}
                 className="draggable"
-                style={{ backgroundColor: element.bgcolor }}
+                style={{ backgroundColor: tool.bgcolor }}
                 draggable
                  >
-                {element.name}
+                {tool.name}
           </div>
         ))
         return (
-            <div>
+            <div className="builder">
+                <BuilderHeader toggleHandler={(active) => this.toggleHandler(active) } />
+                <div className="builder-wrapper">
+                    <SideBar active={ this.state.active }/>
+                    <Content />
+                </div>
                 {this.state.editable ? 
                     <div>
                         <div className="container-drag">
@@ -73,7 +86,7 @@ class Builder extends Component {
                                 onDragEnd={(e)=> this.onDragEnd(e)}
                                 onDragOver={(e) => this.onDragOver(e)} >
                                 <span className="task-header">Components</span>
-                                { elements }
+                                { tools }
                                 {this.props.selectedItem ? 
                                 <ToolPanel  
                                     tag={this.props.selectedItem.type} 
@@ -124,7 +137,7 @@ const mapStateToProps = state => {
     return {
         gridType: state.builder.gridType,
         rows: state.builder.rows,
-        elements: state.builder.elements,
+        tools: state.builder.tools,
         selectedItem: state.builder.selectedItem,
         json: state.builder.json,
         layouts: state.builder.layouts
@@ -133,7 +146,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addRowHandler: (gridType) => dispatch(actions.addRow(gridType)),
+
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),

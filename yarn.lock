@@ -673,6 +673,12 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
+"@babel/runtime@^7.1.2":
+  version "7.1.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.1.2.tgz#81c89935f4647706fc54541145e6b4ecfef4b8e3"
+  dependencies:
+    regenerator-runtime "^0.12.0"
+
 "@babel/template@7.0.0-beta.44":
   version "7.0.0-beta.44"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.0.0-beta.44.tgz#f8832f4fdcee5d59bf515e595fc5106c529b394f"
@@ -771,6 +777,10 @@
     "@babel/preset-react" "^7.0.0"
     "@svgr/core" "^2.4.1"
     loader-utils "^1.1.0"
+
+"@tanem/svg-injector@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@tanem/svg-injector/-/svg-injector-1.2.1.tgz#3120e90246d0eb3c4fc6c61586a6f028a3c658ae"
 
 "@types/prop-types@^15.5.4":
   version "15.5.6"
@@ -7166,6 +7176,14 @@ react-router@^4.3.1:
     path-to-regexp "^1.7.0"
     prop-types "^15.6.1"
     warning "^4.0.1"
+
+react-svg@^6.0.20:
+  version "6.0.20"
+  resolved "https://registry.yarnpkg.com/react-svg/-/react-svg-6.0.20.tgz#4ee687952eb8fcdd2882aa3ed0d136129b9ee916"
+  dependencies:
+    "@babel/runtime" "^7.1.2"
+    "@tanem/svg-injector" "^1.2.1"
+    prop-types "^15.6.2"
 
 react-transition-group@^2.0.0, react-transition-group@^2.2.0:
   version "2.5.0"
