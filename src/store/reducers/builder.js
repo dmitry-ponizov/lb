@@ -12,14 +12,15 @@ const initialState = {
         'threeColumns': 3,
         'fourColumns': 4,
     },
-    elements: [
+    tools: [
         { id: uuid.v4(),
+            category:'general',
             name: 'Text',
             styles:{ overflow: 'hidden', width: '100%',color: 'black'}, 
             content: 'This is a new Text block. Change the text.'
         },
-        { id: uuid.v4(), name: 'Image', bgcolor: 'pink' },
-        { id: uuid.v4(), name: 'Link',  bgcolor: 'skyblue' }
+        { id: uuid.v4(), name: 'Image', category:'any',  bgcolor: 'pink' },
+        { id: uuid.v4(), name: 'Link', category:'any',  bgcolor: 'skyblue' }
     ],
     selectedItem: null,
     json: null
@@ -27,10 +28,6 @@ const initialState = {
 }
 
 const selectedGird = (state, action) => {
-    return updateObject(state, { gridType: action.gridType })
-}
-
-const addRow = (state, action) => {
 
     const layouts = Object.assign({}, state.layouts)
 
@@ -46,20 +43,22 @@ const addRow = (state, action) => {
 
     newRows.push(Object.assign({}, row))
 
-    return updateObject(state, { rows: newRows })
+    return updateObject(state, { rows: newRows, gridType: action.gridType  })
+
 }
+
 
 const dropItem = (state, action) => {
 
-    const elements = state.elements
+    const tools = state.tools
 
-    let element = {...elements.find(element => element.id === action.newItem.id)}
+    let tool = {...tools.find(tool => tool.id === action.newItem.id)}
 
-    element.id = uuid.v4();
+    tool.id = uuid.v4();
 
     let rows = [...state.rows]
         
-    rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName].push(element) 
+    rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName].push(tool) 
 
     return updateObject(state, { rows: rows })
 }
@@ -93,7 +92,6 @@ const jsonInTemplate = (state, action) => updateObject(state, { rows: JSON.parse
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
-        case actionTypes.ADD_ROW: return addRow(state, action);
         case actionTypes.DROP_ITEM: return dropItem(state, action);
         case actionTypes.CHANGE_STYLE_ITEM: return changeStyleItem(state, action);
         case actionTypes.SELECT_ITEM: return selectItem(state, action);

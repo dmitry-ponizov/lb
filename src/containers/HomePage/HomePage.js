@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Toolbar from '../../components/Navigation/MainNavigation/Toollbar/Toolbar'
+import Toolbar from '../../components/Headers/Main/Toollbar/Toolbar'
 import './HomePage.scss';
 import porfolio1 from '../../assets/images/portfolio/1.jpg'
 import porfolio2 from '../../assets/images/portfolio/2.jpg'
@@ -7,7 +7,7 @@ import porfolio3 from '../../assets/images/portfolio/3.jpg'
 import porfolio4 from '../../assets/images/portfolio/4.jpg'
 import porfolio5 from '../../assets/images/portfolio/5.jpg'
 import porfolio6 from '../../assets/images/portfolio/6.jpg'
-import MainFooter from '../../components/Footer/MainFooter/MainFooter'
+import MainFooter from '../../components/Footers/Main/MainFooter'
 
 class HomePage extends Component {
 

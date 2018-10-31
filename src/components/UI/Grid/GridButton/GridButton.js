@@ -2,10 +2,21 @@ import React from 'react'
 import './GridButton.scss'
 import { connect } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
+import ReactSVG from 'react-svg'
+
+const titles = {
+    oneColumn:'1 column',
+    twoColumns: '2 equal columns',
+    threeColumns: '3 equal columns',
+    fourColumns: '4 equal columns',
+}
 
 const gridButton = ({ image, gridType, onSelectedGrid }) => (
-    <li onClick={() => onSelectedGrid(image)} className={gridType === image ? 'active': null}>
-        <img src={require(`../../../../assets/images/row/${image}.png`)} alt={image} />
+    <li onClick={() => onSelectedGrid(image)} className={gridType === image ? 'active': ''}>
+         <div className="svg-container">
+             <ReactSVG src={require(`../../../../assets/images/row/${image}.svg`)}  />
+         </div>
+         <p className="grid-title">{ titles[image] }</p>
     </li>
 )
 
