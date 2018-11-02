@@ -1,7 +1,7 @@
 import React from 'react'
 import Aux from '../../../../../hoc/Aux/Aux'
 
-const RedLayout = (props) => (
+const TemplateTwo = (props) => (
     
             <Aux>
             <header>
@@ -77,4 +77,4 @@ const RedLayout = (props) => (
         </Aux>
 ) 
 
-export default RedLayout;
+export default TemplateTwo;

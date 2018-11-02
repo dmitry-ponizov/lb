@@ -1,5 +1,6 @@
 .blockBuilder {
     position: relative;
+ 
     &:hover{
         outline:solid 1px #e36854;
     }
@@ -8,5 +9,66 @@
             outline:solid 1px #e36854;
         }
     }
+    .btn-container {
+        display: flex;
+        outline: solid 1px #eaeaea;
+        margin-top: 30px;
+        .cancel-btn{
+            width: 150px;
+            padding: 10px;
+            font-size: 12px;
+            border-right: solid 1px #eaeaea;
+            color: #969696;
+            cursor: pointer;
+            &:hover {
+                color: #000;
+            }
+        }
+        .apply-btn {
+            cursor: pointer;
+            color: #969696;
+            font-size: 12px;
+            padding: 10px;
+            width: 150px;
+            &:hover {
+                color: #000;
+            }
+        }
+    }
    
 }
+
+.active {
+    color: #e36854;
+}
+.alignment, .tools {
+    display: flex;
+    justify-content: space-between;
+    color: #969696;
+    font-family: Muli;
+    font-size: 12px;
+    padding: 20px;
+    align-items: center;
+    .alignment-tools, .font-tools{
+        color:#787878;
+        font-weight: normal;
+        display: flex;
+        font-size: 15px;
+        cursor: pointer;
+        i {
+            &:hover {
+                color:#333;
+            }
+        }
+        div {
+            margin-right: 10px;
+        }
+    }
+}
+
+.font-tools {
+    div {
+        margin-right: 13px!important;
+    }
+}
+

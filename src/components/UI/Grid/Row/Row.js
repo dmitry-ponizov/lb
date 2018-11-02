@@ -9,10 +9,11 @@ const Row = (props) => (
         <div key={index} className={(props.editable ? 'row-content' : '') + ' col-md-' + 12/(props.row.length)}>
             <Column 
                 editable={props.editable}
-                selectedHandler={(settings) => props.selectedHandler(settings)}
-                itemHandler={(item,settings) => props.itemHandler(item,settings)}
                 columnName={cell} 
                 gridType={props.columns}  
+                stylesHandler={(style, value) => props.stylesHandler(style, value)}
+                selectedHandler={(settings) => props.selectedHandler(settings)}
+                itemHandler={(item,settings) => props.itemHandler(item,settings)}
                 rowNumber={props.rowNumber} 
                 name={cell} 
                 onDropHandler={(id)=>props.onDropHandler(id)}  

@@ -2,4 +2,123 @@
     width: 500px;
     height: 60px;
     border-left:  solid 1px #eaeaea;
+    display: flex;
+    justify-content: flex-end;
+    .Modal {
+        padding:16px 0 0;
+        position: fixed;
+        z-index: 500;
+        background-color: white;
+        width: 30%;
+        // padding: 16px;
+        left: 35%;
+        top: 30%; 
+        border-radius: 6px;
+        box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
+        box-sizing: border-box;
+        transition: all 0.3s ease-out;
+        color: #000;
+        p {
+            font-size: 16px;
+        }
+    }
+}
+
+.builder-header-btn {
+    width: 80px;
+    outline: 1px solid #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    i {
+        font-size: 18px;
+    }
+
+    &:hover {
+        color: #e36854;
+        svg {
+            g {
+                stroke: #e36854;;
+            }
+            path {
+                stroke: #e36854;
+            }
+        }
+        i {
+            color: #e36854;
+        }
+        p, a {
+            color: #e36854;
+        }
+    }
+    p, a {
+        font-family: Muli;
+        font-size: 8px;
+        margin: 0;
+        text-decoration: none;
+        color: #000;
+    }
+    .builder-header-load {
+        margin-top: 5px;
+    }
+
+    .btn-container {
+        display: flex;
+        border-top: solid 1px #eaeaea;
+        margin-top: 40px;
+        .cancel-btn{
+            width: 50%;
+            padding: 10px;
+            font-size: 12px;
+            border-right: solid 1px #eaeaea;
+            color: #969696;
+            cursor: pointer;
+            &:hover {
+                color: #e36854;
+            }
+        }
+        .apply-btn {
+            cursor: pointer;
+            color: #969696;
+            font-size: 12px;
+            padding: 10px;
+            width: 50%;
+            &:hover {
+                color: #e36854;
+            }
+        }
+    }
+    .Backdrop {
+        background: rgba(0,0,0,0.5)
+    }
+}
+
+.builder-header-dropdown {
+    min-width: 125px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    .btn-group {
+        button {
+            min-width: 125px;
+            font-family: 'Muli';
+            font-size: 12px;
+            border: none;
+            border-radius: 0;
+            height: 60px;
+            background: #fff;
+            span {
+                margin-left: 5px;
+            }
+        }
+        
+    }
+}
+.dropdown-menu {
+    li {
+        a {
+            padding: 7px 20px;
+        }
+    }
 }

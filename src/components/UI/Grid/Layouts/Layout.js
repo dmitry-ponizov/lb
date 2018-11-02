@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import GreenLayout from './GreenLayout/GreenLayout';
-import RedLayout from './RedLayout/RedLayout';
+import TemplateOne from './TemplateOne/TemplateOne';
+import TemplateTwo from './TemplateTwo/TemplateTwo';
 
 
 class Layout extends Component {
     components = {
-        greenLayout: GreenLayout,
-        redLayout: RedLayout
+        TemplateOne,
+        TemplateTwo
     };
     render() {
        const TagName = this.components[this.props.tag];

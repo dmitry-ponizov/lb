@@ -44,9 +44,10 @@ class Column extends Component {
               itemId: index,
               id: element.id
             }}
-            editable={this.props.editable}
+            stylesHandler={(style, value) => this.props.stylesHandler(style, value)}
             selectedHandler={(settings) => this.props.selectedHandler(settings)}
             itemHandler={(item, settings) => this.props.itemHandler(item, settings)}
+            editable={this.props.editable}
             element={element}
             key={element.id}
           />

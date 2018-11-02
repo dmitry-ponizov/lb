@@ -1,7 +1,7 @@
 import React from 'react'
 import Aux from '../../../../../hoc/Aux/Aux'
 
-const GreenLayout = (props) => (
+const TemplateOne = (props) => (
     <Aux>
     <header >
     <nav className="navbar navbar-default" style={{background: 'lightgreen'}}>
@@ -71,4 +71,4 @@ const GreenLayout = (props) => (
 </Aux>
 ) 
 
-export default GreenLayout;
+export default TemplateOne;
