@@ -30,5 +30,7 @@ export {
     selectItem,
     changeContentItem,
     templateInJson,
-    jsonInTemplate
+    jsonInTemplate,
+    saveHtml,
+    selectLayout
 } from './builder'

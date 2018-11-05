@@ -15,7 +15,7 @@ class Pannel extends Component {
     }
     render() {
         return (
-            <div>
+            <div className="grid-panel">
                 <ToggleButton active={ this.state.active } showGridHandler={(active) => this.showGridHandler(active)} />
                 <ul className={this.state.active ? "pannel" : 'hide-panel'}>
                     { this.props.buttons.map((button, index) => <GridButton key={index} image={button} />) }

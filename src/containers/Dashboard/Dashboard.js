@@ -13,10 +13,9 @@ class Dashboard extends Component {
     render() {
         
         return (
-             <div>
+            <div className="dashboard">
                 <Builder />
             </div>
-        
         )
     }
 }

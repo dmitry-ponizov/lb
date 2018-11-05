@@ -2,7 +2,6 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility'
 import uuid from 'uuid';
 
-
 const initialState = {
     gridType: null,
     rows: [],
@@ -11,6 +10,8 @@ const initialState = {
         'twoColumns': 2,
         'threeColumns': 3,
         'fourColumns': 4,
+        'twoUneven': 2,
+        'threeUneven': 3
     },
     tools: [
         { id: uuid.v4(),
@@ -23,8 +24,9 @@ const initialState = {
         { id: uuid.v4(), name: 'Link', category:'any',  bgcolor: 'skyblue' }
     ],
     selectedItem: null,
-    json: null
-  
+    json: null,
+    html: null,
+    selectedLayout: 'TemplateOne'
 }
 
 const selectedGird = (state, action) => {
@@ -49,7 +51,7 @@ const selectedGird = (state, action) => {
 
 
 const dropItem = (state, action) => {
-
+ 
     const tools = state.tools
 
     let tool = {...tools.find(tool => tool.id === action.newItem.id)}
@@ -57,7 +59,7 @@ const dropItem = (state, action) => {
     tool.id = uuid.v4();
 
     let rows = [...state.rows]
-        
+
     rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName].push(tool) 
 
     return updateObject(state, { rows: rows })
@@ -89,6 +91,10 @@ const templateInJson = (state) => updateObject(state, { json: JSON.stringify(sta
 
 const jsonInTemplate = (state, action) => updateObject(state, { rows: JSON.parse(action.json) })
 
+const saveHtml = (state, action) => updateObject(state, { html: action.html })
+
+const selectLayout = (state, action) => updateObject(state, { selectedLayout: action.selectedLayout })
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -97,7 +103,9 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.SELECT_ITEM: return selectItem(state, action);
         case actionTypes.CHANGE_CONTENT_ITEM: return changeContentItem(state, action);
         case actionTypes.TEMPLATE_IN_JSON: return templateInJson(state);
-        case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action)
+        case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action);
+        case actionTypes.SAVE_HTML: return saveHtml(state, action);
+        case actionTypes.SELECT_LAYOUT: return selectLayout(state, action)
         default: return state
     }
 }

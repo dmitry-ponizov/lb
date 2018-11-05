@@ -9,6 +9,8 @@ const titles = {
     twoColumns: '2 equal columns',
     threeColumns: '3 equal columns',
     fourColumns: '4 equal columns',
+    twoUneven: '2 uneven columns',
+    threeUneven : '3 uneven columns'
 }
 
 const gridButton = ({ image, gridType, onSelectedGrid }) => (

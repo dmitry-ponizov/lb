@@ -33,6 +33,7 @@
 #login-links{
     display: flex;
     li {
+        list-style: none;
         margin-top: 5px;
         a{
             border: 2px solid #ccc;
