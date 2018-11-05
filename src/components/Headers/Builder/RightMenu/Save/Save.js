@@ -6,20 +6,33 @@ import { connect } from 'react-redux'
 import * as actions from '../../../../../store/actions'
 import ContentEditable from 'react-contenteditable'
 import './Save.scss'
+import Alert from '../../../../UI/Alert/Alert'
 
 class Save extends Component {
     state = {
-        show: false
+        show: false,
+        copied: false
     }
 
     clickHandler = () => {
         this.props.onTemplateInJson()
-        this.setState({show:true})
+        if(this.props.rows.length) {
+            this.setState({show:true})
+        }
     }
 
     cancelHandler = () => {
         this.setState({show:false})
+        this.setState({
+            copied: false
+        })
 
+    }
+    clipboardHandler = () => {
+        navigator.clipboard.writeText(this.props.json)
+        this.setState({
+            copied: true
+        })
     }
     render() {
         return (
@@ -30,6 +43,9 @@ class Save extends Component {
                 </div>
                 <Modal show={this.state.show} modalClosed={this.cancelHandler}>
                     <p>Template in JSON format</p>
+                    {this.state.copied && <Alert type="success">
+                        <span>Сopied clipboard success!</span>
+                    </Alert>}
                     <div className="builder-header-json">
                         <ContentEditable
                             html={this.props.json || ''} 
@@ -39,7 +55,7 @@ class Save extends Component {
                     </div>
                     <div className="btn-container">
                             <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                            <div className="apply-btn" onClick={() => {navigator.clipboard.writeText(this.props.json)}}>Copy</div>            
+                            <div className="apply-btn" onClick={this.clipboardHandler}>Copy</div>            
                     </div>
                 </Modal>
             </div>
@@ -51,6 +67,7 @@ class Save extends Component {
 const mapStateToProps = state => {
     return {
         json: state.builder.json,
+        rows: state.builder.rows
     }
 }
 

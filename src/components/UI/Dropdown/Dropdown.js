@@ -22,7 +22,7 @@ class Dropdown extends Component {
     render() {
         return(
             <div className={'dropdown' + (this.state.open ? ' show' : '')}>
-                <button className="btn btn-secondary dropdown-toggle"  onClick={this.openHandler} >
+                <button id="select-template" className="btn btn-secondary dropdown-toggle"  onClick={this.openHandler} >
                 { this.props.selected ? this.props.selected : 'Select template'}
                 </button>
                 <div  className={'dropdown-menu' + (this.state.open ? ' show' : '')} >
@@ -31,17 +31,6 @@ class Dropdown extends Component {
                     ))}
                 </div>
             </div>
-            // <div className={'btn-group' + (this.state.open ? ' show' : '')} >
-            //     <button className="btn btn-default dropdown-toggle" onClick={this.openHandler}>
-            //          { this.props.selected ? this.props.selected : 'Select template'}
-            //         <span className="caret"></span>
-            //     </button>
-            //     <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
-            //         {this.props.options.map((option, index) => (
-            //             <li key={index} ><a href="/" onClick={this.clickHanlder}>{ option }</a></li>
-            //         ))}
-            //     </ul>
-            // </div>
         )
     }
 }

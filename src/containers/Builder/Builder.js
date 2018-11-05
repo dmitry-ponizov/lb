@@ -11,12 +11,14 @@ import Content from '../../components/UI/Grid/Content/Content'
 
 
 class Builder extends Component {
+
     state = {
         editable: true,
         active: true
     }
 
     htmlHandler = () => {
+      
         let html =  ReactDOMServer.renderToStaticMarkup(    
             <Layout tag={this.props.selectedLayout}>
                 <Container 
@@ -56,7 +58,7 @@ class Builder extends Component {
                     />
                 <div className="builder-wrapper">
                     <SideBar active={ this.state.active }/>
-                    <Content />
+                    <Content  />
                 </div>
             </div>
         )

@@ -140,3 +140,16 @@
     align-items: center;
 }
 
+#select-template {
+    &:active {
+        background-color: #e36854;
+    }
+    &:focus {
+        box-shadow: none!important;
+    }
+}
+.show {
+    .btn-secondary {
+        background-color: #e36854!important;
+    }
+}
