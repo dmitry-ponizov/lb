@@ -16,7 +16,9 @@ class Row extends Component {
             default:
                 classes = [' col-md-' + 12 / (this.props.row.length),
                 ' col-md-' + 12 / (this.props.row.length),
-                ' col-md-' + 12 / (this.props.row.length) ]
+                ' col-md-' + 12 / (this.props.row.length), 
+                ' col-md-' + 12 / (this.props.row.length)
+                ]
         }
 
         return (
