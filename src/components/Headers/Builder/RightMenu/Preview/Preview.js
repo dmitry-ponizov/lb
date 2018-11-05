@@ -7,8 +7,8 @@ class Preview extends Component {
     render() {
         return (
             <div className="builder-header-btn"  >
-                <div>
-                    <Link to="/preview" onClick={() => this.props.previewHanlder()}>
+                <div className="builder-header-container">
+                    <Link className="full-size" to="/preview" onClick={() => this.props.previewHanlder()}>
                         <ReactSVG src={previewImg}  />
                          Preview
                     </Link>

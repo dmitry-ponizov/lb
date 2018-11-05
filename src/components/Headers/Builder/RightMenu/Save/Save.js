@@ -18,16 +18,15 @@ class Save extends Component {
     }
 
     cancelHandler = () => {
-        console.log(this.state.active)
         this.setState({show:false})
 
     }
     render() {
         return (
             <div className="builder-header-btn" >
-                <div onClick={this.clickHandler}>
+                <div className="builder-header-container" onClick={this.clickHandler}>
                     <ReactSVG src={saveImg}  />
-                    <p>Save</p>
+                    <p className="btn-title">Save</p>
                 </div>
                 <Modal show={this.state.show} modalClosed={this.cancelHandler}>
                     <p>Template in JSON format</p>

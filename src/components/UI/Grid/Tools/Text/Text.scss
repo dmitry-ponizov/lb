@@ -72,3 +72,34 @@
     }
 }
 
+.tools-title {
+    &:first-letter {
+        text-transform: uppercase;
+    }
+}
+
+.text-tools {
+    .text-tool-wrap{
+        display: flex;
+        justify-content: space-between;
+        color: #969696;
+        font-family: Muli;
+        font-size: 12px;
+        padding: 20px;
+        align-items: center;
+        .elements {
+            min-width: 100px;
+            font-size: 14px;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+            i {
+                &:hover {
+                    color:#333;
+                }
+            }
+           
+        }
+    }
+  
+}

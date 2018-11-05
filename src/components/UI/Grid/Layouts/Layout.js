@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import TemplateOne from './TemplateOne/TemplateOne';
 import TemplateTwo from './TemplateTwo/TemplateTwo';
-
+import './Layout.scss'
 
 class Layout extends Component {
     components = {

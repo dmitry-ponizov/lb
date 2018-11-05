@@ -6,6 +6,7 @@ import Preview from './Preview/Preview'
 import Dropdown from '../../../UI/Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
+import Logout from './Logout/Logout'
 
 class RightMenu extends Component {
 
@@ -15,6 +16,7 @@ class RightMenu extends Component {
     }
 
     clickHandler = (selected) => {
+        this.setState({selected:selected})
         let arr = selected.split(' ')   
         let upperCase = arr.map(a => a.charAt(0).toUpperCase() + a.substr(1));
         this.props.onSelectLayout(upperCase.join(''))
@@ -26,7 +28,7 @@ class RightMenu extends Component {
                 <div className="builder-header-dropdown">
                     <Dropdown  
                         clickHandler={(selected) => this.clickHandler(selected)} 
-                        selected={this.props.selectedLayout}
+                        selected={this.state.selected}
                         options={this.state.options}
                     />
                 </div>
@@ -36,6 +38,7 @@ class RightMenu extends Component {
                   selectedLayout={this.props.selectedLayout} 
                   previewHanlder={this.props.previewHanlder}
                  />
+                 <Logout />
             </div>
         )
     }

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import NavigationItem from '../../components/UI/NavigationItem/NavigationItem'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 import ReactDOMServer from 'react-dom/server';
@@ -10,13 +9,13 @@ import BuilderHeader from '../../components/Headers/Builder/BuilderHeader'
 import SideBar from '../../components/SideBar/Builder/SideBar'
 import Content from '../../components/UI/Grid/Content/Content'
 
+
 class Builder extends Component {
     state = {
         editable: true,
         active: true
     }
 
-    
     htmlHandler = () => {
         let html =  ReactDOMServer.renderToStaticMarkup(    
             <Layout tag={this.props.selectedLayout}>
@@ -59,7 +58,6 @@ class Builder extends Component {
                     <SideBar active={ this.state.active }/>
                     <Content />
                 </div>
-                {/* <NavigationItem link="/logout" >Logout</NavigationItem> */}
             </div>
         )
     }

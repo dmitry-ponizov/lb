@@ -8,11 +8,7 @@ class Column extends Component {
     e.preventDefault();
   }
 
-  onDragStart = (e) => {
-    console.log('start')
-
-  }
-
+ 
   onDrop = (e) => {
     let gridType = this.props.gridType;
     let rowNumber = this.props.rowNumber;

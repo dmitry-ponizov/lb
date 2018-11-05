@@ -1,7 +1,6 @@
 .builder-header-right-menu {
     width: 500px;
     height: 60px;
-    border-left:  solid 1px #eaeaea;
     display: flex;
     justify-content: flex-end;
     .Modal {
@@ -12,7 +11,7 @@
         width: 30%;
         // padding: 16px;
         left: 35%;
-        top: 30%; 
+        top: 20%; 
         border-radius: 6px;
         box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
         box-sizing: border-box;
@@ -49,10 +48,11 @@
         i {
             color: #e36854;
         }
-        p, a {
+        .btn-title, a {
             color: #e36854;
         }
     }
+    
     p, a {
         font-family: Muli;
         font-size: 8px;
@@ -99,9 +99,11 @@
     min-width: 125px;
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;
-    .btn-group {
+    .dropdown{
+      
         button {
             min-width: 125px;
+            color: #000;
             font-family: 'Muli';
             font-size: 12px;
             border: none;
@@ -111,14 +113,30 @@
             span {
                 margin-left: 5px;
             }
+    
         }
         
     }
 }
 .dropdown-menu {
+    min-height: 80px;
     li {
         a {
             padding: 7px 20px;
         }
     }
 }
+
+.builder-header-container, .full-size {
+    i {
+        margin-bottom: 5px;
+    }
+  
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+

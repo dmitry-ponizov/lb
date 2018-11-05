@@ -10,6 +10,8 @@ const initialState = {
         'twoColumns': 2,
         'threeColumns': 3,
         'fourColumns': 4,
+        'twoUneven': 2,
+        'threeUneven': 3
     },
     tools: [
         { id: uuid.v4(),
