@@ -24,7 +24,7 @@ const initialState = {
         { id: uuid.v4(), name: 'Link', category:'any',  bgcolor: 'skyblue' }
     ],
     selectedItem: null,
-    json: null,
+    json: '',
     html: null,
     selectedLayout: 'TemplateOne'
 }
