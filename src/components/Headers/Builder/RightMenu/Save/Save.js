@@ -11,7 +11,6 @@ import Alert from '../../../../UI/Alert/Alert'
 class Save extends Component {
     state = {
         show: false,
-        copied: false
     }
 
     clickHandler = () => {
@@ -23,17 +22,8 @@ class Save extends Component {
 
     cancelHandler = () => {
         this.setState({show:false})
-        this.setState({
-            copied: false
-        })
-
     }
-    clipboardHandler = () => {
-        navigator.clipboard.writeText(this.props.json)
-        this.setState({
-            copied: true
-        })
-    }
+ 
     render() {
         return (
             <div className="builder-header-btn" >
@@ -43,9 +33,6 @@ class Save extends Component {
                 </div>
                 <Modal show={this.state.show} modalClosed={this.cancelHandler}>
                     <p>Template in JSON format</p>
-                    {this.state.copied && <Alert type="success">
-                        <span>Сopied clipboard success!</span>
-                    </Alert>}
                     <div className="builder-header-json">
                         <ContentEditable
                             html={this.props.json || ''} 
@@ -55,7 +42,7 @@ class Save extends Component {
                     </div>
                     <div className="btn-container">
                             <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                            <div className="apply-btn" onClick={this.clipboardHandler}>Copy</div>            
+                            <div className="apply-btn" onClick={this.cancelHandler}>Ok</div>            
                     </div>
                 </Modal>
             </div>
