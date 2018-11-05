@@ -6,7 +6,7 @@ import RightMenu from './RightMenu/RightMenu'
 const BuilderHeader = (props) => (
     <div className="builder-header">
         <LeftMenu toggleHandler={(active) => props.toggleHandler(active) } />
-        <RightMenu />
+        <RightMenu previewHanlder={props.previewHanlder} />
     </div>
 )
 

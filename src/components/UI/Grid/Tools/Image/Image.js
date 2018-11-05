@@ -9,7 +9,6 @@ class Image extends Component {
     }
     
     onDragStart = (e, id) => {
-        console.log(e.event)
         // e.dataTransfer.setData('id', id) 
     }
     render() {

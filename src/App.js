@@ -19,6 +19,10 @@ const asyncSignUp = asyncComponent(() => {
   return import('./containers/Auth/SignUp/SignUp')
 })
 
+const asyncPreview = asyncComponent(() => {
+  return import('./containers/Preview/Preview')
+})
+
 class App extends Component {
 
   componentDidMount() {
@@ -33,6 +37,7 @@ class App extends Component {
               <Route path='/login' component={asyncSignIn} />
               <Route path='/logout' component={Logout} />
               <Route path='/registration' component={asyncSignUp} />
+              <Route path="/preview" component={asyncPreview} />
               <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
               <Redirect to="/" />
           </Switch>

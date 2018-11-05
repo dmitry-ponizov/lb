@@ -3,9 +3,8 @@ import './TextPanel.scss'
 
 class TextPanel extends Component {
 
-    clickHandler = (param, content) => {
-        this.props.stylesHandler(param, content)
-    
+    clickHandler = (style, value) => {
+        this.props.stylesHandler(style, value)
     }
     render() {
         return (
@@ -21,7 +20,7 @@ class TextPanel extends Component {
                     <i className="fa fa-align-right"></i>
                 </div>
                 <div onClick={() => this.clickHandler('fontWeight','bold')}>
-                <i className="fa fa-text-width" aria-hidden="true"></i>
+                 <i className="fa fa-text-width" aria-hidden="true"></i>
                 </div>
             </div>
         )

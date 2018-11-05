@@ -49,3 +49,17 @@ export const jsonInTemplate = (json) => {
         json: json
     }
 }
+
+export const saveHtml = (html) => {
+    return {
+        type: actionTypes.SAVE_HTML,
+        html
+    }
+}
+
+export const selectLayout = (selectedLayout) => {
+    return {
+        type: actionTypes.SELECT_LAYOUT,
+        selectedLayout
+    }
+}

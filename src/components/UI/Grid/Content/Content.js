@@ -18,11 +18,12 @@ class Content extends Component {
                     <div className="draggable-header"></div>
                     <div className="draggable-body">
                         <div className="container-drag">
-                            <Container 
-                                editable={this.state.editable}
-                                rows={this.props.rows} 
+                            <Container
+                                stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
                                 selectedHandler={(item) => this.props.onSelectItem(item)}
                                 itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
+                                editable={this.state.editable}
+                                rows={this.props.rows} 
                                 onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
                              />
                         </div>
@@ -45,10 +46,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
-    
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content);
