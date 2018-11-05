@@ -37,7 +37,7 @@ class App extends Component {
               <Route path='/login' component={asyncSignIn} />
               <Route path='/logout' component={Logout} />
               <Route path='/registration' component={asyncSignUp} />
-              <Route path="/preview" component={asyncPreview} />
+              <PrivateRoute path="/preview" component={asyncPreview} isAuth={this.props.isAuth} />
               <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
               <Redirect to="/" />
           </Switch>

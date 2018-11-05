@@ -44,8 +44,8 @@ class Load extends Component {
                     <textarea className="load-textarea form-control" cols="60" rows="10" value={this.state.loadedJson || ''} onChange={this.onChangeHandler} ></textarea>
                     </div>
                     <div className="btn-container">
-                            <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                            <div className="apply-btn" onClick={this.applyHandler}>Apply</div>            
+                        <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
+                        <div className="apply-btn" onClick={this.applyHandler}>Apply</div>            
                     </div>
                 </Modal>
             </div>

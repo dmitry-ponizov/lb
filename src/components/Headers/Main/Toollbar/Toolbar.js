@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Toolbar.scss'
 import Logo from '../Logo/Logo';
 import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
 import Aux from '../../../../hoc/Aux/Aux'
 import { connect } from 'react-redux'
 
-const toolbar = (props) => (
-    <header className="Toolbar">
+class Toolbar extends Component {
+  
+  state = {
+      show: false
+  }
+
+  toggleHandler = () => {
+      this.setState({
+          show: !this.state.show
+      })
+  }
+  render() {
+    return (
+        <header className="Toolbar">
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <div className="navbar-header">
              <Logo />
              </div>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button className="navbar-toggler" type="button" onClick={this.toggleHandler}>
                 <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+            <div className={"collapse navbar-collapse " + (this.state.show ? 'show' : '')} id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                     <li className="nav-item dropdown">
                         <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -45,7 +57,7 @@ const toolbar = (props) => (
                     </li>
                 </ul>
                 <div id="login-links">
-                {!props.isAuth 
+                {!this.props.isAuth 
                     ? <Aux>
                       <NavigationItem link="/registration">Sign Up</NavigationItem>
                       <NavigationItem link="/login">Login</NavigationItem></Aux> 
@@ -54,11 +66,14 @@ const toolbar = (props) => (
             </div>
         </nav>
     </header>
-)
+    )
+  }
+}
+
 
 const mapStateToProps = state => {
     return {
       isAuth: state.auth.token !==  null
     }
 }
-export default connect(mapStateToProps, null)(toolbar);
+export default connect(mapStateToProps, null)(Toolbar);
