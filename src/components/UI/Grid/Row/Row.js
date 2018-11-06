@@ -34,8 +34,10 @@ class Row extends Component {
                             itemHandler={(item, settings) => this.props.itemHandler(item, settings)}
                             rowNumber={this.props.rowNumber}
                             name={cell}
+                            reorderHandler={(newColumn, columnId) => this.props.reorderHandler(newColumn, columnId, this.props.rowNumber)}
                             onDropHandler={(id) => this.props.onDropHandler(id)}
                             components={this.props.row[cell]} />
+                           
                     </div>)}
             </div>
         )

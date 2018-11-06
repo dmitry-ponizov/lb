@@ -4,9 +4,8 @@ import ReactSVG from 'react-svg'
 import Modal from '../../../../UI/Modal/Modal'
 import { connect } from 'react-redux'
 import * as actions from '../../../../../store/actions'
-import ContentEditable from 'react-contenteditable'
 import './Save.scss'
-import Alert from '../../../../UI/Alert/Alert'
+
 
 class Save extends Component {
     state = {
@@ -34,10 +33,11 @@ class Save extends Component {
                 <Modal show={this.state.show} modalClosed={this.cancelHandler}>
                     <p>Template in JSON format</p>
                     <div className="builder-header-json">
-                        <ContentEditable
-                            html={this.props.json || ''} 
-                            tagName='div' 
-                        />
+                        <textarea
+                            className="form-control"
+                            cols="60" rows="10" 
+                            readOnly
+                            value={this.props.json || ''} ></textarea>
                      
                     </div>
                     <div className="btn-container">

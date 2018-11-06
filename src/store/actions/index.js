@@ -32,5 +32,6 @@ export {
     templateInJson,
     jsonInTemplate,
     saveHtml,
-    selectLayout
+    selectLayout,
+    reorderColumnItems
 } from './builder'

@@ -41,14 +41,14 @@
     margin-top: 20px;
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     list-style: none;
     padding: 0 5px;
     li {
         a {
             font-family: 'Montserrat', sans-serif;
             font-weight: bold;
-            font-size: 15px;
+            font-size: 13px;
             color: #616060;
             transition: color .5s;
             &:hover {

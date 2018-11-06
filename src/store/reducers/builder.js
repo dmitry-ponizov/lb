@@ -40,7 +40,7 @@ const selectedGird = (state, action) => {
     row[action.gridType] = [];
     
     for (let i = 0; i < layouts[action.gridType]; i++) {
-        row[action.gridType].push([])
+        row[action.gridType].push({'items':{}, itemsIds: []})
     }
 
     newRows.push(Object.assign({}, row))
@@ -60,17 +60,19 @@ const dropItem = (state, action) => {
 
     let rows = [...state.rows]
 
-    rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName].push(tool) 
+    rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName]['items'][tool.id] = tool 
 
+    rows[action.newItem.rowNumber][action.newItem.gridType][action.newItem.columnName]['itemsIds'].push(tool.id)
+    
     return updateObject(state, { rows: rows })
 }
 
 const changeStyleItem = (state, action) => {
     const selectedItem = Object.assign({}, state.selectedItem)
     let rows = [...state.rows]
-    let styles = Object.assign({},rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles']);
+    let styles = Object.assign({},rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName]['items'][selectedItem.id]['styles']);
     styles[action.style] = action.value
-    rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName][selectedItem.itemId]['styles'] = styles
+    rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName]['items'][selectedItem.id]['styles'] = styles
     return updateObject(state, { rows: rows })
 }
 
@@ -82,7 +84,7 @@ const changeContentItem = (state, action) => {
 
     let rows = [...state.rows]
  
-    rows[action.settings.rowNumber][action.settings.gridType][action.settings.columnName][action.settings.itemId] = action.item 
+    rows[action.settings.rowNumber][action.settings.gridType][action.settings.columnName]['items'][action.settings.id] = action.item 
 
     return updateObject(state, { rows: rows })
 }
@@ -95,6 +97,14 @@ const saveHtml = (state, action) => updateObject(state, { html: action.html })
 
 const selectLayout = (state, action) => updateObject(state, { selectedLayout: action.selectedLayout })
 
+const reorderColumnItems = (state, action) => {
+    let rows = [...state.rows]
+    let selectedItem = Object.assign({}, state.selectedItem)
+    rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName] = action.newColumn
+    
+    return updateObject(state, { rows })
+} 
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -105,7 +115,8 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.TEMPLATE_IN_JSON: return templateInJson(state);
         case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action);
         case actionTypes.SAVE_HTML: return saveHtml(state, action);
-        case actionTypes.SELECT_LAYOUT: return selectLayout(state, action)
+        case actionTypes.SELECT_LAYOUT: return selectLayout(state, action);
+        case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action)
         default: return state
     }
 }
