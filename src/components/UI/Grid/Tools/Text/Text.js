@@ -4,6 +4,8 @@ import ContentEditable from 'react-contenteditable'
 import Modal from '../../../Modal/Modal'
 import ToolElement from './ToolElement/ToolElement'
 import initElements from './initElements'
+import { Draggable } from 'react-beautiful-dnd'
+
 
 class Text extends Component {
 
@@ -42,8 +44,15 @@ class Text extends Component {
     }
     render() {
         return (
-            <div className={this.props.editable ? 'blockBuilder' : null} >
+            <Draggable draggableId={this.props.settings.id} index={this.props.index}>
+            {provided => (
+            <div className={this.props.editable ? 'blockBuilder' : null}
+                    {...provided.draggableProps}
+                    {...provided.dragHandleProps}
+                    ref={provided.innerRef}
+                 >
                 <ContentEditable
+                    className="content-editable"
                     style={this.props.element.styles}
                     html={this.state.html}
                     disabled={!this.props.editable}
@@ -77,6 +86,8 @@ class Text extends Component {
                     </div>
                 </Modal>
             </div>
+              )}    
+            </Draggable> 
         )
     }
 }

@@ -1,6 +1,6 @@
 .blockBuilder {
     position: relative;
- 
+    margin: 2px;
     &:hover{
         outline:solid 1px #e36854;
     }
@@ -102,4 +102,7 @@
         }
     }
   
+}
+.content-editable {
+    background-color: #fff;
 }
