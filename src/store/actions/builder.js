@@ -63,3 +63,12 @@ export const selectLayout = (selectedLayout) => {
         selectedLayout
     }
 }
+
+export const reorderColumnItems = (newColumn, columnId, rowId) => {
+    return {
+        type: actionTypes.REORDER_COLUMN_ITEMS,
+        newColumn,
+        columnId,
+        rowId
+    }
+} 

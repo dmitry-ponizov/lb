@@ -158,7 +158,6 @@ class SignUp extends Component {
                 </div>
                 <ul className="links">
                      <NavigationItem link="/login">Sign in</NavigationItem>
-                     <NavigationItem link="/registration">Restore password</NavigationItem>
                 </ul>
             </form>
         );

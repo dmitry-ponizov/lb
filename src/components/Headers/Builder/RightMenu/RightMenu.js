@@ -7,6 +7,7 @@ import Dropdown from '../../../UI/Dropdown/Dropdown'
 import { connect } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
 import Logout from './Logout/Logout'
+import Back from './Back/Back'
 
 class RightMenu extends Component {
 
@@ -25,20 +26,25 @@ class RightMenu extends Component {
     render () {
         return (
             <div className="builder-header-right-menu">
-                <div className="builder-header-dropdown">
-                    <Dropdown  
-                        clickHandler={(selected) => this.clickHandler(selected)} 
-                        selected={this.state.selected}
-                        options={this.state.options}
-                    />
-                </div>
-                <Save />
-                <Load />
-                <Preview
-                  selectedLayout={this.props.selectedLayout} 
-                  previewHanlder={this.props.previewHanlder}
-                 />
-                 <Logout />
+               {!this.props.preview ? 
+                    <React.Fragment>
+                        <div className="builder-header-dropdown">
+                            <Dropdown  
+                                clickHandler={(selected) => this.clickHandler(selected)} 
+                                selected={this.state.selected}
+                                options={this.state.options}
+                                />
+                        </div>
+                        <Save />
+                        <Load /> 
+                        <Preview
+                        selectedLayout={this.props.selectedLayout} 
+                        previewHanlder={this.props.previewHanlder}
+                        /> 
+                 </React.Fragment>
+                 : ''}
+                 {this.props.preview ? <Back /> : <Logout /> }
+                 
             </div>
         )
     }

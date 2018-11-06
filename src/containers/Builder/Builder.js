@@ -55,6 +55,7 @@ class Builder extends Component {
                 <BuilderHeader 
                     toggleHandler={(active) => this.toggleHandler(active) } 
                     previewHanlder={this.htmlHandler}
+                    preview={false}
                     />
                 <div className="builder-wrapper">
                     <SideBar active={ this.state.active }/>

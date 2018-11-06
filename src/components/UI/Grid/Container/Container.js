@@ -19,6 +19,7 @@ export default class Container extends Component {
                     onDropHandler={(dropItem)=> this.props.onDropHandler(dropItem)} 
                     rowNumber={rowNumber}
                     columns={Object.keys(row)[0]} 
+                    reorderHandler={(newColumn, columnId, rowNumber) => this.props.reorderHandler(newColumn, columnId, rowNumber)}
                     row={cells}
                     />)}
             </div>)}

@@ -25,6 +25,7 @@ class Content extends Component {
                                 editable={this.state.editable}
                                 rows={this.props.rows} 
                                 onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
+                                reorderHandler={(newColumn, columnId, rowNumber) => this.props.onReorderColumnItems(newColumn, columnId, rowNumber)}
                              />
                         </div>
                     </div>
@@ -50,6 +51,7 @@ const mapDispatchToProps = dispatch => {
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
+        onReorderColumnItems: (newColumn, columnId, rowId) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId)) 
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

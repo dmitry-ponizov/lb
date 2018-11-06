@@ -20,7 +20,7 @@ class LeftMenu extends Component {
     render() {
         return (
             <div className='builder-header-left-menu'>
-                <ToggleButton toggleHandler={(active) => this.toggleHandler(active) } />
+                {!this.props.preview && <ToggleButton toggleHandler={(active) => this.toggleHandler(active) } />}
                 <Logo active={this.state.active} />
              </div>
         )
