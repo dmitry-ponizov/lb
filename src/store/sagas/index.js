@@ -12,6 +12,9 @@ import {
     userProfileSaga
 } from './dashboard'
 
+import {
+    fetchTemplatesSaga
+} from './templates'
 
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga);
@@ -23,5 +26,9 @@ export function* watchAuth() {
 
 export function* watchDashboard() {
     yield takeEvery(actionTypes.USER_PROFILE, userProfileSaga);
+}
+
+export function* watchTemplates() {
+    yield takeEvery(actionTypes.FETCH_TEMPLATES, fetchTemplatesSaga);
 }
 

@@ -1,0 +1,75 @@
+.templates {
+    &-wrapper {
+        background-color: #f2f3f5;
+        width: 100%;
+        padding: 40px 80px;
+        text-align: left;
+        font-family: Muli;
+
+        .Modal {
+            padding:16px 0 0;
+            position: fixed;
+            z-index: 500;
+            background-color: white;
+            width: 20%;
+            // padding: 16px;
+            left: 40%;
+            top: 20%; 
+            border-radius: 6px;
+            box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            transition: all 0.3s ease-out;
+            color: #000;
+            p {
+                font-size: 16px;
+                text-align: center;
+            }
+        }
+        
+        .Backdrop {
+            background: rgba(0,0,0,0.5)
+        }
+        .btn-container {
+            display: flex;
+            border-top: solid 1px #eaeaea;
+            margin-top: 40px;
+            .cancel-btn{
+                text-align: center;
+                width: 50%;
+                padding: 10px;
+                font-size: 12px;
+                border-right: solid 1px #eaeaea;
+                color: #969696;
+                cursor: pointer;
+                &:hover {
+                    color: #e36854;
+                }
+            }
+            .apply-btn {
+                 text-align: center;
+                cursor: pointer;
+                color: #969696;
+                font-size: 12px;
+                padding: 10px;
+                width: 50%;
+                &:hover {
+                    color: #e36854;
+                }
+            }
+        }
+       
+    }
+ 
+    &-container {
+        margin-top: 30px;
+
+    }
+
+    
+}
+
+
+.template-create-site {
+    padding: 20px;
+    
+}

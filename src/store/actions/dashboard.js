@@ -19,11 +19,10 @@ export const userProfileFail = (error) => {
     }
 }
 
-export const userProfile = (token) => {
+export const userProfile = () => {
 
     return {
         type: actionTypes.USER_PROFILE,
-        token: token
     }
 
 }

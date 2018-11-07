@@ -26,7 +26,6 @@ const initialState = {
     selectedItem: null,
     json: '',
     html: null,
-    selectedLayout: 'TemplateOne'
 }
 
 const selectedGird = (state, action) => {
@@ -95,8 +94,6 @@ const jsonInTemplate = (state, action) => updateObject(state, { rows: JSON.parse
 
 const saveHtml = (state, action) => updateObject(state, { html: action.html })
 
-const selectLayout = (state, action) => updateObject(state, { selectedLayout: action.selectedLayout })
-
 const reorderColumnItems = (state, action) => {
     let rows = [...state.rows]
     let selectedItem = Object.assign({}, state.selectedItem)
@@ -115,7 +112,6 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.TEMPLATE_IN_JSON: return templateInJson(state);
         case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action);
         case actionTypes.SAVE_HTML: return saveHtml(state, action);
-        case actionTypes.SELECT_LAYOUT: return selectLayout(state, action);
         case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action)
         default: return state
     }

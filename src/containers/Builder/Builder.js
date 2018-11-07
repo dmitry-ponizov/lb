@@ -20,7 +20,7 @@ class Builder extends Component {
     htmlHandler = () => {
       
         let html =  ReactDOMServer.renderToStaticMarkup(    
-            <Layout tag={this.props.selectedLayout}>
+            <Layout tag={this.props.selectedTemplate}>
                 <Container 
                     stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
                     selectedHandler={(item) => this.props.onSelectItem(item)}
@@ -70,7 +70,7 @@ const mapStateToProps = state => {
     return {
         rows: state.builder.rows,
         html: state.builder.html,
-        selectedLayout: state.builder.selectedLayout
+        selectedTemplate: state.templates.selectedTemplate
     }
 }
 

@@ -57,13 +57,6 @@ export const saveHtml = (html) => {
     }
 }
 
-export const selectLayout = (selectedLayout) => {
-    return {
-        type: actionTypes.SELECT_LAYOUT,
-        selectedLayout
-    }
-}
-
 export const reorderColumnItems = (newColumn, columnId, rowId) => {
     return {
         type: actionTypes.REORDER_COLUMN_ITEMS,

@@ -32,6 +32,13 @@ export {
     templateInJson,
     jsonInTemplate,
     saveHtml,
-    selectLayout,
     reorderColumnItems
 } from './builder'
+
+export {
+    fetchTemplatesStart,
+    fetchTemplatesSuccess,
+    fetchTemplatesFail,
+    fetchTemplates,
+    selectTemplate
+} from './templates'
