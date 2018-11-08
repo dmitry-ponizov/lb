@@ -1,28 +1,26 @@
 import React, { Component } from 'react'
 import './Dashboard.scss'
-import Builder from '../Builder/Builder'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
+import DashboardLayout from '../../hoc/Layouts/DashboardLayout/DashboardLayout'
+import Templates from './Templates/Templates'
 
 class Dashboard extends Component {
 
     componentDidMount() {
-        this.props.toUserProfile(this.props.token)
+        this.props.toUserProfile()
     }
-
+  
     render() {
-        
-        return (
-            <div className="dashboard">
-                <Builder />
-            </div>
-        )
+        return (<DashboardLayout>
+                    <Templates />
+                </DashboardLayout>)
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
-        toUserProfile: (token) => dispatch(actions.userProfile(token))
+        toUserProfile: () => dispatch(actions.userProfile())
     }
 }
 

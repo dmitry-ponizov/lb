@@ -8,7 +8,7 @@ import Container from '../../components/UI/Grid/Container/Container'
 import BuilderHeader from '../../components/Headers/Builder/BuilderHeader'
 import SideBar from '../../components/SideBar/Builder/SideBar'
 import Content from '../../components/UI/Grid/Content/Content'
-
+import LayoutHTML from '../../hoc/LayoutHTML/LayoutHTML'
 
 class Builder extends Component {
 
@@ -18,18 +18,21 @@ class Builder extends Component {
     }
 
     htmlHandler = () => {
-      
         let html =  ReactDOMServer.renderToStaticMarkup(    
-            <Layout tag={this.props.selectedLayout}>
-                <Container 
-                    stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
-                    selectedHandler={(item) => this.props.onSelectItem(item)}
-                    itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
-                    rows={this.props.rows} 
-                    onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
-                    />
-            </Layout>)
+            <LayoutHTML>
+                <Layout tag={this.props.selectedTemplate.name}>
+                    <Container 
+                        stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
+                        selectedHandler={(item) => this.props.onSelectItem(item)}
+                        itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
+                        rows={this.props.rows} 
+                        onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
+                        />
+                </Layout>
+            </LayoutHTML>
+            )
         this.props.onSaveHtml(html)
+       
     }
 
     previewHandler = () => {
@@ -54,7 +57,7 @@ class Builder extends Component {
             <div className="builder">
                 <BuilderHeader 
                     toggleHandler={(active) => this.toggleHandler(active) } 
-                    previewHanlder={this.htmlHandler}
+                    previewHandler={this.htmlHandler}
                     preview={false}
                     />
                 <div className="builder-wrapper">
@@ -70,7 +73,7 @@ const mapStateToProps = state => {
     return {
         rows: state.builder.rows,
         html: state.builder.html,
-        selectedLayout: state.builder.selectedLayout
+        selectedTemplate: state.templates.selectedTemplate
     }
 }
 

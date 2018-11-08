@@ -7,6 +7,8 @@ import Logout from './containers/Auth/Logout/Logout';
 import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 import asyncComponent from './hoc/AsyncComponent/AsyncComponent'
 
+
+
 const asyncDashboard = asyncComponent(() => {
   return import('./containers/Dashboard/Dashboard')
 })
@@ -23,6 +25,10 @@ const asyncPreview = asyncComponent(() => {
   return import('./containers/Preview/Preview')
 })
 
+const asyncBuilder = asyncComponent(() => {
+  return import('./containers/Builder/Builder')
+})
+
 class App extends Component {
 
   componentDidMount() {
@@ -37,7 +43,8 @@ class App extends Component {
               <Route path='/login' component={asyncSignIn} />
               <Route path='/logout' component={Logout} />
               <Route path='/registration' component={asyncSignUp} />
-              <PrivateRoute path="/preview" component={asyncPreview} isAuth={this.props.isAuth} />
+              <Route path="/preview" component={asyncPreview}  />
+              <PrivateRoute path="/builder" component={asyncBuilder}  isAuth={this.props.isAuth} />
               <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
               <Redirect to="/" />
           </Switch>
