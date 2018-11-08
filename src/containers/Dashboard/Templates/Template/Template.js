@@ -9,10 +9,10 @@ class Template extends Component {
 
   selectTemplate = () => {
     this.props.clickHandler()
-    if(this.props.selectedTemplate === this.props.template.name) {
+    if(this.props.selectedTemplate.name === this.props.template.name) {
         return
     }
-    this.props.onSelectTemplate(this.props.template.name)
+    this.props.onSelectTemplate(this.props.template)
 
   }
 

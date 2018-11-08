@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './RightMenu.scss'
 import Save from './Save/Save'
-import Load from './Load/Load'
 import Preview from './Preview/Preview'
 import Logout from './Logout/Logout'
 import Back from './Back/Back'
@@ -25,9 +24,9 @@ class RightMenu extends Component {
             <div className="builder-header-right-menu">
                {!this.props.preview ? 
                     <React.Fragment>
-                        <Save />
-                        <Load /> 
-                        <Preview previewHanlder={this.props.previewHanlder}
+                        <Save previewHandler={this.props.previewHandler} />
+                        {/* <Load />  */}
+                        <Preview previewHandler={this.props.previewHandler}
                         /> 
                     </React.Fragment>
                  : ''}

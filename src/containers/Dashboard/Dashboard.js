@@ -1,12 +1,9 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import './Dashboard.scss'
-import Builder from '../Builder/Builder'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 import DashboardLayout from '../../hoc/Layouts/DashboardLayout/DashboardLayout'
 import Templates from './Templates/Templates'
-
-
 
 class Dashboard extends Component {
 
@@ -15,14 +12,9 @@ class Dashboard extends Component {
     }
   
     render() {
-        return (
-            <Fragment>
-             <DashboardLayout>
-                <Templates />
-            </DashboardLayout>
-            </Fragment>
-     
-        )
+        return (<DashboardLayout>
+                    <Templates />
+                </DashboardLayout>)
     }
 }
 

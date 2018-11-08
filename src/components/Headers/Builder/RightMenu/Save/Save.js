@@ -12,10 +12,14 @@ class Save extends Component {
         show: false,
     }
 
-    clickHandler = () => {
-        this.props.onTemplateInJson()
+    clickHandler = (e) => {
+       
         if(this.props.rows.length) {
-            this.setState({show:true})
+            this.props.onTemplateInJson();
+            this.props.previewHandler();
+            this.props.onCreateWebsiteStructure()
+
+            // this.setState({show:true})
         }
     }
 
@@ -61,6 +65,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         onTemplateInJson: () => dispatch(actions.templateInJson()),
+        onCreateWebsiteStructure: () => dispatch(actions.createWebsiteStructure())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Save);

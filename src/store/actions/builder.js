@@ -65,3 +65,30 @@ export const reorderColumnItems = (newColumn, columnId, rowId) => {
         rowId
     }
 } 
+
+
+export const createWebsiteStructureStart = () => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_STRUCTURE_START
+    }
+}
+
+export const createWebsiteStructureSuccess = (structure) => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS,
+        structure
+    }
+}
+
+export const createWebsiteStructureFail = (error) => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL,
+        error
+    }
+}
+
+export const createWebsiteStructure = () => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_STRUCTURE
+    }
+}

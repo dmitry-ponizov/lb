@@ -4,14 +4,14 @@ import * as actions from '../../../store/actions/index'
 import './Templates.scss'
 import Template from './Template/Template';
 import Modal from '../../../components/UI/Modal/Modal'
-
+import { withRouter } from 'react-router-dom';
 
 class Templates extends Component {
 
   state = {
     show: false,
+    siteName: ''
   }
-
 
   componentDidMount = () => {
     this.props.toFetchTemplates()
@@ -24,6 +24,19 @@ class Templates extends Component {
 
   clickHandler = () => {
     this.setState({show:true})
+  }
+  
+  changeSiteNameHandler = (e) => {
+    this.setState({
+      siteName:e.target.value
+    })
+  }
+  createSiteHandler = () => {
+    if(!this.state.siteName.length) {
+        return
+    }
+    this.props.onCreateWebsite(this.state.siteName)
+    this.props.history.push('/builder')
   }
   
   render() {
@@ -39,12 +52,12 @@ class Templates extends Component {
        
           <div className="template-create-site">
             <p>New site</p>
-            <input  className="form-control"/>
+            <input  className="form-control" onChange={this.changeSiteNameHandler}/>
             
           </div>
           <div className="btn-container">
               <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-              <div className="apply-btn" onClick={this.cancelHandler}>Save</div>        
+              <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
             </div>    
         </Modal>
       </div>
@@ -61,8 +74,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toFetchTemplates: () => dispatch(actions.fetchTemplates())
+    toFetchTemplates: () => dispatch(actions.fetchTemplates()),
+    onCreateWebsite: (siteName) => dispatch(actions.createWebsite(siteName))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Templates);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Templates));

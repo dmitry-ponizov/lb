@@ -13,8 +13,13 @@ import {
 } from './dashboard'
 
 import {
-    fetchTemplatesSaga
+    fetchTemplatesSaga,
+    createWebsiteSaga,
 } from './templates'
+
+import {
+    createWebsiteStructureSaga
+} from './builder'
 
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga);
@@ -30,5 +35,10 @@ export function* watchDashboard() {
 
 export function* watchTemplates() {
     yield takeEvery(actionTypes.FETCH_TEMPLATES, fetchTemplatesSaga);
+    yield takeEvery(actionTypes.CREATE_WEBSITE, createWebsiteSaga);
+}
+
+export function* watchBuilder() {
+    yield takeEvery(actionTypes.CREATE_WEBSITE_STRUCTURE, createWebsiteStructureSaga)
 }
 

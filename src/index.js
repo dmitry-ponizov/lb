@@ -12,7 +12,7 @@ import dashboardReducer from './store/reducers/dashboard'
 import builderReducer from './store/reducers/builder'
 import templatesReducer from './store/reducers/templates'
 import createSagaMiddleware from "redux-saga";
-import { watchAuth, watchDashboard, watchTemplates } from "./store/sagas";
+import { watchAuth, watchDashboard, watchTemplates, watchBuilder } from "./store/sagas";
 
 const composeEnhancers = process.env.NODE_ENV === 'development' && window.location.host === 'localhost:3300' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -35,6 +35,7 @@ const store = createStore(rootReducer, composeEnhancers(
 sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchDashboard);
 sagaMiddleware.run(watchTemplates);
+sagaMiddleware.run(watchBuilder);
 
 const app = ( 
     <Provider store={store}>

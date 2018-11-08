@@ -15,7 +15,7 @@ export const fetchTemplatesSuccess = (templates) => {
 export const fetchTemplatesFail = (error) => {
     return {
         type: actionTypes.FETCH_TEMPLATES_FAIL,
-        error: error
+        error
     }
 }
 
@@ -31,3 +31,30 @@ export const selectTemplate = (template) => {
         template
     }
 } 
+
+export const createWebsiteStart = () => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_START
+    }
+}
+
+export const createWebsiteSuccess = (website) => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_SUCCESS,
+        website
+    }
+}
+
+export const createWebsiteFail = (error) => {
+    return {
+        type: actionTypes.CREATE_WEBSITE_FAIL,
+        error
+    }
+}
+
+export const createWebsite = (siteName) => {
+    return {
+        type: actionTypes.CREATE_WEBSITE,
+        siteName
+    }
+}

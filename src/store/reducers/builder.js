@@ -26,6 +26,8 @@ const initialState = {
     selectedItem: null,
     json: '',
     html: null,
+    loading: false,
+    error: null,
 }
 
 const selectedGird = (state, action) => {
@@ -102,6 +104,18 @@ const reorderColumnItems = (state, action) => {
     return updateObject(state, { rows })
 } 
 
+const createWebsiteStructureStart = (state) => {
+    return updateObject(state, { loading: true, error: null })
+}
+
+const createWebsiteStructureSuccess = (state) => {
+    return updateObject(state, { loading: false, error: null })
+}
+
+const createWebsiteStructureFail = (state, action) => {
+    return updateObject(state, { loading: false, error: action.error })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -112,7 +126,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.TEMPLATE_IN_JSON: return templateInJson(state);
         case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action);
         case actionTypes.SAVE_HTML: return saveHtml(state, action);
-        case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action)
+        case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_START: return createWebsiteStructureStart(state);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS: return createWebsiteStructureSuccess(state);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL: return createWebsiteStructureFail(state, action)
         default: return state
     }
 }
