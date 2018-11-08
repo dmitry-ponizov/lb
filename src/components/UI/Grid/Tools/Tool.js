@@ -12,13 +12,7 @@ class Tool extends Component {
     };
     render() {
        const TagName = this.components[this.props.tag];
-       return (
-  
-                <TagName 
-            
-                {...this.props}  />
-         
-       )
+       return <TagName {...this.props}  />
     }
 }
 export default Tool;

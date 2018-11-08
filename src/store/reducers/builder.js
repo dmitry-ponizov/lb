@@ -26,7 +26,8 @@ const initialState = {
     selectedItem: null,
     json: '',
     html: null,
-    selectedLayout: 'TemplateOne'
+    loading: false,
+    error: null,
 }
 
 const selectedGird = (state, action) => {
@@ -95,8 +96,6 @@ const jsonInTemplate = (state, action) => updateObject(state, { rows: JSON.parse
 
 const saveHtml = (state, action) => updateObject(state, { html: action.html })
 
-const selectLayout = (state, action) => updateObject(state, { selectedLayout: action.selectedLayout })
-
 const reorderColumnItems = (state, action) => {
     let rows = [...state.rows]
     let selectedItem = Object.assign({}, state.selectedItem)
@@ -104,6 +103,18 @@ const reorderColumnItems = (state, action) => {
     
     return updateObject(state, { rows })
 } 
+
+const createWebsiteStructureStart = (state) => {
+    return updateObject(state, { loading: true, error: null })
+}
+
+const createWebsiteStructureSuccess = (state) => {
+    return updateObject(state, { loading: false, error: null })
+}
+
+const createWebsiteStructureFail = (state, action) => {
+    return updateObject(state, { loading: false, error: action.error })
+}
 
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
@@ -115,8 +126,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.TEMPLATE_IN_JSON: return templateInJson(state);
         case actionTypes.JSON_IN_TEMPLATE: return jsonInTemplate(state, action);
         case actionTypes.SAVE_HTML: return saveHtml(state, action);
-        case actionTypes.SELECT_LAYOUT: return selectLayout(state, action);
-        case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action)
+        case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_START: return createWebsiteStructureStart(state);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS: return createWebsiteStructureSuccess(state);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL: return createWebsiteStructureFail(state, action)
         default: return state
     }
 }

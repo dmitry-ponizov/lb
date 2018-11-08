@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import './Text.scss'
 import ContentEditable from 'react-contenteditable'
 import Modal from '../../../Modal/Modal'
@@ -7,7 +7,7 @@ import initElements from './initElements'
 import { Draggable } from 'react-beautiful-dnd'
 
 
-class Text extends Component {
+class Text extends PureComponent {
 
     state = {
         html: this.props.element.content,

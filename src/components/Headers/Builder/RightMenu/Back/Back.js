@@ -5,8 +5,8 @@ const back = (props) => {
   return (
     <div className="builder-header-btn"  >
         <div className="builder-header-container">
-            <Link className="full-size" to="/dashboard">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            <Link className="full-size" to="/builder">
+                <i className="fa fa-arrow-left" aria-hidden="true"></i>
                 Back
             </Link>
         </div>
