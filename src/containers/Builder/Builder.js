@@ -9,7 +9,8 @@ import BuilderHeader from '../../components/Headers/Builder/BuilderHeader'
 import SideBar from '../../components/SideBar/Builder/SideBar'
 import Content from '../../components/UI/Grid/Content/Content'
 import LayoutHTML from '../../hoc/LayoutHTML/LayoutHTML'
-
+import { BuilderContext } from '../../containers/Builder/BuilderContext/BuilderContext'
+ 
 class Builder extends Component {
 
     state = {
@@ -21,13 +22,18 @@ class Builder extends Component {
         let html =  ReactDOMServer.renderToStaticMarkup(    
             <LayoutHTML>
                 <Layout tag={this.props.selectedTemplate.name}>
-                    <Container 
-                        stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
-                        selectedHandler={(item) => this.props.onSelectItem(item)}
-                        itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
-                        rows={this.props.rows} 
-                        onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
-                        />
+                <BuilderContext.Provider value={{
+                                deleteItemHandler: this.props.onDeleteItemHandler,
+                                rowDeleteHandler: this.props.onDropRow,
+                                stylesHandler: this.props.onChangeStyleItem,
+                                selectedHandler: this.props.onSelectItem,
+                                changeContentItem: this.props.onChangeContentItem,
+                                onDropHandler:this.props.onDrop,
+                                reorderHandler:this.props.onReorderColumnItems,
+                                editable: this.state.editable
+                    }}>
+                    <Container rows={this.props.rows}  />
+                    </BuilderContext.Provider>
                 </Layout>
             </LayoutHTML>
             )
@@ -79,6 +85,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onDropRow: (rowNumber) => dispatch(actions.deleteRow(rowNumber)),
         onSaveHtml: (html) => dispatch(actions.saveHtml(html)),
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),

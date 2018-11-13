@@ -1,11 +1,8 @@
-import { put, select } from "redux-saga/effects";
-import axios from "axios";
-import { apiUrl } from '../../apiAdapter'
+import { put, select, call } from "redux-saga/effects";
+import * as api from '../../api'
 import * as actions from "../actions/index";
 import { getToken, getJson, getHtml, getWebsiteId } from './selectors'
-import Noty from 'noty'
-import '../../../node_modules/noty/lib/noty.css'
-import '../../../node_modules/noty/lib/themes/mint.css'
+import { getNoty } from '../../shared/utility'
 
 
 export function* createWebsiteStructureSaga(action) {
@@ -19,22 +16,12 @@ export function* createWebsiteStructureSaga(action) {
     yield put(actions.createWebsiteStructureStart());
 
     try {
-        yield axios.post(apiUrl() + 'website-structure', structure, { headers: {"Authorization" : `Bearer ${token}`} })
+        yield call(api.websiteStructure, structure, token)
         yield put(actions.createWebsiteStructureSuccess())
-        yield new Noty({
-            type: 'success',
-            layout: 'bottomRight',
-            text: 'Website saved successfully!',
-            timeout: 3000
-        }).show()
+        yield getNoty('success','Website saved successfully!')
     } catch(error) {
         yield put(actions.createWebsiteStructureFail(error.response.data.error))
-        yield new Noty({
-            type: 'error',
-            layout: 'bottomRight',
-            text: 'Website structure not created!',
-            timeout: 3000
-        }).show()
+        yield getNoty('error','Website structure not created!')
     } 
 }
 

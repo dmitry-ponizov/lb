@@ -2,8 +2,11 @@ import React, { Component } from 'react'
 import './Column.scss'
 import Tool from '../Tools/Tool'
 import { DragDropContext, Droppable } from 'react-beautiful-dnd'
+import { BuilderContext } from '../../../../containers/Builder/BuilderContext/BuilderContext'
 
 class Column extends Component {
+
+  static contextType = BuilderContext;
 
   onDragOver = (e) => {
     e.preventDefault();
@@ -22,12 +25,11 @@ class Column extends Component {
       'columnName': columnName,
       'id': id
     }
-    this.props.onDropHandler(newColumn)
-
+    this.context.onDropHandler(newColumn)
   }
+
   onDragEnd = result => {
       const { destination, source, draggableId } = result;
-      // console.log(destination, source, draggableId )
       if(!destination) {
         return
       }
@@ -46,7 +48,7 @@ class Column extends Component {
         ...column,
         itemsIds: newItemsIds
       }
-      this.props.reorderHandler(newColumn, this.props.columnName)
+      this.context.reorderHandler(newColumn, this.props.columnName)
   }
 
   render() {
@@ -72,10 +74,6 @@ class Column extends Component {
                         itemId: index,
                         id: itemId
                       }}
-                      stylesHandler={(style, value) => this.props.stylesHandler(style, value)}
-                      selectedHandler={(settings) => this.props.selectedHandler(settings)}
-                      itemHandler={(item, settings) => this.props.itemHandler(item, settings)}
-                      editable={this.props.editable}
                       element={this.props.components['items'][itemId]}
                       key={itemId}
                     />

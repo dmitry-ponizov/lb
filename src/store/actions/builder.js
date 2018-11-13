@@ -92,3 +92,23 @@ export const createWebsiteStructure = () => {
         type: actionTypes.CREATE_WEBSITE_STRUCTURE
     }
 }
+
+export const refreshContainer = () => {
+    return {
+        type: actionTypes.REFRESH_CONTAINER
+    }
+}
+
+export const deleteItem = (item) => {
+    return {
+        type: actionTypes.DELETE_ITEM,
+        item
+    }
+}
+
+export const deleteRow = (rowNumber) => {
+    return {
+        type: actionTypes.DELETE_ROW,
+        rowNumber
+    }
+}

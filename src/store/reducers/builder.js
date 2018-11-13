@@ -116,6 +116,25 @@ const createWebsiteStructureFail = (state, action) => {
     return updateObject(state, { loading: false, error: action.error })
 }
 
+const refreshRows = (state) => {
+    return updateObject(state, { rows: [] })
+}
+
+const deleteItem = (state, action) => {
+    let rows = [...state.rows];
+    delete rows[action.item.rowNumber][action.item.gridType][action.item.columnName]['items'][action.item.id]
+    let index = rows[action.item.rowNumber][action.item.gridType][action.item.columnName]['itemsIds'].indexOf(action.item.id)
+    rows[action.item.rowNumber][action.item.gridType][action.item.columnName]['itemsIds'].splice(index,1)
+    return updateObject(state, { rows: rows })
+}
+
+const deleteRow = (state, action) => {
+    let rows = [...state.rows];
+    let index = rows[action.rowNumber]
+    rows.splice(index,1)
+    return updateObject(state, { rows: rows })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -129,7 +148,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action);
         case actionTypes.CREATE_WEBSITE_STRUCTURE_START: return createWebsiteStructureStart(state);
         case actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS: return createWebsiteStructureSuccess(state);
-        case actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL: return createWebsiteStructureFail(state, action)
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL: return createWebsiteStructureFail(state, action);
+        case actionTypes.REFRESH_CONTAINER: return refreshRows(state);
+        case actionTypes.DELETE_ITEM: return deleteItem(state, action);
+        case actionTypes.DELETE_ROW: return deleteRow(state, action)
         default: return state
     }
 }

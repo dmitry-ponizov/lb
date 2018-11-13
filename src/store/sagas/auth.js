@@ -1,7 +1,6 @@
 import { delay } from "redux-saga";
-import { put } from "redux-saga/effects";
-import axios from "axios";
-import { apiUrl } from '../../apiAdapter'
+import { put, call } from "redux-saga/effects";
+import * as api from '../../api'
 import * as actions from "../actions/index";
 
 export function* logoutSaga(action) {
@@ -19,7 +18,7 @@ export function* registrationUserSaga(action) {
     yield put(actions.registrationStart())
 
     try {
-        yield axios.post(apiUrl() + 'user/register', action.regData)
+        yield yield call(api.registrationUser, action.regData);
         yield put(actions.registrationSuccess())
     } catch(error) {
         yield put(actions.registrationFail(error.response.data.error))
@@ -31,7 +30,7 @@ export function* authUserSaga(action) {
     yield put(actions.authStart()) 
       
     try {
-        const response = yield axios.post(apiUrl() + 'login', action.authData);
+        const response = yield call(api.loginUser, action.authData);
         const expirationDate = yield new Date(new Date().getTime() + response.data.expiresIn * 1000)
         yield localStorage.setItem('token', response.data.token)
         yield localStorage.setItem('expirationDate', expirationDate)

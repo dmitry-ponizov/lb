@@ -11,9 +11,9 @@ import MainFooter from '../../components/Footers/Main/MainFooter'
 
 class HomePage extends Component {
 
-    componentDidMount() {
-
-    }
+    // componentDidUpdate() {
+    //      window.location.reload(true)
+    // }
     render() {
         return (
             <div>

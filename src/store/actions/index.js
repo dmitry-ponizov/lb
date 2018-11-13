@@ -36,7 +36,10 @@ export {
     createWebsiteStructureStart,
     createWebsiteStructureFail,
     createWebsiteStructureSuccess,
-    createWebsiteStructure
+    createWebsiteStructure,
+    refreshContainer,
+    deleteItem,
+    deleteRow
 } from './builder'
 
 export {
