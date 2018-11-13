@@ -6,6 +6,7 @@ import { Redirect } from 'react-router-dom'
 class Logout extends Component {
 
     componentDidMount() {
+        this.props.onRefreshContainer()
         this.props.onLogout()
     }
     render() {
@@ -15,6 +16,7 @@ class Logout extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onRefreshContainer: () => dispatch(actions.refreshContainer()),
         onLogout: () => dispatch(actions.logout())
     }
 }

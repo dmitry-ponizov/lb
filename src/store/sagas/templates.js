@@ -1,6 +1,5 @@
-import { put, select } from "redux-saga/effects";
-import axios from "axios";
-import { apiUrl } from '../../apiAdapter'
+import { put, select, call } from "redux-saga/effects";
+import * as api from '../../api'
 import * as actions from "../actions/index";
 import { getToken, getUserId, getTemplateId } from './selectors'
 
@@ -10,7 +9,7 @@ export function* fetchTemplatesSaga(action) {
     yield put(actions.fetchTemplatesStart());
 
     try {
-        const response = yield axios.get(apiUrl() + 'builder/themes',  { headers: {"Authorization" : `Bearer ${token}`} })
+        const response = yield call(api.fetchThemes, token)
         yield put(actions.fetchTemplatesSuccess(response.data.data))
     } catch(error) {
         yield put(actions.fetchTemplatesFail(error.response.data.error))
@@ -33,7 +32,7 @@ export function* createWebsiteSaga(action) {
     yield put(actions.createWebsiteStart());
 
     try {
-        const response = yield axios.post(apiUrl() + 'website', webSite, { headers: {"Authorization" : `Bearer ${token}`} })
+        const response = yield call(api.createWebsite, webSite, token);
         yield put(actions.createWebsiteSuccess(response.data.data))
     } catch(error) {
         yield put(actions.createWebsiteFail(error.response.data.error))

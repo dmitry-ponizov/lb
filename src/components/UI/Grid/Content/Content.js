@@ -4,6 +4,7 @@ import Pannel from '../Pannel/Pannel';
 import { connect } from 'react-redux' 
 import Container from '../Container/Container'
 import * as actions from '../../../../store/actions/index'
+import { BuilderContext } from '../../../../containers/Builder/BuilderContext/BuilderContext'
 
 class Content extends Component {
 
@@ -11,6 +12,7 @@ class Content extends Component {
         editable: true,
     }
 
+    
     render() {
         return (
             <div className="content">
@@ -18,15 +20,18 @@ class Content extends Component {
                     <div className="draggable-header"></div>
                     <div className="draggable-body">
                         <div className="container-drag">
-                            <Container
-                                stylesHandler={(style, value) => this.props.onChangeStyleItem(style, value)}
-                                selectedHandler={(item) => this.props.onSelectItem(item)}
-                                itemHandler={(item, settings) => this.props.onChangeContentItem(item, settings)}
-                                editable={this.state.editable}
-                                rows={this.props.rows} 
-                                onDropHandler={(dropItem)=> this.props.onDrop(dropItem)} 
-                                reorderHandler={(newColumn, columnId, rowNumber) => this.props.onReorderColumnItems(newColumn, columnId, rowNumber)}
-                             />
+                        <BuilderContext.Provider value={{
+                                deleteItemHandler: this.props.onDeleteItemHandler,
+                                rowDeleteHandler: this.props.onDropRow,
+                                stylesHandler: this.props.onChangeStyleItem,
+                                selectedHandler: this.props.onSelectItem,
+                                changeContentItem: this.props.onChangeContentItem,
+                                onDropHandler:this.props.onDrop,
+                                reorderHandler:this.props.onReorderColumnItems,
+                                editable: this.state.editable
+                            }}>
+                            <Container rows={this.props.rows}  />
+                        </BuilderContext.Provider>
                         </div>
                     </div>
                     <Pannel buttons={Object.keys(this.props.layouts)} />
@@ -47,11 +52,13 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        onDropRow: (rowNumber) => dispatch(actions.deleteRow(rowNumber)),
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onDrop: (newItem) => dispatch(actions.dropItem(newItem)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
-        onReorderColumnItems: (newColumn, columnId, rowId) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId)) 
+        onReorderColumnItems: (newColumn, columnId, rowId) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId)),
+        onDeleteItemHandler: (item) => dispatch(actions.deleteItem(item))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

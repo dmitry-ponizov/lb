@@ -15,6 +15,7 @@ export const USER_PROFILE_FAIL = 'USER_PROFILE_FAIL';
 
 //builder
 export const SELECT_GRID_TYPE = 'SELECT_GRID_TYPE';
+export const REFRESH_CONTAINER = 'REFRESH_CONTAINER'
 export const DROP_ITEM = 'DROP_ITEM'
 export const CHANGE_STYLE_ITEM = 'CHANGE_STYLE_ITEM'
 export const SELECT_ITEM = 'SELECT_ITEM'
@@ -23,6 +24,8 @@ export const TEMPLATE_IN_JSON = 'TEMPLATE_IN_JSON';
 export const JSON_IN_TEMPLATE = 'JSON_IN_TEMPLATE';
 export const SAVE_HTML = 'SAVE_HTML';
 export const REORDER_COLUMN_ITEMS = 'REORDER_COLUMN_ITEMS'
+export const DELETE_ITEM = 'DELETE_ITEM'
+export const DELETE_ROW = 'DELETE_ROW'
 
 //templates
 export const FETCH_TEMPLATES_START = 'FETCH_TEMPLATES_START'

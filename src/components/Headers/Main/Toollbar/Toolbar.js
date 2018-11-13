@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import './Toolbar.scss'
 import Logo from '../Logo/Logo';
 import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
-import Aux from '../../../../hoc/Aux/Aux'
 import { connect } from 'react-redux'
 
 class Toolbar extends Component {
@@ -58,9 +57,9 @@ class Toolbar extends Component {
                 </ul>
                 <div id="login-links">
                 {!this.props.isAuth 
-                    ? <Aux>
+                    ? <Fragment>
                       <NavigationItem link="/registration">Sign Up</NavigationItem>
-                      <NavigationItem link="/login">Login</NavigationItem></Aux> 
+                      <NavigationItem link="/login">Login</NavigationItem></Fragment> 
                     : <NavigationItem link="/logout">Logout</NavigationItem> }
                 </div>
             </div>

@@ -4,6 +4,7 @@ import Save from './Save/Save'
 import Preview from './Preview/Preview'
 import Logout from './Logout/Logout'
 import Back from './Back/Back'
+import Publish from './Publish/Publish'
 
 class RightMenu extends Component {
 
@@ -26,12 +27,11 @@ class RightMenu extends Component {
                     <React.Fragment>
                         <Save previewHandler={this.props.previewHandler} />
                         {/* <Load />  */}
-                        <Preview previewHandler={this.props.previewHandler}
-                        /> 
+                        <Preview previewHandler={this.props.previewHandler} /> 
                     </React.Fragment>
                  : ''}
                  {this.props.preview ? <Back /> : <Logout /> }
-                 
+                 <Publish />
             </div>
         )
     }

@@ -1,3 +1,7 @@
+import Noty from 'noty'
+import '../../node_modules/noty/lib/noty.css'
+import '../../node_modules/noty/lib/themes/bootstrap-v4.css'
+
 export const updateObject = (oldObject, updatedProps) => {
     return {
         ...oldObject,
@@ -41,4 +45,8 @@ export const updateObject = (oldObject, updatedProps) => {
         
         return isValid;
    
+}
+
+export const getNoty = (type, msg) => {
+   new Noty({ type: type, layout: 'bottomRight',text: msg, theme:'bootstrap-v4', timeout: 3000 }).show()
 }

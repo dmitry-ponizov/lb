@@ -39,7 +39,7 @@ class App extends Component {
     return (
       <div className="App">
           <Switch>
-              <Route path="/" exact component={HomePage}  />
+              <Route path="/" refresh exact component={HomePage}  />
               <Route path='/login' component={asyncSignIn} />
               <Route path='/logout' component={Logout} />
               <Route path='/registration' component={asyncSignUp} />

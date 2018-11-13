@@ -1,6 +1,5 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 import './Input.scss'
-import Aux from '../../../hoc/Aux/Aux'
 
 const input = (props) => {
     let inputClasses = "InputElement";
@@ -16,7 +15,7 @@ const input = (props) => {
     switch (props.elementType) {
         case ('input'):
             inputElement = (
-            <Aux>
+            <Fragment>
                 <input
                     className={inputClasses}
                     {...props.elementConfig}
@@ -24,13 +23,13 @@ const input = (props) => {
                     onChange={props.changed}
                 />
                 <span className="InvalidMsg">{ errorMsg }</span>
-            </Aux>
+            </Fragment>
             )
             break;
         case ('textarea'):
         
             inputElement = (
-            <Aux>
+            <Fragment>
                 <texarea
                     className="InputElement"
                     {...props.elementConfig}
@@ -38,12 +37,12 @@ const input = (props) => {
                     onChange={props.changed}
                  />
                  <span className="InvalidMsg">{ errorMsg }</span>
-            </Aux>
+            </Fragment>
             )
             break;
         case ('select'):
             inputElement = (
-                <Aux>
+                <Fragment>
                 <select
                     className="InputElement"
                     value={props.value}
@@ -55,12 +54,12 @@ const input = (props) => {
                     ))}
                 </select>
                 <span className="InvalidMsg">{ errorMsg }</span>
-                </Aux>
+                </Fragment>
             )
             break;
         default:
             inputElement = (
-            <Aux>
+            <Fragment>
                 <input
                     className={inputClasses}
                     {...props.elementConfig}
@@ -68,7 +67,7 @@ const input = (props) => {
                     onChange={props.changed}
                 />
                 <span className="InvalidMsg">{ errorMsg }</span>
-            </Aux>
+            </Fragment>
             )
             break;
     }
