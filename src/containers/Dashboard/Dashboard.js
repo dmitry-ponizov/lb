@@ -3,7 +3,7 @@ import './Dashboard.scss'
 import { connect } from 'react-redux'
 import * as actions from '../../store/actions/index'
 import DashboardLayout from '../../hoc/Layouts/DashboardLayout/DashboardLayout'
-import Templates from './Templates/Templates'
+import { WorkspaceWrapper, Workspace, WorkspaceTitle } from '../../styled/Workspace'
 
 class Dashboard extends Component {
 
@@ -13,7 +13,11 @@ class Dashboard extends Component {
   
     render() {
         return (<DashboardLayout>
-                    <Templates />
+                    <WorkspaceWrapper className="col-md-10">
+                        <WorkspaceTitle>Dashboard</WorkspaceTitle>
+                        <Workspace>
+                        </Workspace>
+                    </WorkspaceWrapper>
                 </DashboardLayout>)
     }
 }

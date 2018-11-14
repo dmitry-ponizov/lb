@@ -5,6 +5,8 @@ import './Templates.scss'
 import Template from './Template/Template';
 import Modal from '../../../components/UI/Modal/Modal'
 import { withRouter } from 'react-router-dom';
+import DashboardLayout from '../../../hoc/Layouts/DashboardLayout/DashboardLayout'
+import { WorkspaceWrapper, WorkspaceTitle } from '../../../styled/Workspace'
 
 class Templates extends Component {
 
@@ -41,26 +43,28 @@ class Templates extends Component {
   
   render() {
     return (
-      <div className="templates-wrapper">
-          <h2>Templates</h2>
-          <div className="row templates-container"> 
-              {this.props.templates && this.props.templates.map(template => (
-                <Template key={template.id} template={template} clickHandler={this.clickHandler}/>
-              ))}
-          </div>
-          <Modal show={this.state.show} modalClosed={this.cancelHandler}>
-       
-          <div className="template-create-site">
-            <p>New site</p>
-            <input  className="form-control" onChange={this.changeSiteNameHandler}/>
-            
-          </div>
-          <div className="btn-container">
-              <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-              <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
-            </div>    
-        </Modal>
-      </div>
+      <DashboardLayout>
+        <WorkspaceWrapper className="templates-wrapper">
+            <WorkspaceTitle>Templates</WorkspaceTitle>
+            <div className="row templates-container"> 
+                {this.props.templates && this.props.templates.map(template => (
+                  <Template key={template.id} template={template} clickHandler={this.clickHandler}/>
+                  ))}
+            </div>
+            <Modal show={this.state.show} modalClosed={this.cancelHandler}>
+        
+            <div className="template-create-site">
+              <p>New site</p>
+              <input  className="form-control" onChange={this.changeSiteNameHandler}/>
+              
+            </div>
+            <div className="btn-container">
+                <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
+                <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
+              </div>    
+          </Modal>
+        </WorkspaceWrapper>
+      </DashboardLayout>
     )
   }
 }

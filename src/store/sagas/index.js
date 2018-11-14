@@ -21,6 +21,10 @@ import {
     createWebsiteStructureSaga
 } from './builder'
 
+import {
+    fetchWebsitesSaga
+} from './websites'
+
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga);
     yield takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga);
@@ -42,3 +46,6 @@ export function* watchBuilder() {
     yield takeEvery(actionTypes.CREATE_WEBSITE_STRUCTURE, createWebsiteStructureSaga)
 }
 
+export function* watchWebsites() {
+    yield takeEvery(actionTypes.FETCH_WEBSITES, fetchWebsitesSaga)
+}

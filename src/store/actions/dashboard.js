@@ -20,9 +20,15 @@ export const userProfileFail = (error) => {
 }
 
 export const userProfile = () => {
-
     return {
         type: actionTypes.USER_PROFILE,
     }
 
+}
+
+export const selectSection = (section) => {
+    return {
+        type: actionTypes.SELECT_SECTION,
+        section
+    } 
 }

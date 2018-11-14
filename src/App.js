@@ -8,7 +8,6 @@ import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 import asyncComponent from './hoc/AsyncComponent/AsyncComponent'
 
 
-
 const asyncDashboard = asyncComponent(() => {
   return import('./containers/Dashboard/Dashboard')
 })
@@ -29,6 +28,15 @@ const asyncBuilder = asyncComponent(() => {
   return import('./containers/Builder/Builder')
 })
 
+const asyncTemplates = asyncComponent(() => {
+  return import('./containers/Dashboard/Templates/Templates')
+})
+
+const asyncWebsites = asyncComponent(() => {
+  return import('./containers/Dashboard/Websites/Websites')
+})
+
+
 class App extends Component {
 
   componentDidMount() {
@@ -45,7 +53,9 @@ class App extends Component {
               <Route path='/registration' component={asyncSignUp} />
               <Route path="/preview" component={asyncPreview}  />
               <PrivateRoute path="/builder" component={asyncBuilder}  isAuth={this.props.isAuth} />
+              <PrivateRoute path="/templates" component={asyncTemplates} isAuth={this.props.isAuth}/>
               <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
+              <PrivateRoute path="/websites" component={asyncWebsites} isAuth={this.props.isAuth}/>
               <Redirect to="/" />
           </Switch>
       </div>

@@ -1,12 +1,13 @@
 import React from 'react'
 import './RightPanel.scss'
-import NavigationItem from '../../../UI/NavigationItem/NavigationItem'
+import NavigationItem from './NavigationItem/NavigationItem'
 
-const RightPanel = (props) => {
+
+const rightPanel = (props) => {
     return (
         <div className={'dashboard-side-bar-right' + (props.active ? ' show' : '')}>
             <ul>
-                <NavigationItem link="/templates">Templates</NavigationItem>
+                {props.items.map((item, index) => <NavigationItem key={index} item={item} />)}
             </ul>
         </div>
     )
@@ -15,5 +16,4 @@ const RightPanel = (props) => {
 
 
 
-
-export default RightPanel;
+export default rightPanel;
