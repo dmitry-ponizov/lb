@@ -1,8 +1,58 @@
 import React from 'react'
-import './GridButton.scss'
 import { connect } from 'react-redux'
 import * as actions from '../../../../store/actions/index'
 import ReactSVG from 'react-svg'
+import styled from 'styled-components'
+
+
+const GridButtonStyled = styled.li`
+    .svg-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+        .grid-title {
+             margin-bottom: 5px;
+            font-family: Muli;
+            font-size: 12px;
+            font-weight: normal;
+        }
+        &:hover {
+            color:#e36854;
+            background-color:#fdf7f6;
+            border-radius: 6px;
+            svg {
+                g {
+                    stroke: #e36854;;
+                }
+                path {
+                    stroke: #e36854;
+                }
+            }
+            .grid-title {
+                margin-bottom: 5px;
+                color: #e36854;
+            }
+        }
+    }
+    .active {
+        background-color:#fdf7f6;
+        border-radius: 6px;
+        svg {
+            g {
+                stroke: #e36854;;
+            }
+            path {
+                stroke: #e36854;
+            }
+        }
+        .grid-title {
+            margin-bottom: 5px;
+            color: #e36854;
+        }
+}
+`
 
 const titles = {
     oneColumn:'1 column',
@@ -14,12 +64,14 @@ const titles = {
 }
 
 const gridButton = ({ image, gridType, onSelectedGrid }) => (
-    <li onClick={() => onSelectedGrid(image)} className={gridType === image ? 'active': ''}>
-         <div className="svg-container">
-             <ReactSVG src={require(`../../../../assets/images/row/${image}.svg`)}  />
-         </div>
-         <p className="grid-title">{ titles[image] }</p>
-    </li>
+    <GridButtonStyled onClick={() => onSelectedGrid(image)} >
+        <div className={'svg-wrapper' + (gridType === image ? ' active': '')}>
+            <div className="svg-container">
+                    <ReactSVG src={require(`../../../../assets/images/row/${image}.svg`)}  />
+            </div>
+            <p className="grid-title">{ titles[image] }</p>
+        </div>
+    </GridButtonStyled>
 )
 
 const mapDispatchToProps = dispatch => {

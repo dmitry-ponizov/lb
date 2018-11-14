@@ -16,7 +16,7 @@ class DashboardLayout extends Component {
         <div className="dashboard">
             <DashboardHedader  toggleHandler={(active) => this.toggleHandler(active) }  />
             <div className="dashboard-wrapper">
-            <DashboardSideBar active={ this.state.active } />
+                <DashboardSideBar  active={ this.state.active } />
             { this.props.children }
             </div>
         </div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import './RightMenu.scss'
 import Dropdown from '../../../UI/Dropdown/Dropdown';
 import { connect } from 'react-redux'
+import MyWebsites from './MyWebsites/MyWebsites'
+
 
 class RightMenu extends Component {
 
@@ -15,6 +17,7 @@ class RightMenu extends Component {
     render () {
         return (
             <div className="dashboard-header-right-menu">
+                  <MyWebsites />
                 <div className="dashboard-header-dropdown">
                     <Dropdown   
                             title={this.props.user ? this.props.user.first_name + ' ' + this.props.user.last_name  : '' }

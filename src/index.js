@@ -11,8 +11,9 @@ import authReducer from './store/reducers/auth';
 import dashboardReducer from './store/reducers/dashboard'
 import builderReducer from './store/reducers/builder'
 import templatesReducer from './store/reducers/templates'
+import websitesReducer from './store/reducers/websites'
 import createSagaMiddleware from "redux-saga";
-import { watchAuth, watchDashboard, watchTemplates, watchBuilder } from "./store/sagas";
+import { watchAuth, watchDashboard, watchTemplates, watchBuilder, watchWebsites } from "./store/sagas";
 
 const composeEnhancers = process.env.NODE_ENV === 'development' && window.location.host === 'localhost:3300' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
 
@@ -21,7 +22,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     dashboard: dashboardReducer,
     builder: builderReducer,
-    templates: templatesReducer
+    templates: templatesReducer,
+    websites: websitesReducer
 })
 
 
@@ -36,6 +38,7 @@ sagaMiddleware.run(watchAuth);
 sagaMiddleware.run(watchDashboard);
 sagaMiddleware.run(watchTemplates);
 sagaMiddleware.run(watchBuilder);
+sagaMiddleware.run(watchWebsites);
 
 const app = ( 
     <Provider store={store}>

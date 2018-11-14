@@ -8,12 +8,14 @@ export const loginUser = (authData) => axios.post(apiUrl + 'login', authData);
 
 export const registrationUser = (regData) => axios.post(apiUrl + 'user/register', regData);
 
-export const websiteStructure = (structure, token) => axios.post(apiUrl + 'website-structure', structure, headers(token));
+export const websiteStructure = (structure, token) => axios.put(apiUrl + 'website-structure/' + structure.websiteId, structure, headers(token));
 
 export const fetchUserProfile = (token) => axios.get(apiUrl + 'user-profile',  headers(token))
 
 export const fetchThemes = (token) => axios.get(apiUrl + 'builder/themes',  headers(token))
 
 export const createWebsite = (webSite, token) => axios.post(apiUrl + 'website', webSite, headers(token))
+
+export const fetchWebsites = (token) => axios.get(apiUrl + 'website',  headers(token))
 
 
