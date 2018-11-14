@@ -1,0 +1,30 @@
+import React from 'react'
+import './RightPanel.scss'
+import NavigationItem from './'
+import { connect } from 'react-redux'
+
+
+const rightPanel = (props) => {
+    return (
+        <div className={'dashboard-side-bar-right' + (props.active ? ' show' : '')}>
+            <ul>
+                <NavigationItem link="/templates">Templates</NavigationItem>
+            </ul>
+        </div>
+    )
+}
+
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onSelectSection: (section) => dispatch(actions.selectSection(section))
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        activeItem: state.dashboard.selectedSection
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(rightPanel);
