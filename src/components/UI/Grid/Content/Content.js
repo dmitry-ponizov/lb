@@ -10,9 +10,9 @@ class Content extends Component {
 
 
     componentDidMount = () => {
-        // if(!(this.props.rows).length){
+        if(Object.keys(this.props.website).length){
             this.props.onFetchWebsiteStructure()
-        // }
+        }
    }
 
     state = {
@@ -53,7 +53,8 @@ const mapStateToProps = state => {
     return {
         rows: state.builder.rows,
         tools: state.builder.tools,
-        layouts: state.builder.layouts
+        layouts: state.builder.layouts,
+        website: state.websites.website
     }
 }
 
