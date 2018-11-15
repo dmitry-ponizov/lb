@@ -14,14 +14,15 @@ import {
 
 import {
     fetchTemplatesSaga,
-    createWebsiteSaga,
 } from './templates'
 
 import {
-    createWebsiteStructureSaga
+    createWebsiteStructureSaga,
+    fetchWebsiteStructureSaga
 } from './builder'
 
 import {
+    createWebsiteSaga,
     fetchWebsitesSaga
 } from './websites'
 
@@ -39,13 +40,15 @@ export function* watchDashboard() {
 
 export function* watchTemplates() {
     yield takeEvery(actionTypes.FETCH_TEMPLATES, fetchTemplatesSaga);
-    yield takeEvery(actionTypes.CREATE_WEBSITE, createWebsiteSaga);
+    
 }
 
 export function* watchBuilder() {
     yield takeEvery(actionTypes.CREATE_WEBSITE_STRUCTURE, createWebsiteStructureSaga)
+    yield takeEvery(actionTypes.FETCH_WEBSITE_STRUCTURE, fetchWebsiteStructureSaga)
 }
 
 export function* watchWebsites() {
+    yield takeEvery(actionTypes.CREATE_WEBSITE, createWebsiteSaga);
     yield takeEvery(actionTypes.FETCH_WEBSITES, fetchWebsitesSaga)
 }

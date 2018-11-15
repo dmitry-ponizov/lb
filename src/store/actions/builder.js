@@ -112,3 +112,29 @@ export const deleteRow = (rowNumber) => {
         rowNumber
     }
 }
+
+export const fetchWebsiteStructureStart = () => {
+    return {
+        type: actionTypes.FETCH_WEBSITE_STRUCTURE_START
+    }
+}
+
+export const fetchWebsiteStructureSuccess = (structure) => {
+    return {
+        type: actionTypes.FETCH_WEBSITE_STRUCTURE_SUCCESS,
+        structure
+    }
+}
+
+export const fetchWebsiteStructureFail = (error) => {
+    return {
+        type: actionTypes.FETCH_WEBSITE_STRUCTURE_FAIL,
+        error
+    }
+}
+
+export const fetchWebsiteStructure = () => {
+    return {
+        type: actionTypes.FETCH_WEBSITE_STRUCTURE
+    }
+}

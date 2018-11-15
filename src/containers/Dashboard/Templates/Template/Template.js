@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './Template.scss'
 import { connect } from 'react-redux';
 import * as actions from '../../../../store/actions/index'
+import { Card } from '../../../../styled/Card'
 
 
 class Template extends Component {
@@ -18,11 +19,9 @@ class Template extends Component {
 
   render() {
     return (
-      <div className="col-md-3 template" style={{backgroundImage: `url(${this.props.template.file})`}} 
-        onClick={this.selectTemplate}
-      >
+      <Card  style={{backgroundImage: `url(${this.props.template.file})`}} onClick={this.selectTemplate} >
         <h5>{this.props.template.name}</h5>
-      </div>
+      </Card>
     )
   }
 }
