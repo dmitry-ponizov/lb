@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Card = styled.div`
     background-color: #fff;
     min-height: 500px;
-    min-width: 330px;
+    min-width: 325px;
     border-radius: 2%;
     cursor: pointer;
     background-repeat: no-repeat;
