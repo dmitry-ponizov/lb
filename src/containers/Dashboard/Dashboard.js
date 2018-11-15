@@ -13,7 +13,7 @@ class Dashboard extends Component {
   
     render() {
         return (<DashboardLayout>
-                    <WorkspaceWrapper className="col-md-10">
+                    <WorkspaceWrapper>
                         <WorkspaceTitle>Dashboard</WorkspaceTitle>
                         <Workspace>
                         </Workspace>

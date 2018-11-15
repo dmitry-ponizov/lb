@@ -2,6 +2,7 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility'
 import uuid from 'uuid';
 
+
 const initialState = {
     gridType: null,
     rows: [],
@@ -24,7 +25,7 @@ const initialState = {
         { id: uuid.v4(), name: 'Link', category:'any',  bgcolor: 'skyblue' }
     ],
     selectedItem: null,
-    json: '',
+    json: null,
     html: null,
     loading: false,
     error: null,
@@ -108,8 +109,9 @@ const createWebsiteStructureStart = (state) => {
     return updateObject(state, { loading: true, error: null })
 }
 
-const createWebsiteStructureSuccess = (state) => {
-    return updateObject(state, { loading: false, error: null })
+const createWebsiteStructureSuccess = (state, action) => {
+    
+    return updateObject(state, { loading: false, error: null})
 }
 
 const createWebsiteStructureFail = (state, action) => {
@@ -135,6 +137,19 @@ const deleteRow = (state, action) => {
     return updateObject(state, { rows: rows })
 }
 
+const fetchWebsiteStructureStart = (state) => {
+    return updateObject(state, { loading: true, error: null })
+}
+
+const fetchWebsiteStructureSuccess = (state, action) => {
+    
+    return updateObject(state, { loading: false, error: null })
+}
+
+const fetchWebsiteStructureFail = (state, action) => {
+    return updateObject(state, { loading: false, error: action.error })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -147,11 +162,14 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.SAVE_HTML: return saveHtml(state, action);
         case actionTypes.REORDER_COLUMN_ITEMS: return reorderColumnItems(state, action);
         case actionTypes.CREATE_WEBSITE_STRUCTURE_START: return createWebsiteStructureStart(state);
-        case actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS: return createWebsiteStructureSuccess(state);
+        case actionTypes.CREATE_WEBSITE_STRUCTURE_SUCCESS: return createWebsiteStructureSuccess(state, action);
         case actionTypes.CREATE_WEBSITE_STRUCTURE_FAIL: return createWebsiteStructureFail(state, action);
         case actionTypes.REFRESH_CONTAINER: return refreshRows(state);
         case actionTypes.DELETE_ITEM: return deleteItem(state, action);
         case actionTypes.DELETE_ROW: return deleteRow(state, action)
+        case actionTypes.FETCH_WEBSITE_STRUCTURE_START: return fetchWebsiteStructureStart(state, action)
+        case actionTypes.FETCH_WEBSITE_STRUCTURE_SUCCESS: return fetchWebsiteStructureSuccess(state, action)
+        case actionTypes.FETCH_WEBSITE_STRUCTURE_FAIL: return fetchWebsiteStructureFail(state, action)
         default: return state
     }
 }

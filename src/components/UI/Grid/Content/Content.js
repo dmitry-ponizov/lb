@@ -8,6 +8,13 @@ import { BuilderContext } from '../../../../containers/Builder/BuilderContext/Bu
 
 class Content extends Component {
 
+
+    componentDidMount = () => {
+        // if(!(this.props.rows).length){
+            this.props.onFetchWebsiteStructure()
+        // }
+   }
+
     state = {
         editable: true,
     }
@@ -58,7 +65,8 @@ const mapDispatchToProps = dispatch => {
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
         onReorderColumnItems: (newColumn, columnId, rowId) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId)),
-        onDeleteItemHandler: (item) => dispatch(actions.deleteItem(item))
+        onDeleteItemHandler: (item) => dispatch(actions.deleteItem(item)),
+        onFetchWebsiteStructure: () => dispatch(actions.fetchWebsiteStructure())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

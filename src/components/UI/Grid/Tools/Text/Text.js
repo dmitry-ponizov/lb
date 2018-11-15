@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React, { Component } from 'react'
 import './Text.scss'
 import ContentEditable from 'react-contenteditable'
 import Modal from '../../../Modal/Modal'
@@ -8,7 +8,7 @@ import { Draggable } from 'react-beautiful-dnd'
 import SmallModal from '../../SmallModal/SmallModal'
 import { BuilderContext } from '../../../../../containers/Builder/BuilderContext/BuilderContext'
 
-class Text extends PureComponent {
+class Text extends Component {
 
     static contextType = BuilderContext;
 

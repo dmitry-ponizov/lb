@@ -18,6 +18,7 @@ class Builder extends Component {
         active: true
     }
 
+   
     htmlHandler = () => {
         let html =  ReactDOMServer.renderToStaticMarkup(    
             <LayoutHTML>
@@ -38,6 +39,7 @@ class Builder extends Component {
             </LayoutHTML>
             )
         this.props.onSaveHtml(html)
+        
        
     }
 
@@ -79,7 +81,8 @@ const mapStateToProps = state => {
     return {
         rows: state.builder.rows,
         html: state.builder.html,
-        selectedTemplate: state.templates.selectedTemplate
+        selectedTemplate: state.templates.selectedTemplate,
+        website: state.websites.website
     }
 }
 
@@ -91,6 +94,7 @@ const mapDispatchToProps = dispatch => {
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
+
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Builder);
