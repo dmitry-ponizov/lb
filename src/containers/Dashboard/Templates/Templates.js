@@ -46,21 +46,19 @@ class Templates extends Component {
       <DashboardLayout>
         <WorkspaceWrapper className="templates-wrapper">
             <WorkspaceTitle>Templates</WorkspaceTitle>
-            <div className="row templates-container"> 
-                {this.props.templates && this.props.templates.map(template => (
-                  <Template key={template.id} template={template} clickHandler={this.clickHandler}/>
-                  ))}
-            </div>
+              <div className="row templates-container"> 
+                  {this.props.templates && this.props.templates.map(template => (
+                    <Template key={template.id} template={template} clickHandler={this.clickHandler}/>
+                    ))}
+              </div>
             <Modal show={this.state.show} modalClosed={this.cancelHandler}>
-        
-            <div className="template-create-site">
-              <p>New site</p>
-              <input  className="form-control" onChange={this.changeSiteNameHandler}/>
-              
-            </div>
-            <div className="btn-container">
-                <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
+              <div className="template-create-site">
+                <p>New site</p>
+                <input  className="form-control" onChange={this.changeSiteNameHandler}/>
+              </div>
+              <div className="btn-container">
+                  <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
+                  <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
               </div>    
           </Modal>
         </WorkspaceWrapper>

@@ -38,6 +38,10 @@ export {
     createWebsiteStructureFail,
     createWebsiteStructureSuccess,
     createWebsiteStructure,
+    fetchWebsiteStructure,
+    fetchWebsiteStructureFail,
+    fetchWebsiteStructureStart,
+    fetchWebsiteStructureSuccess,
     refreshContainer,
     deleteItem,
     deleteRow
@@ -49,15 +53,17 @@ export {
     fetchTemplatesFail,
     fetchTemplates,
     selectTemplate,
+
+} from './templates'
+
+export {
     createWebsite,
     createWebsiteFail,
     createWebsiteStart,
     createWebsiteSuccess,
-} from './templates'
-
-export {
     fetchWebsites,
     fetchWebsitesFail,
     fetchWebsitesStart,
-    fetchWebsitesSuccess
+    fetchWebsitesSuccess,
+    selectWebsite
 } from './websites'

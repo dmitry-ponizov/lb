@@ -16,8 +16,8 @@ export function* createWebsiteStructureSaga(action) {
     yield put(actions.createWebsiteStructureStart());
 
     try {
-        yield call(api.websiteStructure, structure, token)
-        yield put(actions.createWebsiteStructureSuccess())
+        const response = yield call(api.createWebsiteStructure, structure, token)
+        yield put(actions.createWebsiteStructureSuccess(response.data.data))
         yield getNoty('success','Website saved successfully!')
     } catch(error) {
         yield put(actions.createWebsiteStructureFail(error.response.data.error))
@@ -26,4 +26,17 @@ export function* createWebsiteStructureSaga(action) {
 }
 
 
+export function* fetchWebsiteStructureSaga(action) {
+    const token = yield select(getToken);
+    const websiteId = yield select(getWebsiteId)
 
+    yield put(actions.fetchWebsiteStructureStart());
+
+    try {
+        const response = yield call(api.fetchWebsiteStructure, websiteId, token)
+        yield put(actions.fetchWebsiteStructureSuccess(response.data.data))
+        yield put(actions.jsonInTemplate(response.data.data.configuration))
+    } catch(error) {
+        yield put(actions.fetchWebsiteStructureFail(error.response.data.error))
+    } 
+}

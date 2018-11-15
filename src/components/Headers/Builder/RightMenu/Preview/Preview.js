@@ -1,21 +1,26 @@
 import React, { Component } from 'react'
 import ReactSVG from 'react-svg'
 import previewImg from '../../../../../assets/images/preview.svg' 
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom';
 
 class Preview extends Component {
+
+    previewHandler = () => {
+        this.props.previewHandler()
+        this.props.history.push('/preview')
+    }
     render() {
         return (
             <div className="builder-header-btn"  >
                 <div className="builder-header-container">
-                    <Link className="full-size" to="/preview" onClick={() => this.props.previewHandler()}>
+                    <div className="full-size" to="/preview" onClick={() => this.previewHandler()}>
                         <ReactSVG src={previewImg}  />
                          Preview
-                    </Link>
+                    </div>
                 </div>
             </div>
         )
     }
 } 
 
-export default Preview;
+export default withRouter(Preview);
