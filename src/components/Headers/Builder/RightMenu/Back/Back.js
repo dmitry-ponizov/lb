@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
+import { Button, ButtonContent } from '../../../../../styled/Header'
+import styled from 'styled-components'
+
+const BtnSyled = styled(ButtonContent)`
+    i {
+        font-size: 20px;
+    }
+    &:hover {
+        color: ${props => props.theme.mainColor}
+    }
+    
+` 
 
 class Back extends Component {
 
@@ -8,14 +20,12 @@ class Back extends Component {
   }
   render() {
     return (
-        <div className="builder-header-btn"  >
-            <div className="builder-header-container">
-                <div className="full-size" onClick={this.clickHandler}>
-                    <i className="fa fa-arrow-left" aria-hidden="true"></i>
-                    Back
-                </div>
-            </div>
-        </div>
+        <Button>
+            <BtnSyled  onClick={this.clickHandler}>
+                <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                <p>Back</p>
+            </BtnSyled>
+        </Button>
       )
   }
 }

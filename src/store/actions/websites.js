@@ -84,3 +84,9 @@ export const selectWebsite = (website) => {
         website
     }
 }
+
+export const resetWebsite = () => {
+    return {
+        type: actionTypes.RESET_WEBSITE
+    }
+}

@@ -1,5 +1,17 @@
 import React, { Component } from 'react'
 import './ToggleButton.scss'
+import styled from 'styled-components'
+import { connect } from 'react-redux'
+import * as actions from '../../../../../store/actions'
+
+const Button = styled.div`
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    height: 60px;
+    width: 60px;
+    border-right:  solid 1px #eaeaea;
+`
 
 class ToggleButton extends Component {
 
@@ -16,16 +28,23 @@ class ToggleButton extends Component {
     }
     render(){
         return (
-            <div className="toggleButton" onClick={this.toggleHandler}>
-                <div className={this.state.active ? 'hamburger-menu active': 'hamburger-menu'}>
-                    <span className="line"></span>
-                    <span className="line"></span>
-                    <span className="line"></span>
+            <Button onClick={this.props.onToggleSidebar}>
+                <div className={this.state.active ? 'target-burger toggled': 'target-burger'}>
+                    <ul className="buns">
+                        <li className="bun"></li>
+                        <li className="bun"></li>
+                    </ul>
                 </div>
-            </div>
+            </Button>
         )
     }
 
 }
 
-export default ToggleButton;
+const mapDispatchToProps = dispatch => {
+    return {
+        onToggleSidebar: () => dispatch(actions.toggleSideBar())
+    }
+}
+
+export default connect(null, mapDispatchToProps)(ToggleButton);

@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Modal from '../../../../UI/Modal/Modal'
 import { connect } from 'react-redux'
 import * as actions from '../../../../../store/actions'
-import './Load.scss'
+import styled from 'styled-components'
+
 
 class Load extends Component {
     state = {

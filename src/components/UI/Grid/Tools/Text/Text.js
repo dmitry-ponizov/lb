@@ -7,6 +7,7 @@ import initElements from './initElements'
 import { Draggable } from 'react-beautiful-dnd'
 import SmallModal from '../../SmallModal/SmallModal'
 import { BuilderContext } from '../../../../../containers/Builder/BuilderContext/BuilderContext'
+import { ModalButtons, Button  } from '../../../../../styled/Modal'
 
 class Text extends Component {
 
@@ -57,7 +58,7 @@ class Text extends Component {
         return (
             <Draggable draggableId={this.props.settings.id} index={this.props.index}>
             {provided => (
-                <div className={this.context.editable ? 'blockBuilder' : null}
+                <div className={this.props.editable ? 'blockBuilder' : null}
                 {...provided.draggableProps}
                 {...provided.dragHandleProps}
                 ref={provided.innerRef}
@@ -68,7 +69,7 @@ class Text extends Component {
                     className="content-editable"
                     style={this.props.element.styles}
                     html={this.state.html}
-                    disabled={!this.context.editable}
+                    disabled={this.props.editable}
                     onChange={this.handleChange}
                     tagName='div'
                     onClick={this.clickHandler}
@@ -94,10 +95,14 @@ class Text extends Component {
                             </div>
                         ))}
                     </div>
-                    <div className="btn-container">
-                        <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                        <div className="apply-btn" onClick={this.cancelHandler} >Apply</div>
-                    </div>
+                    <ModalButtons>
+                        <Button onClick={this.cancelHandler}>
+                            <span>Cancel</span>
+                        </Button>
+                        <Button onClick={this.cancelHandler}>
+                             <span>Apply</span>
+                        </Button>
+                    </ModalButtons>
                 </Modal>
             </div>
               )}    

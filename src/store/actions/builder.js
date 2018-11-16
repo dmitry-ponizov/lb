@@ -138,3 +138,16 @@ export const fetchWebsiteStructure = () => {
         type: actionTypes.FETCH_WEBSITE_STRUCTURE
     }
 }
+
+export const resetRows = () => {
+    return {
+        type: actionTypes.RESET_ROWS
+    }
+}
+
+export const changeWidthWorkspace = (width) => {
+    return {
+        type: actionTypes.CHANGE_WIDTH_WORKSPACE,
+        width
+    }
+}

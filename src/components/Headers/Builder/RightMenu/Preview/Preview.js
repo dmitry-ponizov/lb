@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import ReactSVG from 'react-svg'
 import previewImg from '../../../../../assets/images/preview.svg' 
 import { withRouter } from 'react-router-dom';
+import { Button, ButtonContent } from '../../../../../styled/Header'
+
 
 class Preview extends Component {
 
@@ -11,14 +13,12 @@ class Preview extends Component {
     }
     render() {
         return (
-            <div className="builder-header-btn"  >
-                <div className="builder-header-container">
-                    <div className="full-size" to="/preview" onClick={() => this.previewHandler()}>
-                        <ReactSVG src={previewImg}  />
-                         Preview
-                    </div>
-                </div>
-            </div>
+            <Button>
+                <ButtonContent onClick={() => this.previewHandler()}>
+                    <ReactSVG src={previewImg}  />
+                    <p>Preview</p>
+                </ButtonContent>
+            </Button>
         )
     }
 } 

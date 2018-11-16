@@ -8,7 +8,9 @@ import { WorkspaceWrapper, Workspace, WorkspaceTitle } from '../../styled/Worksp
 class Dashboard extends Component {
 
     componentDidMount() {
-        this.props.toUserProfile()
+        if(!this.props.userProfile) {
+            this.props.toUserProfile()
+        }
     }
   
     render() {

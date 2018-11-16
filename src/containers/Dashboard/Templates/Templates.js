@@ -7,6 +7,21 @@ import Modal from '../../../components/UI/Modal/Modal'
 import { withRouter } from 'react-router-dom';
 import DashboardLayout from '../../../hoc/Layouts/DashboardLayout/DashboardLayout'
 import { WorkspaceWrapper, WorkspaceTitle } from '../../../styled/Workspace'
+import { ModalButtons, Button } from '../../../styled/Modal'
+import styled from 'styled-components'
+
+const ButtonStyled = styled(Button)`
+  padding: 13px 75px;
+`
+
+const CreateWebsite = styled.div`
+    padding: 20px;
+    input{
+      font-size: 1.5rem;
+      height: 3.25rem;
+    }
+
+`
 
 class Templates extends Component {
 
@@ -16,7 +31,10 @@ class Templates extends Component {
   }
 
   componentDidMount = () => {
-    this.props.toFetchTemplates()
+    if(!this.props.templates.length){
+      this.props.toFetchTemplates();
+    }
+  
   }
 
 
@@ -25,6 +43,7 @@ class Templates extends Component {
   }
 
   clickHandler = () => {
+
     this.setState({show:true})
   }
   
@@ -33,10 +52,13 @@ class Templates extends Component {
       siteName:e.target.value
     })
   }
+
   createSiteHandler = () => {
     if(!this.state.siteName.length) {
         return
     }
+    this.props.onResetWebiste()
+    this.props.onResetRows()
     this.props.onCreateWebsite(this.state.siteName)
     this.props.history.push('/builder')
   }
@@ -52,14 +74,14 @@ class Templates extends Component {
                     ))}
               </div>
             <Modal show={this.state.show} modalClosed={this.cancelHandler}>
-              <div className="template-create-site">
+              <CreateWebsite>
                 <p>New site</p>
                 <input  className="form-control" onChange={this.changeSiteNameHandler}/>
-              </div>
-              <div className="btn-container">
-                  <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                  <div className="apply-btn" onClick={this.createSiteHandler}>Save</div>        
-              </div>    
+              </CreateWebsite>
+              <ModalButtons className="btn-container">
+                  <ButtonStyled  onClick={this.cancelHandler}><span>Cancel</span></ButtonStyled>
+                  <ButtonStyled  onClick={this.createSiteHandler}><span>Save</span></ButtonStyled>        
+              </ModalButtons>    
           </Modal>
         </WorkspaceWrapper>
       </DashboardLayout>
@@ -77,7 +99,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toFetchTemplates: () => dispatch(actions.fetchTemplates()),
-    onCreateWebsite: (siteName) => dispatch(actions.createWebsite(siteName))
+    onCreateWebsite: (siteName) => dispatch(actions.createWebsite(siteName)),
+    onResetRows: () => dispatch(actions.resetRows()),
+    onResetWebiste: () => dispatch(actions.resetWebsite())
   }
 }
 

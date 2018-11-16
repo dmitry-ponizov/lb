@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
-import  './Modal.scss'
 import Backdrop from '../Backdrop/Backdrop'
+import { ModalStyled } from '../../../styled/Modal'
+
 
 class Modal extends React.Component {
 
@@ -13,14 +14,12 @@ class Modal extends React.Component {
     return (
       <Fragment>
         <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
-        <div className='Modal'
-          style={{
+        <ModalStyled className='Modal' style={{
              transform: this.props.show ? 'translateX(-50%)' : 'translateY:(-100vh)',
              display: this.props.show ? 'block' : 'none'
-          }}
-          >
+          }}>
           {this.props.children}
-        </div>
+        </ModalStyled>
       </Fragment>
     )
   }

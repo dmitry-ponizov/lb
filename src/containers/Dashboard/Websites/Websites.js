@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import Website from './Website/Website'
 import CreateWebsite from './CreateWebsite/CreateWebsite'
 
+   
 const WebsitesWrapper = styled.div`
   margin-top: 30px;
   display: flex;
@@ -31,7 +32,7 @@ class Websites extends Component {
         <WorkspaceWrapper>
           <WorkspaceTitle> My Websites</WorkspaceTitle>
           <CreateWebsite />
-          <WebsitesWrapper>
+          <WebsitesWrapper ref={"container"}>
             { this.props.websites && this.props.websites.data.map(website => 
               <Website key={ website.id } website={ website } selectWebsiteHandler={(website) => this.selectWebsiteHandler(website)} />) }
           </WebsitesWrapper>
