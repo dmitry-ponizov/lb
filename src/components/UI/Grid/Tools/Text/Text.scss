@@ -9,32 +9,6 @@
             outline:solid 1px #e36854;
         }
     }
-    .btn-container {
-        display: flex;
-        outline: solid 1px #eaeaea;
-        margin-top: 30px;
-        .cancel-btn{
-            width: 150px;
-            padding: 10px;
-            font-size: 12px;
-            border-right: solid 1px #eaeaea;
-            color: #969696;
-            cursor: pointer;
-            &:hover {
-                color: #000;
-            }
-        }
-        .apply-btn {
-            cursor: pointer;
-            color: #969696;
-            font-size: 12px;
-            padding: 10px;
-            width: 150px;
-            &:hover {
-                color: #000;
-            }
-        }
-    }
    
 }
 

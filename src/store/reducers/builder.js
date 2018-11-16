@@ -2,7 +2,6 @@ import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility'
 import uuid from 'uuid';
 
-
 const initialState = {
     gridType: null,
     rows: [],
@@ -29,6 +28,7 @@ const initialState = {
     html: null,
     loading: false,
     error: null,
+    widthWorkspace: '100%'
 }
 
 const selectedGird = (state, action) => {
@@ -150,6 +150,13 @@ const fetchWebsiteStructureFail = (state, action) => {
     return updateObject(state, { loading: false, error: action.error })
 }
 
+const resetRows = (state) => {
+    return updateObject(state, { rows: [] } )
+}
+const changeWidthWorkspace = (state, action) => {
+    return updateObject(state, { widthWorkspace: action.width })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);
@@ -170,6 +177,8 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_WEBSITE_STRUCTURE_START: return fetchWebsiteStructureStart(state, action)
         case actionTypes.FETCH_WEBSITE_STRUCTURE_SUCCESS: return fetchWebsiteStructureSuccess(state, action)
         case actionTypes.FETCH_WEBSITE_STRUCTURE_FAIL: return fetchWebsiteStructureFail(state, action)
+        case actionTypes.RESET_ROWS: return resetRows(state)
+        case actionTypes.CHANGE_WIDTH_WORKSPACE: return changeWidthWorkspace(state, action)
         default: return state
     }
 }

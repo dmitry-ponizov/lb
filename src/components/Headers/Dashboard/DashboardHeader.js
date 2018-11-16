@@ -1,13 +1,20 @@
 import React from 'react'
-import './DashboardHeader.scss'
 import LeftMenu from '../Builder/LeftMenu/LeftMenu';
 import RightMenu from './RightMenu/RightMenu'
+import styled from 'styled-components'
 
+const DashBoardStyled = styled.div`
+    border: solid 1px #eaeaea;
+    min-height: 60px;
+    display: flex;
+    justify-content: space-between;
+
+`
 const DashboardHeader = (props) => (
-    <div className="dashboard-header">
+    <DashBoardStyled >
         <LeftMenu preview={props.preview} toggleHandler={(active) => props.toggleHandler(active) } />
         <RightMenu  />
-    </div>
+    </DashBoardStyled>
 )
 
 export default DashboardHeader;

@@ -32,3 +32,9 @@ export const selectSection = (section) => {
         section
     } 
 }
+
+export const toggleSideBar = () => {
+    return {
+        type: actionTypes.TOGGLE_SIDEBAR
+    }
+}

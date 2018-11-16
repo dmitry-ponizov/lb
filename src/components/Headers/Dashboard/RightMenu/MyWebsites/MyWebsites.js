@@ -13,7 +13,6 @@ const StyledMyWebsites = styled.div`
 const TitleMyWebsites = styled.div`
   font-family: Muli;
   font-size: 13px;
-  font-weight: 600;
   letter-spacing: 0.2px;
   color: #000000;
 `

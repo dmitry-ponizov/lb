@@ -20,7 +20,8 @@ export {
     userProfileFail,
     userProfileStart,
     userProfileSuccess,
-    selectSection
+    selectSection,
+    toggleSideBar
 }
 from './dashboard'
 
@@ -44,7 +45,9 @@ export {
     fetchWebsiteStructureSuccess,
     refreshContainer,
     deleteItem,
-    deleteRow
+    deleteRow,
+    resetRows,
+    changeWidthWorkspace
 } from './builder'
 
 export {
@@ -65,5 +68,6 @@ export {
     fetchWebsitesFail,
     fetchWebsitesStart,
     fetchWebsitesSuccess,
-    selectWebsite
+    selectWebsite,
+    resetWebsite
 } from './websites'

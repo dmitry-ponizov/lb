@@ -20,7 +20,7 @@ const WebsiteModal = styled.div`
       z-index:2;
       bottom: 17px;
       width: 260px;
-      height: 70px;
+      min-height: 70px;
       border-radius: 5px;
       box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.1);
       background-color: #ffffff;
@@ -29,10 +29,11 @@ const WebsiteModal = styled.div`
 `
 
 const WebsiteName = styled.span`
-        font-family: Muli;
-        font-size: 16px;
-        letter-spacing: 0.3px;
-        color: #000000;
+      display: flex;
+      font-family: Muli;
+      font-size: 16px;
+      letter-spacing: 0.3px;
+      color: #000000;
 `
 
 const PublishBlock = styled.div`
@@ -57,25 +58,23 @@ const Settings = styled.div`
     }
 
 `
-const  website  = (props) =>{
+const website = (props) => {
 
-
-
-    return (
-      <HoveredCard style={{backgroundImage: `url(${props.website.theme_image})`}} 
-          onClick={() => props.selectWebsiteHandler(props.website)} >
-        <WebsiteModal className="website-modal">
-           <WebsiteName>{ props.website.name }</WebsiteName>
-           <PublishBlock>
-             <Publish style={{color: props.website.is_publish ? '#48be4d' : '#e36854'}}>{props.website.is_publish ? 'Published' : 'Unpublished'}</Publish>
-             <Settings>Settings
+  return (
+    <HoveredCard style={{ backgroundImage: `url(${props.website.theme_image})` }}
+      onClick={() => props.selectWebsiteHandler(props.website)} >
+      <WebsiteModal className="website-modal">
+        <WebsiteName>{props.website.name}</WebsiteName>
+        <PublishBlock>
+          <Publish style={{ color: props.website.is_publish ? '#48be4d' : '#e36854' }}>{props.website.is_publish ? 'Published' : 'Unpublished'}</Publish>
+          <Settings>Settings
                <i className="fa fa-angle-right"></i>
-             </Settings>
-           </PublishBlock>
-        </WebsiteModal>
-      </HoveredCard>
-    )
-  
+          </Settings>
+        </PublishBlock>
+      </WebsiteModal>
+    </HoveredCard>
+  )
+
 }
 
 export default website;

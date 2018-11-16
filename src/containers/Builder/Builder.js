@@ -18,9 +18,8 @@ class Builder extends Component {
         active: true
     }
 
-   
     htmlHandler = () => {
-        let html =  ReactDOMServer.renderToStaticMarkup(    
+        return ReactDOMServer.renderToStaticMarkup(    
             <LayoutHTML>
                 <Layout tag={this.props.selectedTemplate.name}>
                 <BuilderContext.Provider value={{
@@ -38,12 +37,16 @@ class Builder extends Component {
                 </Layout>
             </LayoutHTML>
             )
+    }
+
+    onSaveHandler = () => {
+        let html = this.htmlHandler()
         this.props.onSaveHtml(html)
-        
-       
     }
 
     previewHandler = () => {
+        let html = this.htmlHandler()
+        this.props.onSaveHtml(html)
         this.setState(prevState => ({ 
             editable: !prevState.editable
         }))
@@ -62,15 +65,16 @@ class Builder extends Component {
 
     render() {
         return (
-            <div className="builder">
+            <div className="builder"  >
                 <BuilderHeader 
                     toggleHandler={(active) => this.toggleHandler(active) } 
-                    previewHandler={this.htmlHandler}
+                    previewHandler={this.previewHandler}
+                    onSaveHandler={this.onSaveHandler}
                     preview={false}
                     />
-                <div className="builder-wrapper">
+                <div className="builder-wrapper" >
                     <SideBar active={ this.state.active }/>
-                    <Content  />
+                    <Content  editable={this.state.editable}/>
                 </div>
             </div>
         )

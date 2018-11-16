@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
-import './RightMenu.scss'
 import Save from './Save/Save'
 import Preview from './Preview/Preview'
 import Logout from './Logout/Logout'
 import Back from './Back/Back'
 import Publish from './Publish/Publish'
+import styled from 'styled-components'
+import Desktop from './Desktop/Desktop';
+import Tablet from './Tablet/Tablet'
 
+const RightMenuStyled = styled.div`
+    width: 500px;
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+`
 
 class RightMenu extends Component {
 
@@ -23,17 +31,18 @@ class RightMenu extends Component {
 
     render () {
         return (
-            <div className="builder-header-right-menu">
+            <RightMenuStyled>
                {!this.props.preview ? 
                     <React.Fragment>
-                        <Save previewHandler={this.props.previewHandler} />
-                        {/* <Load />  */}
+                        <Tablet />
+                        <Desktop />
+                        <Save previewHandler={this.props.previewHandler}  onSaveHandler={this.props.onSaveHandler}/>
                         <Preview previewHandler={this.props.previewHandler} /> 
                     </React.Fragment>
                  : ''}
                  {this.props.preview ? <Back /> : <Logout /> }
                  <Publish />
-            </div>
+            </RightMenuStyled>
         )
     }
 }
