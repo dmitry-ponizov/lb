@@ -1,11 +1,9 @@
 import React, { Component } from 'react'
 import saveImg from '../../../../../assets/images/save.svg'
 import ReactSVG from 'react-svg'
-import Modal from '../../../../UI/Modal/Modal'
 import { connect } from 'react-redux'
 import * as actions from '../../../../../store/actions'
-import './Save.scss'
-
+import { Button, ButtonContent } from '../../../../../styled/Header'
 
 class Save extends Component {
     state = {
@@ -13,13 +11,10 @@ class Save extends Component {
     }
 
     clickHandler = (e) => {
-       
         if(this.props.rows.length) {
             this.props.onTemplateInJson();
-            this.props.previewHandler();
+            this.props.onSaveHandler();
             this.props.onCreateWebsiteStructure()
-
-            // this.setState({show:true})
         }
     }
 
@@ -29,27 +24,12 @@ class Save extends Component {
  
     render() {
         return (
-            <div className="builder-header-btn" >
-                <div className="builder-header-container" onClick={this.clickHandler}>
+            <Button>
+                <ButtonContent onClick={this.clickHandler}>
                     <ReactSVG src={saveImg}  />
-                    <p className="btn-title">Save</p>
-                </div>
-                <Modal show={this.state.show} modalClosed={this.cancelHandler}>
-                    <p>Template in JSON format</p>
-                    <div className="builder-header-json">
-                        <textarea
-                            className="form-control"
-                            cols="60" rows="10" 
-                            readOnly
-                            value={this.props.json || ''} ></textarea>
-                     
-                    </div>
-                    <div className="btn-container">
-                            <div className="cancel-btn" onClick={this.cancelHandler}>Cancel</div>
-                            <div className="apply-btn" onClick={this.cancelHandler}>Ok</div>            
-                    </div>
-                </Modal>
-            </div>
+                    <p>Save</p>
+                </ButtonContent>
+            </Button>
         )
     }
 }

@@ -6,7 +6,12 @@ import HomePage from './containers/HomePage/HomePage'
 import Logout from './containers/Auth/Logout/Logout';
 import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 import asyncComponent from './hoc/AsyncComponent/AsyncComponent'
+import './App.scss'
+import { ThemeProvider } from 'styled-components'
 
+const theme = {
+  mainColor: '#e36854',
+}
 
 const asyncDashboard = asyncComponent(() => {
   return import('./containers/Dashboard/Dashboard')
@@ -45,20 +50,22 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-          <Switch>
-              <Route path="/" refresh exact component={HomePage}  />
-              <Route path='/login' component={asyncSignIn} />
-              <Route path='/logout' component={Logout} />
-              <Route path='/registration' component={asyncSignUp} />
-              <PrivateRoute path="/preview" component={asyncPreview} isAuth={this.props.isAuth} />
-              <PrivateRoute path="/builder" component={asyncBuilder}  isAuth={this.props.isAuth} />
-              <PrivateRoute path="/templates" component={asyncTemplates} isAuth={this.props.isAuth}/>
-              <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
-              <PrivateRoute path="/websites" component={asyncWebsites} isAuth={this.props.isAuth}/>
-              <Redirect to="/" />
-          </Switch>
-      </div>
+      <ThemeProvider theme={theme}>
+        <div className="App">
+            <Switch>
+                <Route path="/" refresh exact component={HomePage}  />
+                <Route path='/login' component={asyncSignIn} />
+                <Route path='/logout' component={Logout} />
+                <Route path='/registration' component={asyncSignUp} />
+                <PrivateRoute path="/preview" component={asyncPreview} isAuth={this.props.isAuth} />
+                <PrivateRoute path="/builder" component={asyncBuilder}  isAuth={this.props.isAuth} />
+                <PrivateRoute path="/templates" component={asyncTemplates} isAuth={this.props.isAuth}/>
+                <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
+                <PrivateRoute path="/websites" component={asyncWebsites} isAuth={this.props.isAuth}/>
+                <Redirect to="/" />
+            </Switch>
+        </div>
+      </ThemeProvider>
     );
   }
 }

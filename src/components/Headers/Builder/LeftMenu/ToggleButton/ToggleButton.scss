@@ -1,52 +1,62 @@
-.toggleButton {
-    display: flex;
-    justify-content: center;
-    padding: 5px;
-    height: 60px;
-    width: 60px;
-    border-right:  solid 1px #eaeaea;
+.target-burger {
+    width: 3.25em;
+    height: 3.45em;
+    position: absolute;
+    display: block;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.7;
+    }
 }
 
-.hamburger-menu {
-    display: inline-block;
-    margin: 0 4px;
-    // padding: 5px 12px;
-    overflow: hidden;
-    vertical-align: middle;
-    cursor: pointer;
-    height: 48px;
-    font-size: 28px;
-    color: #000;
-    transition: all 0.3s ease-out;
-    position: relative;
-  
+.buns {
+  width: 20px;
+  height: 20px;
+  list-style: none;
+  margin: -0.8125em 0 0 -0.8125em;
+  padding: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1), color 1s cubic-bezier(0.23, 1, 0.32, 1);
+  transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), color 1s cubic-bezier(0.23, 1, 0.32, 1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  color: #000;
 }
-.line{
-    width: 20px;
+
+.bun {
+
+    width: 100%;
     height: 2px;
     background-color: #000;
-    display: block;
-    margin: 8px auto;
-    transition: all 0.3s ease-in-out;
-  
+    position: absolute;
+    top: 50%;
+    margin-top: -0.75px;
+    -webkit-transform: translateY(-3.75px) translateZ(0);
+    transform: translateY(-3.75px) translateZ(0);
+    -webkit-transition: -webkit-transform 1s cubic-bezier(0.23, 1, 0.32, 1), background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1), background-color 1s cubic-bezier(0.23, 1, 0.32, 1);
+
+    &:last-child {
+
+        -webkit-transform: translateY(3.75px) translateZ(0);
+        transform: translateY(3.75px) translateZ(0);
+      
+    }
 }
 
-.hamburger-menu.active{
-    background: #fff;
-    transition: all 0.3s ease-in-out;
-    transition-delay: 0.6s;
-    transform: rotate(45deg);
-    .line{
-      &:nth-child(1){
-        transform: translateY(13px);
-        transition-delay: 0.3s;
-      }
-      &:nth-child(2){
-        width: 0px;
-      }
-      &:nth-child(3){
-        transform: translateY(-7px) rotate(90deg);
-        transition-delay: 0.3s;
-      }
-    }
-  }
+.toggled ul.buns li.bun {
+  -webkit-transform: rotate(45deg) translateZ(0);
+  transform: rotate(45deg) translateZ(0);
+}
+
+
+.toggled ul.buns li.bun:last-child {
+  -webkit-transform: rotate(-45deg) translateZ(0);
+  transform: rotate(-45deg) translateZ(0);
+}

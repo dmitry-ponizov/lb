@@ -5,7 +5,7 @@ const initialState = {
     websites: null,
     loading: false,
     error: null,
-    website: {}
+    website: null
 }
 
 const createWebsiteStart = (state) => {
@@ -56,6 +56,10 @@ const selectWebsite = (state, action) => {
     return updateObject(state, { website: action.website })
 }
 
+const resetWebsite = (state) => {
+    return updateObject(state, { website: null })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.CREATE_WEBSITE_START: return createWebsiteStart(state)
@@ -68,6 +72,7 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_WEBSITES_SUCCESS: return fetchWebsitesSuccess(state, action)
         case actionTypes.FETCH_WEBSITES_FAIL: return fetchWebsitesFail(state, action)
         case actionTypes.SELECT_WEBSITE: return selectWebsite(state, action)
+        case actionTypes.RESET_WEBSITE: return resetWebsite(state)
         default: return state
     }
 }

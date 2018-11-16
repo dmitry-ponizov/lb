@@ -10,20 +10,15 @@ class Content extends Component {
 
 
     componentDidMount = () => {
-        if(Object.keys(this.props.website).length){
+        if(this.props.website){
             this.props.onFetchWebsiteStructure()
         }
-   }
-
-    state = {
-        editable: true,
     }
 
-    
     render() {
         return (
             <div className="content">
-               <div className="content-draggable">
+               <div className="content-draggable" style={{width: this.props.widthWorkspace}}>
                     <div className="draggable-header"></div>
                     <div className="draggable-body">
                         <div className="container-drag">
@@ -35,9 +30,9 @@ class Content extends Component {
                                 changeContentItem: this.props.onChangeContentItem,
                                 onDropHandler:this.props.onDrop,
                                 reorderHandler:this.props.onReorderColumnItems,
-                                editable: this.state.editable
+                                saveHandler:this.props.saveHandler
                             }}>
-                            <Container rows={this.props.rows}  />
+                            <Container rows={this.props.rows} editable={this.props.editable} />
                         </BuilderContext.Provider>
                         </div>
                     </div>
@@ -54,7 +49,8 @@ const mapStateToProps = state => {
         rows: state.builder.rows,
         tools: state.builder.tools,
         layouts: state.builder.layouts,
-        website: state.websites.website
+        website: state.websites.website,
+        widthWorkspace: state.builder.widthWorkspace
     }
 }
 

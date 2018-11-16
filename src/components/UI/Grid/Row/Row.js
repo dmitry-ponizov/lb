@@ -27,10 +27,10 @@ class Row extends Component {
         }
 
         return (
-                <div className={'row' + (this.context.editable ? ' row-hovered' : '')} >
+                <div className={'row' + (this.props.editable ? ' row-hovered' : '')} >
                 <DeleteButton deleteRowHandler={ (rowNumber) => this.context.rowDeleteHandler(this.props.rowNumber) } />
                 {Object.keys(this.props.row).map((cell, index) =>
-                    <div key={index} className={(this.context.editable ? 'row-content' : '') + classes[index]}>
+                    <div key={index} className={(this.props.editable ? 'row-content' : '') + classes[index]}>
                         <Column
                             columnName={cell}
                             gridType={this.props.columns}

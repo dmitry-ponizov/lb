@@ -1,22 +1,33 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
+import { Button, ButtonContent } from '../../../../../styled/Header'
+import styled from 'styled-components'
 
+const BtnSyled = styled(ButtonContent)`
+    i {
+        font-size: 20px;
+    }
+    &:hover {
+        color: ${props => props.theme.mainColor}
+    }
+    
+` 
 
 class Logout extends Component {
-    
+    clickHandler = () => {
+        this.props.history.push('/logout')
+    }
     render() {
         return (
-            <div className="builder-header-btn">
-                <div  className="builder-header-container">
-                    
-                    <Link to="/logout" className="full-size">
-                    <i className="fa fa-sign-out"></i>
-                    Logout</Link>
-                </div>
-            </div>
+            <Button>
+                <BtnSyled onClick={this.clickHandler}>
+                     <i className="fa fa-sign-out"></i>
+                     <p>Logout</p>
+                </BtnSyled>
+            </Button>
         )
     }
 }
 
 
-export default Logout;
+export default withRouter(Logout);

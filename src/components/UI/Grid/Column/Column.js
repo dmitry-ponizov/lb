@@ -74,6 +74,7 @@ class Column extends Component {
                         itemId: index,
                         id: itemId
                       }}
+                      editable={this.props.editable}
                       element={this.props.components['items'][itemId]}
                       key={itemId}
                     />

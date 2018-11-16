@@ -1,11 +1,16 @@
 import React from 'react'
-import './LeftPanel.scss'
 import NavigationItem from './NavigationItem/NavigationItem'
+import styled from 'styled-components'
 
+const SideBarStyled = styled.div`
+    padding: 20px;
+    width: 61px;
+    border-right:  solid 1px #eaeaea;
+`
 const LeftPanel = () => (
-    <div className="builder-side-bar-left">
+    <SideBarStyled className="builder-side-bar-left">
         <NavigationItem />
-    </div>
+    </SideBarStyled>
 )
 
 export default LeftPanel;

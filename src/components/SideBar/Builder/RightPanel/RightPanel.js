@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 
 const RightPanel = (props) => {
     return (
-        <div className={'builder-side-bar-right' + (props.active ? ' show' : '')}>
+        <div className={'builder-side-bar-right' + (props.show ? ' show' : '')}>
             <div className="builder-side-bar-tools-wrap">
                 <GeneralToolBar tools={props.tools} />
             </div>
@@ -17,7 +17,8 @@ const RightPanel = (props) => {
 
 const mapStateToProps = state => {
     return {
-        tools: state.builder.tools
+        tools: state.builder.tools,
+        show: state.dashboard.sidebarShow
     }
 }
 
