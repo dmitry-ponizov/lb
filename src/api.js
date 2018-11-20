@@ -20,4 +20,6 @@ export const fetchWebsites = (token) => axios.get(apiUrl + 'website',  headers(t
 
 export const fetchWebsiteStructure = (websiteId, token) => axios.get(apiUrl + 'website-structure/' + websiteId, headers(token))
 
+export const publishWebsite = (token, data) => axios.post(apiUrl + 'website/publish', data, headers(token))
+
 

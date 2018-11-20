@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import Container from '../Container/Container'
 import * as actions from '../../../../store/actions/index'
 import { BuilderContext } from '../../../../containers/Builder/BuilderContext/BuilderContext'
+import Alert from '../../Alert/Alert'
 
 class Content extends Component {
 
@@ -19,7 +20,16 @@ class Content extends Component {
         return (
             <div className="content">
                <div className="content-draggable" style={{width: this.props.widthWorkspace}}>
-                    <div className="draggable-header"></div>
+                    <div className="draggable-header">
+                        {this.props.published && <Alert type="success">
+                            <strong>  Your website has been successfully published! </strong>
+                            <span>You can view it by clicking on the  </span>
+                            <a href={this.props.website.url} target="blank">{this.props.website.url}</a>
+                            <button type="button" className="close" onClick={()=> this.props.onChangePublishStatus()} >
+                                <span >&times;</span>
+                            </button>
+                        </Alert>}
+                    </div>
                     <div className="draggable-body">
                         <div className="container-drag">
                         <BuilderContext.Provider value={{
@@ -50,7 +60,8 @@ const mapStateToProps = state => {
         tools: state.builder.tools,
         layouts: state.builder.layouts,
         website: state.websites.website,
-        widthWorkspace: state.builder.widthWorkspace
+        widthWorkspace: state.builder.widthWorkspace,
+        published: state.websites.published
     }
 }
 
@@ -63,7 +74,8 @@ const mapDispatchToProps = dispatch => {
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
         onReorderColumnItems: (newColumn, columnId, rowId) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId)),
         onDeleteItemHandler: (item) => dispatch(actions.deleteItem(item)),
-        onFetchWebsiteStructure: () => dispatch(actions.fetchWebsiteStructure())
+        onFetchWebsiteStructure: () => dispatch(actions.fetchWebsiteStructure()),
+        onChangePublishStatus: () => dispatch(actions.changePublishStatus())
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Content);

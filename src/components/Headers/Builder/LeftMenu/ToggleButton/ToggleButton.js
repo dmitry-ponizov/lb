@@ -15,10 +15,6 @@ const Button = styled.div`
 
 class ToggleButton extends Component {
 
-    state = {
-        active: true
-    }
-
     toggleHandler = () => {
         this.setState(prevState => ({ 
             active: !prevState.active
@@ -29,7 +25,7 @@ class ToggleButton extends Component {
     render(){
         return (
             <Button onClick={this.props.onToggleSidebar}>
-                <div className={this.state.active ? 'target-burger toggled': 'target-burger'}>
+                <div className={this.props.sidebarShow ? 'target-burger toggled': 'target-burger'}>
                     <ul className="buns">
                         <li className="bun"></li>
                         <li className="bun"></li>
@@ -41,10 +37,15 @@ class ToggleButton extends Component {
 
 }
 
+const mapStateToProps = state => {
+    return {
+        sidebarShow: state.dashboard.sidebarShow
+    }
+}
 const mapDispatchToProps = dispatch => {
     return {
         onToggleSidebar: () => dispatch(actions.toggleSideBar())
     }
 }
 
-export default connect(null, mapDispatchToProps)(ToggleButton);
+export default connect(mapStateToProps, mapDispatchToProps)(ToggleButton);

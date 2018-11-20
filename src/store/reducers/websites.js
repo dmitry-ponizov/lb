@@ -5,7 +5,8 @@ const initialState = {
     websites: null,
     loading: false,
     error: null,
-    website: null
+    website: null,
+    published: false
 }
 
 const createWebsiteStart = (state) => {
@@ -60,6 +61,23 @@ const resetWebsite = (state) => {
     return updateObject(state, { website: null })
 }
 
+const publishWebsiteStart = (state) => {
+    return updateObject(state, { loading: true, error: null })
+}
+
+const publishWebsiteSuccess = (state, action) => {
+    
+    return updateObject(state, { loading: false, error: null, website: action.website, published: true})
+}
+
+const publishWebsiteFail = (state, action) => {
+    return updateObject(state, { loading: false, error: action.error })
+}
+
+const changePublishStatus = (state) => {
+    return updateObject(state, { published: false })
+}
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.CREATE_WEBSITE_START: return createWebsiteStart(state)
@@ -73,6 +91,10 @@ export const reducer = (state = initialState, action) => {
         case actionTypes.FETCH_WEBSITES_FAIL: return fetchWebsitesFail(state, action)
         case actionTypes.SELECT_WEBSITE: return selectWebsite(state, action)
         case actionTypes.RESET_WEBSITE: return resetWebsite(state)
+        case actionTypes.PUBLISH_WEBSITE_START: return publishWebsiteStart(state)
+        case actionTypes.PUBLISH_WEBSITE_SUCCESS: return publishWebsiteSuccess(state, action)
+        case actionTypes.PUBLISH_WEBSITE_FAIL: return publishWebsiteFail(state)
+        case actionTypes.CHANGE_PUBLISH_STATUS: return changePublishStatus(state)
         default: return state
     }
 }

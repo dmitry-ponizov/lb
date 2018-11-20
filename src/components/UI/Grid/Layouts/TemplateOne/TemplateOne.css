@@ -1,0 +1,13 @@
+.template-one-background, .template-one-footer {
+    background: lightgreen;
+}
+.template-one-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.template-one-container {
+    min-height: calc(100vh - 80px);
+}
+
