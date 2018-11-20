@@ -1,10 +1,11 @@
 import React from 'react'
+import './TemplateTwo.css'
 
 const TemplateTwo = (props) => (
 
-    <div className="wrapper">
+    <div className="template-two-wrapper">
         <header >
-        <nav className="navbar navbar-expand-lg navbar-light " style={{ background: 'lightcoral' }}>
+        <nav className="navbar navbar-expand-lg navbar-light template-two-background" >
             <a className="navbar-brand" href="/">Navbar</a>
             <button className="navbar-toggler" type="button" >
                 <span className="navbar-toggler-icon"></span>
@@ -30,11 +31,11 @@ const TemplateTwo = (props) => (
         </nav>
         </header>
         <main>
-            <div className="container">
+            <div className="container template-two-container">
                 {props.children}
             </div>
         </main>
-        <footer className="page-footer font-small blue" style={{ background: 'lightcoral' }}>
+        <footer className="page-footer font-small blue template-two-footer" >
             <div className="footer-copyright text-center py-3">© 2018 Copyright:
                 <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
             </div>

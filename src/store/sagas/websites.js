@@ -1,7 +1,7 @@
 import { put, select, call } from "redux-saga/effects";
 import * as api from '../../api'
 import * as actions from "../actions/index";
-import { getToken, getUserId, getTemplateId  } from './selectors'
+import { getToken, getUserId, getTemplateId, getHtml, getWebsiteId, getJson } from './selectors'
 
 
 export function* createWebsiteSaga(action) {
@@ -40,6 +40,20 @@ export function* fetchWebsitesSaga(action) {
     } 
 }
 
+export function* publishWebsiteSaga() {
+    const token = yield select(getToken);
+    const html = yield select(getHtml);
+    const websiteId = yield select(getWebsiteId);
+    const structure = yield select(getJson)
+    const data = { websiteId, html, structure }
+    yield put(actions.publishWebsiteStart())
 
+    try {
+        const response = yield call(api.publishWebsite, token, data)
+        yield put(actions.publishWebsiteSuccess(response.data.data))
+    } catch(error) {
+        yield put(actions.publishWebsiteFail(error.response.data.error))
+    }
+}
 
 

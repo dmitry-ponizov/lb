@@ -1,5 +1,8 @@
 import React from 'react'
 import styled  from 'styled-components'
+import { connect } from 'react-redux'
+import * as actions from '../../../../../store/actions'
+
 
 const PublishWrapper = styled.div`
     width: 100%;
@@ -15,12 +18,26 @@ const PublishWrapper = styled.div`
     cursor: pointer;
     user-select: none; 
 `
-const publish = () => {
+const publish = (props) => {
+
+  const clickHandler = () => {
+    props.onSaveHandler()
+    props.onTemplateInJson()
+    props.onPublishWebsite()
+  
+  }
   return (
-    <PublishWrapper>
+    <PublishWrapper onClick={ clickHandler }>
         Publish website
     </PublishWrapper>
   )
 }
 
-export default publish;
+const mapDispathToProps = dispatch => {
+  return {
+    onTemplateInJson: () => dispatch(actions.templateInJson()),
+    onPublishWebsite: () => dispatch(actions.publishWebsite())
+  }
+}
+
+export default connect(null, mapDispathToProps)(publish);

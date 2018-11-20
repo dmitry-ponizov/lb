@@ -23,7 +23,8 @@ import {
 
 import {
     createWebsiteSaga,
-    fetchWebsitesSaga
+    fetchWebsitesSaga,
+    publishWebsiteSaga
 } from './websites'
 
 export function* watchAuth() {
@@ -50,5 +51,6 @@ export function* watchBuilder() {
 
 export function* watchWebsites() {
     yield takeEvery(actionTypes.CREATE_WEBSITE, createWebsiteSaga);
-    yield takeEvery(actionTypes.FETCH_WEBSITES, fetchWebsitesSaga)
+    yield takeEvery(actionTypes.FETCH_WEBSITES, fetchWebsitesSaga);
+    yield takeEvery(actionTypes.PUBLISH_WEBSITE, publishWebsiteSaga)
 }

@@ -10,7 +10,8 @@ import SideBar from '../../components/SideBar/Builder/SideBar'
 import Content from '../../components/UI/Grid/Content/Content'
 import LayoutHTML from '../../hoc/LayoutHTML/LayoutHTML'
 import { BuilderContext } from '../../containers/Builder/BuilderContext/BuilderContext'
- 
+import styled, { css }  from 'styled-components'
+
 class Builder extends Component {
 
     state = {
@@ -39,8 +40,16 @@ class Builder extends Component {
             )
     }
 
+    onCssHandler = () => {
+   
+        console.log(styled)
+        // console.log(stylesheet.cssRules[10].cssText); // body { background-color: darkblue; }
+
+    }
+
     onSaveHandler = () => {
         let html = this.htmlHandler()
+        this.onCssHandler()
         this.props.onSaveHtml(html)
     }
 

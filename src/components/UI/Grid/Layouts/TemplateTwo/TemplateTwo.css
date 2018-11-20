@@ -1,0 +1,12 @@
+.template-two-background, .template-two-footer {
+    background: lightcoral
+}
+.template-two-wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.template-two-container {
+    min-height: calc(100vh - 80px);
+}

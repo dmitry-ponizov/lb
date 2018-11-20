@@ -90,3 +90,36 @@ export const resetWebsite = () => {
         type: actionTypes.RESET_WEBSITE
     }
 }
+
+export const publishWebsite = () => {
+    return {
+        type: actionTypes.PUBLISH_WEBSITE
+    }
+}
+
+
+export const publishWebsiteStart = () => {
+    return {
+        type: actionTypes.PUBLISH_WEBSITE_START
+    }
+}
+
+export const publishWebsiteSuccess = (website) => {
+    return {
+        type: actionTypes.PUBLISH_WEBSITE_SUCCESS,
+        website
+    }
+}
+
+export const publishWebsiteFail = (error) => {
+    return {
+        type: actionTypes.PUBLISH_WEBSITE_FAIL,
+        error
+    }
+}
+
+export const changePublishStatus = () => {
+    return {
+        type: actionTypes.CHANGE_PUBLISH_STATUS
+    }
+}

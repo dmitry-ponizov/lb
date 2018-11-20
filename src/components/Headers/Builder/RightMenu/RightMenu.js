@@ -41,7 +41,7 @@ class RightMenu extends Component {
                     </React.Fragment>
                  : ''}
                  {this.props.preview ? <Back /> : <Logout /> }
-                 <Publish />
+                 <Publish onSaveHandler={this.props.onSaveHandler} />
             </RightMenuStyled>
         )
     }

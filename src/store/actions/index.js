@@ -47,7 +47,7 @@ export {
     deleteItem,
     deleteRow,
     resetRows,
-    changeWidthWorkspace
+    changeWidthWorkspace,
 } from './builder'
 
 export {
@@ -69,5 +69,10 @@ export {
     fetchWebsitesStart,
     fetchWebsitesSuccess,
     selectWebsite,
-    resetWebsite
+    resetWebsite,
+    publishWebsiteFail,
+    publishWebsiteStart,
+    publishWebsiteSuccess,
+    publishWebsite,
+    changePublishStatus
 } from './websites'
