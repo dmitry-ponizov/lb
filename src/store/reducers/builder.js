@@ -157,6 +157,8 @@ const changeWidthWorkspace = (state, action) => {
     return updateObject(state, { widthWorkspace: action.width })
 }
 
+
+
 export const reducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.SELECT_GRID_TYPE: return selectedGird(state, action);

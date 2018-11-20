@@ -1,9 +1,10 @@
 import React from 'react'
+import './TemplateOne.css'
 
 const TemplateOne = (props) => (
-    <div className="wrapper">
+    <div className="template-one-wrapper">
         <header>
-        <nav className="navbar navbar-expand-lg navbar-light " style={{ background: 'lightgreen' }}>
+        <nav className="navbar navbar-expand-lg navbar-light template-one-background" >
             <a className="navbar-brand" href="/">Navbar</a>
             <button className="navbar-toggler" type="button" >
                 <span className="navbar-toggler-icon"></span>
@@ -24,12 +25,10 @@ const TemplateOne = (props) => (
             </div>
         </nav>
         </header>
-        <main>
-            <div className="container">
+            <div className="container template-one-container">
                 {props.children}
             </div>
-        </main>
-        <footer className="page-footer font-small blue" style={{ background: 'lightgreen' }}>
+        <footer className="page-footer font-small blue template-one-footer" >
             <div className="footer-copyright text-center py-3">© 2018 Copyright:
                 <a href="https://mdbootstrap.com/bootstrap-tutorial/"> MDBootstrap.com</a>
             </div>
