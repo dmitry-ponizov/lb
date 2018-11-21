@@ -1,6 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility'
 
+
 const initialState = {
     websites: null,
     loading: false,
@@ -14,6 +15,7 @@ const createWebsiteStart = (state) => {
 }
 
 const createWebsiteSuccess = (state, action) => {
+
     return updateObject(state, {
         loading: false,
         error: null,

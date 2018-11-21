@@ -10,7 +10,7 @@ export default class Container extends Component {
          {this.props.rows.map((row,rowNumber) => 
             <div key={rowNumber}  >
                 {Object.values(row).map((cells,index) => 
-                <Row key={index} rowNumber={rowNumber} columns={Object.keys(row)[0]} row={cells}  editable={this.props.editable}/>)}
+                <Row key={index} selectedItem={this.props.selectedItem} rowNumber={rowNumber} columns={Object.keys(row)[0]} row={cells}  editable={this.props.editable}/>)}
             </div>)}
         </Fragment>
     )

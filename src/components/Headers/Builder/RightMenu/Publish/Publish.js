@@ -17,6 +17,10 @@ const PublishWrapper = styled.div`
     font-size: 14px;
     cursor: pointer;
     user-select: none; 
+    transition: all 0.3s;
+    &:hover {
+      background-color: #c15746;
+    }
 `
 const publish = (props) => {
 

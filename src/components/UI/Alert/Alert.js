@@ -1,11 +1,15 @@
 import React from 'react'
-import './Alert.scss'
+import styled from 'styled-components'
+
+const AlertStyled = styled.div`
+  font-size: 12px;
+`
 
 const alert = (props) => {
   return (
-    <div className={"alert alert-" + props.type} >
+    <AlertStyled className={"alert alert-" + props.type} >
       { props.children }
-    </div>
+    </AlertStyled>
   )
 }
 

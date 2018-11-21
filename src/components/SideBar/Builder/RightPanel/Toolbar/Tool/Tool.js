@@ -1,5 +1,24 @@
 import React, { Component } from 'react'
-import './Tool.scss'
+import styled from 'styled-components'
+
+const DraggableStyled = styled.div`
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    width: 70px;
+    height: 70px;
+    cursor: pointer;
+    p {
+        margin: 0;
+        font-size: 10px;
+        margin-top: 5px;
+        font-weight: normal;
+    }
+    
+`
 
 class Tool extends Component {
     state = {
@@ -22,16 +41,16 @@ class Tool extends Component {
 
     render() {
         return (
-            <div
+            <DraggableStyled
                 onDragStart={(e) => this.onDragStart(e, this.props.tool.id)}
                 onDragEnd={(e)=> this.onDragEnd(e)}
-                className={"draggable col-md-4" + (this.state.active ? ' active' : '')}
+                className="col-md-4"
                 style={{ backgroundColor: this.props.tool.bgcolor }}
                 draggable
                 >
                 <img src={require(`../../../../../../assets/images/tools/${this.props.tool.name}.svg`)} alt={this.props.tool.name} />
                 <p>Paragraph</p>
-            </div>
+            </DraggableStyled>
         )
     }
 } 
