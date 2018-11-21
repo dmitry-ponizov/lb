@@ -1,5 +1,6 @@
 import * as actionTypes from './actionTypes';
 
+
 export const createWebsiteStart = () => {
     return {
         type: actionTypes.CREATE_WEBSITE_START
@@ -23,7 +24,7 @@ export const createWebsiteFail = (error) => {
 export const createWebsite = (siteName) => {
     return {
         type: actionTypes.CREATE_WEBSITE,
-        siteName
+        siteName,
     }
 }
 

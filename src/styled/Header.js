@@ -38,6 +38,7 @@ export const ButtonContent = styled.div`
 
     }
     p {
+        transition: all 0.1s;
         margin-bottom: 0;
         font-family: Muli;
         font-size: 8px;
@@ -46,4 +47,10 @@ export const ButtonContent = styled.div`
         text-align: center;
         color: #000000;
     }
+    svg{
+        g,path,rect{
+            transition: all 0.1s;
+        }
+    }
+
 `

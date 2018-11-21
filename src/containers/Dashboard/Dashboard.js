@@ -26,14 +26,15 @@ class Dashboard extends Component {
 
 const mapDispatchToProps = dispatch => {
     return {
-        toUserProfile: () => dispatch(actions.userProfile())
+        toUserProfile: () => dispatch(actions.userProfile()),
     }
 }
 
 const mapStateToProps = state => {
     return {
         token: state.auth.token,
-        userProfile: state.dashboard.userProfile
+        userProfile: state.dashboard.userProfile,
+        
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);

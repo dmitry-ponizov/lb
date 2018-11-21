@@ -40,7 +40,9 @@ const asyncTemplates = asyncComponent(() => {
 const asyncWebsites = asyncComponent(() => {
   return import('./containers/Dashboard/Websites/Websites')
 })
-
+const asyncDomains = asyncComponent(() => {
+  return import('./containers/Dashboard/Domains/Domains')
+})
 
 class App extends Component {
 
@@ -62,6 +64,7 @@ class App extends Component {
                 <PrivateRoute path="/templates" component={asyncTemplates} isAuth={this.props.isAuth}/>
                 <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
                 <PrivateRoute path="/websites" component={asyncWebsites} isAuth={this.props.isAuth}/>
+                <PrivateRoute path="/domains" component={asyncDomains} isAuth={this.props.isAuth}/>
                 <Redirect to="/" />
             </Switch>
         </div>

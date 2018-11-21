@@ -32,6 +32,7 @@ class Row extends Component {
                 {Object.keys(this.props.row).map((cell, index) =>
                     <div key={index} className={(this.props.editable ? 'row-content' : '') + classes[index]}>
                         <Column
+                            selectedItem={this.props.selectedItem} 
                             columnName={cell}
                             gridType={this.props.columns}
                             rowNumber={this.props.rowNumber}

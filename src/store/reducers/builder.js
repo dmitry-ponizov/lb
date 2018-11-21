@@ -99,8 +99,7 @@ const saveHtml = (state, action) => updateObject(state, { html: action.html })
 
 const reorderColumnItems = (state, action) => {
     let rows = [...state.rows]
-    let selectedItem = Object.assign({}, state.selectedItem)
-    rows[selectedItem.rowNumber][selectedItem.gridType][selectedItem.columnName] = action.newColumn
+    rows[action.rowId][action.gridType][action.columnId] = action.newColumn
     
     return updateObject(state, { rows })
 } 

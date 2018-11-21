@@ -11,17 +11,17 @@ const NavStyled = styled.div`
     margin-bottom:30px;
     cursor: pointer;
     svg  g{
-        fill: #fff;
+        /* fill: #fff; */
         stroke: #000;
     }
-    .active svg  g{
-        fill: #e36854!important;
+     .active svg  g{
+        /* fill: #e36854!important; */
         stroke: #e36854!important;
         }
     .active svg  path{
-            fill: #e36854!important;
+            /* fill: #e36854!important; */
             stroke: #e36854!important;
-    }
+    } 
 
 `
 

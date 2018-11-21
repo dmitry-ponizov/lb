@@ -1,13 +1,22 @@
 import React from 'react'
-import './SideBar.scss'
 import LeftPanel from './LeftPanel/LeftPanel'
 import RightPanel from './RightPanel/RightPanel';
+import styled from 'styled-components'
+
+const SideBarStyles = styled.div`
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    .row {
+        margin: 0;
+    }
+`
+
 
 const SideBar = (props) => (
-    <div className="builder-side-bar">
+    <SideBarStyles>
         <LeftPanel />
         <RightPanel active={props.active}/>
-    </div>
+    </SideBarStyles>
 )
 
 export default SideBar;
