@@ -1,8 +1,18 @@
 import React from 'react';
-import  './Backdrop.scss'
+import styled from 'styled-components'
+
+const BackdropStyled = styled.div`
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    cursor: text;
+`
 
 const backdrop = (props) => (
-    props.show ? <div className='Backdrop' onClick={props.clicked}></div> : null
+    props.show ? <BackdropStyled onClick={props.clicked}></BackdropStyled> : null
 )
 
 export default backdrop;

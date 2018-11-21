@@ -9,6 +9,8 @@ import DashboardLayout from '../../../hoc/Layouts/DashboardLayout/DashboardLayou
 import { WorkspaceWrapper, WorkspaceTitle } from '../../../styled/Workspace'
 import { ModalButtons, Button } from '../../../styled/Modal'
 import styled from 'styled-components'
+import ErrorMessage from '../../../components/UI/ErrorMessage/ErrorMessage'
+import { Redirect } from 'react-router-dom'
 
 const ButtonStyled = styled(Button)`
   padding: 13px 75px;
@@ -31,13 +33,13 @@ class Templates extends Component {
   }
 
   componentDidMount = () => {
+    
     if(!this.props.templates.length){
       this.props.toFetchTemplates();
     }
-  
   }
 
-
+ 
   cancelHandler = () => {
     this.setState({show:false})
   }
@@ -60,10 +62,17 @@ class Templates extends Component {
     this.props.onResetWebiste()
     this.props.onResetRows()
     this.props.onCreateWebsite(this.state.siteName)
-    this.props.history.push('/builder')
+
   }
+
   
   render() {
+    if(this.props.website){
+       return (
+          <Redirect to="/builder" />  
+          )
+    
+    }
     return (
       <DashboardLayout>
         <WorkspaceWrapper className="templates-wrapper">
@@ -73,10 +82,11 @@ class Templates extends Component {
                     <Template key={template.id} template={template} clickHandler={this.clickHandler}/>
                     ))}
               </div>
-            <Modal show={this.state.show} modalClosed={this.cancelHandler}>
+            <Modal show={this.state.show} modalClosed={this.cancelHandler} backdrop={true}>
               <CreateWebsite>
                 <p>New site</p>
                 <input  className="form-control" onChange={this.changeSiteNameHandler}/>
+                <ErrorMessage errors={this.props.errors}/>
               </CreateWebsite>
               <ModalButtons className="btn-container">
                   <ButtonStyled  onClick={this.cancelHandler}><span>Cancel</span></ButtonStyled>
@@ -92,7 +102,9 @@ class Templates extends Component {
 const mapStateToProps = state => {
   return {
     token: state.auth.token,
-    templates: state.templates.templates
+    templates: state.templates.templates,
+    errors: state.websites.error,
+    website: state.websites.website
   }
 }
 

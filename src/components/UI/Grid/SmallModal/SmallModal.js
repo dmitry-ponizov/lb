@@ -11,38 +11,39 @@ const ModalWrapper = styled.div`
     background-color: #ffffff;
     position: absolute;
     top:-26px;
+    display:flex;
     right: 40%;
     align-items: center;
     justify-content: center;
-    cursor: auto;
+    cursor: move;
     z-index: 102;
+    
 `
 
 const ModalTitle = styled.div`
     width: 33px;
     height: 13px;
     font-family: Muli;
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.1px;
     color: #000000;
-    font-weight: 600;
+
 `
 const ModalIcon= styled.div`
-    margin-bottom: 3px;
     cursor:pointer;
+    svg {
+        width: 10px;
+        height: 10px;
+    }
 `
 
 const smallModal = (props) => {
     return (
-        <ModalWrapper style={{ display: props.show ? 'flex' : 'none' }}>
-            <ModalTitle>
-                 Text
-            </ModalTitle>
-            <ModalIcon onClick={ props.onClickHandler }>
-                <ReactSVG src={trashImg}  />
-            </ModalIcon>
-        </ModalWrapper>
-    )
+            <ModalWrapper>
+                <ModalTitle>Text</ModalTitle>
+                <ModalIcon onClick={ props.onClickHandler }><ReactSVG src={trashImg} /></ModalIcon>
+            </ModalWrapper>
+        )
   
 }
 

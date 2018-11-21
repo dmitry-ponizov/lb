@@ -99,7 +99,6 @@ const mapDispatchToProps = dispatch => {
         onChangeStyleItem: (param, content) => dispatch(actions.changeStyleItem(param, content)),
         onSelectItem: (item) => dispatch(actions.selectItem(item)),
         onChangeContentItem: (item, settings) => dispatch(actions.changeContentItem(item, settings)),
-
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Builder);

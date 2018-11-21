@@ -1,18 +1,26 @@
 import React, { Component } from 'react'
-import './DashboardSideBar.scss'
 import LeftPanel from './LeftPanel/LeftPanel'
 import RightPanel from './RightPanel/RightPanel';
+import styled from 'styled-components'
 
+const DashBoardSideBarStyled = styled.div`
+    border-bottom: 1px solid #eaeaea;
+    padding-right: 0;
+    display: flex;
+    .row {
+        margin: 0;
+    }
+`
 class DashboardSideBar extends Component {
     state = {
-        items: ['dashboard', 'templates', 'websites'],
+        items: ['dashboard','domains', 'templates', 'websites'],
     }
   render() {
     return (
-        <div className="dashboard-side-bar">
+        <DashBoardSideBarStyled>
             <LeftPanel items={this.state.items} />
             <RightPanel items={this.state.items} active={this.props.active} /> 
-        </div>
+        </DashBoardSideBarStyled>
     )
   }
 }

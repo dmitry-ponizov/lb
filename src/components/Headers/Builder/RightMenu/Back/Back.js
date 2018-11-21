@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom';
 import { Button, ButtonContent } from '../../../../../styled/Header'
 import styled from 'styled-components'
+import { connect } from 'react-redux'
+import * as actions from '../../../../../store/actions'
 
 const BtnSyled = styled(ButtonContent)`
     i {
@@ -16,7 +18,8 @@ const BtnSyled = styled(ButtonContent)`
 class Back extends Component {
 
   clickHandler = () => {
-    this.props.history.push('/builder')
+    this.props.history.push(this.props.to)
+    this.props.onChangePublishStatus()
   }
   render() {
     return (
@@ -30,5 +33,11 @@ class Back extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        onChangePublishStatus: () => dispatch(actions.changePublishStatus())
+    }
+}
 
-export default withRouter(Back);
+
+export default withRouter(connect(null, mapDispatchToProps)(Back));

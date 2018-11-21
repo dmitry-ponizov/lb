@@ -1,15 +1,53 @@
-import React, { Component } from 'react'
-import './Text.scss'
+import React, { PureComponent } from 'react'
 import ContentEditable from 'react-contenteditable'
 import Modal from '../../../Modal/Modal'
-import ToolElement from './ToolElement/ToolElement'
-import initElements from './initElements'
 import { Draggable } from 'react-beautiful-dnd'
 import SmallModal from '../../SmallModal/SmallModal'
 import { BuilderContext } from '../../../../../containers/Builder/BuilderContext/BuilderContext'
-import { ModalButtons, Button  } from '../../../../../styled/Modal'
+import TextModalContent from './TextModalContent/TextModalContent'
+import styled from 'styled-components'
 
-class Text extends Component {
+const DroppableContent = styled.div`
+    &:hover {
+        .small-modal {
+            display: flex;
+        }
+    }
+`
+const TextToolStyled = styled.div`
+    cursor: text;
+    position: relative;
+    margin-bottom: 1px;
+    .small-modal{
+        display: none;
+        background: #fff;
+    }
+    &:hover{
+        cursor: text;
+        outline:solid 1px #e36854;
+        cursor: text;
+        .small-modal {
+            display: flex;
+        }
+    }
+    &:focus {
+        cursor: text;
+        .small-modal {
+            display: flex;
+        }
+    }
+    div {
+        &:focus {
+            cursor: text;
+            outline:solid 1px #e36854;
+            .small-modal {
+                display: flex;
+            }
+        }
+    }
+`
+
+class Text extends PureComponent {
 
     static contextType = BuilderContext;
 
@@ -17,8 +55,6 @@ class Text extends Component {
         html: this.props.element.content,
         active: false,
         currentStyleActive: null,
-        elements: initElements,
-
     }
 
     handleChange = evt => {
@@ -57,55 +93,36 @@ class Text extends Component {
     render() {
         return (
             <Draggable draggableId={this.props.settings.id} index={this.props.index}>
-            {provided => (
-                <div className={this.props.editable ? 'blockBuilder' : null}
-                {...provided.draggableProps}
-                {...provided.dragHandleProps}
-                ref={provided.innerRef}
-                >
-                <div style={{position: 'relative'}}>
-                <ContentEditable
-                    onKeyDown={this.keyPressHandler}
-                    className="content-editable"
-                    style={this.props.element.styles}
-                    html={this.state.html}
-                    disabled={this.props.editable}
-                    onChange={this.handleChange}
-                    tagName='div'
-                    onClick={this.clickHandler}
-                    />
-                <SmallModal  show={this.state.active} onClickHandler={ (settings) => this.context.deleteItemHandler(this.props.settings) } />
-                    </div>
-                <Modal show={this.state.active} modalClosed={this.cancelHandler}>
-                    <p>Text editor</p>
-                    <div className="text-tools">
-                        {Object.keys(this.state.elements).map((element, index) => (
-                            <div key={index} className="text-tool-wrap">
-                                <div className="tools-title">
-                                    {element}
-                                </div>
-                                <div className="elements">
-                                    {this.state.elements[element].map((el, index) => (
-                                        <ToolElement element={el} key={index} 
-                                        handlerStyles={(element) => this.handlerStyles(element)} 
-                                        currentStyleActive={this.state.currentStyleActive}
-                                        />
-                                        ))}
-                                </div>
+                {provided => (
+                    <DroppableContent {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+                        <TextToolStyled>
+                            <ContentEditable
+                                onKeyDown={this.keyPressHandler}
+                                className="content-editable"
+                                style={this.props.element.styles}
+                                html={this.state.html}
+                                disabled={this.props.editable}
+                                onChange={this.handleChange}
+                                tagName='div'
+                                onClick={this.clickHandler}
+                            />
+                            <div className="small-modal">
+                                <SmallModal  
+                                    show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active} 
+                                    onClickHandler={ (settings) => this.context.deleteItemHandler(this.props.settings) } />
                             </div>
-                        ))}
-                    </div>
-                    <ModalButtons>
-                        <Button onClick={this.cancelHandler}>
-                            <span>Cancel</span>
-                        </Button>
-                        <Button onClick={this.cancelHandler}>
-                             <span>Apply</span>
-                        </Button>
-                    </ModalButtons>
-                </Modal>
-            </div>
-              )}    
+                        </TextToolStyled>
+                        <Modal 
+                            show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active} 
+                            backdrop={false} 
+                            modalClosed={this.cancelHandler}>
+                            <TextModalContent 
+                                    handlerStyles={(element) => this.handlerStyles(element)} 
+                                    cancelHandler={this.cancelHandler} 
+                                    currentStyleActive={this.state.currentStyleActive} />
+                        </Modal>
+                    </DroppableContent>
+                )}    
             </Draggable> 
         )
     }

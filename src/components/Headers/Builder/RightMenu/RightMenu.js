@@ -34,13 +34,14 @@ class RightMenu extends Component {
             <RightMenuStyled>
                {!this.props.preview ? 
                     <React.Fragment>
+                        <Back to="/websites" /> 
                         <Tablet />
                         <Desktop />
                         <Save previewHandler={this.props.previewHandler}  onSaveHandler={this.props.onSaveHandler}/>
                         <Preview previewHandler={this.props.previewHandler} /> 
                     </React.Fragment>
                  : ''}
-                 {this.props.preview ? <Back /> : <Logout /> }
+                 {this.props.preview ? <Back to="/builder" /> : <Logout /> }
                  <Publish onSaveHandler={this.props.onSaveHandler} />
             </RightMenuStyled>
         )

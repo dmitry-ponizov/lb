@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
-import Backdrop from '../Backdrop/Backdrop'
 import { ModalStyled } from '../../../styled/Modal'
-
+import Backdrop from '../Backdrop/Backdrop'
 
 class Modal extends React.Component {
 
@@ -13,7 +12,7 @@ class Modal extends React.Component {
   render() {
     return (
       <Fragment>
-        <Backdrop show={this.props.show} clicked={this.props.modalClosed} />
+        <Backdrop show={this.props.show && this.props.backdrop} clicked={this.props.modalClosed} />
         <ModalStyled className='Modal' style={{
              transform: this.props.show ? 'translateX(-50%)' : 'translateY:(-100vh)',
              display: this.props.show ? 'block' : 'none'

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export const WorkspaceWrapper = styled.div`
     background-color: #f2f3f5;
-    padding: 40px 80px;
+    padding: 40px 80px 50px 80px;
     min-height: 900px;
     width: 100%;
 `

@@ -57,12 +57,13 @@ export const saveHtml = (html) => {
     }
 }
 
-export const reorderColumnItems = (newColumn, columnId, rowId) => {
+export const reorderColumnItems = (newColumn, columnId, rowId, gridType) => {
     return {
         type: actionTypes.REORDER_COLUMN_ITEMS,
         newColumn,
         columnId,
-        rowId
+        rowId,
+        gridType
     }
 } 
 

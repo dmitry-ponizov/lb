@@ -1,6 +1,12 @@
 import React from 'react'
-import './GeneralToolBar.scss'
 import Tool from '../Tool/Tool'
+import styled from 'styled-components'
+
+const BuilderGeneralToolBar = styled.div`
+    text-align: left;
+    font-family: Muli;
+    font-size: 18px;
+`
 
 const GeneralToolBar = ({ tools }) => {
 
@@ -10,7 +16,7 @@ const GeneralToolBar = ({ tools }) => {
     
     return (
         <div>
-            <p className="builder-general-tool-bar">General</p>
+            <BuilderGeneralToolBar>General</BuilderGeneralToolBar>
             <div className="row">
             { toolsCategoryFilter().map(tool => (
                 <Tool key={tool.id}  tool={ tool } />
