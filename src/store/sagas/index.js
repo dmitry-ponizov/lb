@@ -1,4 +1,4 @@
-import { takeEvery } from "redux-saga/effects";
+import { takeEvery, takeLatest } from "redux-saga/effects";
 import * as actionTypes from "../actions/actionTypes";
 import {
   logoutSaga,
@@ -27,6 +27,12 @@ import {
     publishWebsiteSaga
 } from './websites'
 
+import {
+    checkDomainNameSaga,
+    purchaseDomainSaga,
+    fetchDomainsSaga
+} from './domains'
+
 export function* watchAuth() {
     yield takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga);
     yield takeEvery(actionTypes.AUTH_CHECK_TIMEOUT, checkAuthTimeoutSaga);
@@ -53,4 +59,10 @@ export function* watchWebsites() {
     yield takeEvery(actionTypes.CREATE_WEBSITE, createWebsiteSaga);
     yield takeEvery(actionTypes.FETCH_WEBSITES, fetchWebsitesSaga);
     yield takeEvery(actionTypes.PUBLISH_WEBSITE, publishWebsiteSaga)
+}
+
+export function* watchDomains() {
+    yield takeLatest(actionTypes.CHECK_DOMAIN_NAME, checkDomainNameSaga);
+    yield takeEvery(actionTypes.PURCHASE_DOMAIN, purchaseDomainSaga)
+    yield takeEvery(actionTypes.FETCH_DOMAINS, fetchDomainsSaga)
 }

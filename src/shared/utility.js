@@ -1,6 +1,6 @@
 import Noty from 'noty'
 import '../../node_modules/noty/lib/noty.css'
-import '../../node_modules/noty/lib/themes/bootstrap-v4.css'
+import '../../node_modules/noty/lib/themes/relax.css'
 
 export const updateObject = (oldObject, updatedProps) => {
     return {
@@ -48,5 +48,5 @@ export const updateObject = (oldObject, updatedProps) => {
 }
 
 export const getNoty = (type, msg) => {
-   new Noty({ type: type, layout: 'bottomRight',text: msg, theme:'bootstrap-v4', timeout: 3000 }).show()
+   new Noty({ type: type, layout: 'topRight',text: msg, theme:'relax', timeout: 2000 }).show()
 }

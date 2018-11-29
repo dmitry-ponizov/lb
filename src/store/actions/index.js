@@ -76,3 +76,19 @@ export {
     publishWebsite,
     changePublishStatus
 } from './websites'
+
+export {
+    checkDomainName,
+    checkDomainNameStart,
+    checkDomainNameSuccess,
+    checkDomainNameFail,
+    createDomainOrder,
+    purchaseDomain,
+    purchaseDomainStart,
+    purchaseDomainFail,
+    purchaseDomainSuccess,
+    fetchDomainsStart,
+    fetchDomainsSuccess,
+    fetchDomainsFail,
+    fetchDomains
+} from './domains'
