@@ -107,7 +107,7 @@ class SignIn extends Component {
                     />
                     
                 ))}
-                <ErrorMessage errors={this.props.errors}/>
+                <ErrorMessage errors={this.props.errors} position="center"  fontSize="1.4rem"/>
                 <div className="btnBlock">
                     <Button clicked={this.loginHandler} btnType="Submit" disabled={!this.state.formIsValid}>Send</Button>
                 </div>
