@@ -4,3 +4,4 @@ export const getTemplateId = state => state.templates.selectedTemplate.id
 export const getWebsiteId = state => state.websites.website.id
 export const getJson = state => state.builder.json
 export const getHtml = state => state.builder.html
+export const getOrder = state => state.domains.order

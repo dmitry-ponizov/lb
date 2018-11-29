@@ -11,6 +11,7 @@ import { ThemeProvider } from 'styled-components'
 
 const theme = {
   mainColor: '#e36854',
+  minHeight: '800px',
 }
 
 const asyncDashboard = asyncComponent(() => {

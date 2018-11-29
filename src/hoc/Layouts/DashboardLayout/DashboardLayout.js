@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 import DashboardHedader from '../../../components/Headers/Dashboard/DashboardHeader'
 import DashboardSideBar from '../../../components/SideBar/Dashboard/DashboardSideBar';
+import styled from 'styled-components'
 
+const DashboardWrapperStyles = styled.div`
+        display: flex;
+        min-height: ${props => props.theme.minHeight};
+`
 class DashboardLayout extends Component {
     state = {
         active: true
@@ -15,10 +20,10 @@ class DashboardLayout extends Component {
     return (
         <div className="dashboard">
             <DashboardHedader  toggleHandler={(active) => this.toggleHandler(active) }  />
-            <div className="dashboard-wrapper">
+            <DashboardWrapperStyles>
                 <DashboardSideBar  active={ this.state.active } />
             { this.props.children }
-            </div>
+            </DashboardWrapperStyles>
         </div>
     )
   }

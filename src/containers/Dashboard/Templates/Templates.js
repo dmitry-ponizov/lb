@@ -86,7 +86,7 @@ class Templates extends Component {
               <CreateWebsite>
                 <p>New site</p>
                 <input  className="form-control" onChange={this.changeSiteNameHandler}/>
-                <ErrorMessage errors={this.props.errors}/>
+                <ErrorMessage errors={this.props.errors} position="left" fontSize="1.2rem" />
               </CreateWebsite>
               <ModalButtons className="btn-container">
                   <ButtonStyled  onClick={this.cancelHandler}><span>Cancel</span></ButtonStyled>
