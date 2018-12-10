@@ -38,11 +38,6 @@ const initElements =
             value: 'underline',
             class: 'fa-underline'
         },
-        {
-            prop: 'fontSize',
-            value: '18',
-            class: 'fa-text-height'
-        }
     ],
   
 }

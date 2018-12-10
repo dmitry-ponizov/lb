@@ -15,7 +15,7 @@ const ActionsContainer = styled.div`
     color: #969696;
     font-family: Muli;
     font-size: 12px;
-    padding: 20px;
+    padding: 10px 20px;
     align-items: center;
 `
 
@@ -36,12 +36,17 @@ const Actions = styled.div`
             }
         }
 `
-const ColorPickerWrapper = styled.div`
+const FieldWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    align-items: center;
     color: #969696;
     font-size: 12px;
-    padding: 20px;
+    padding: 10px 20px;
+    input {
+        padding: 5px;
+        width: 50px;
+    }
 `
 
 class TextModalContent extends Component {
@@ -70,10 +75,14 @@ class TextModalContent extends Component {
                             </Actions>
                         </ActionsContainer>
                     ))}
-                    <ColorPickerWrapper>
+                    <FieldWrapper>
                         <span>Color</span>
                         <ColorPicker  stylesElement={this.props.stylesElement} handlerStyles={(element) => this.props.handlerStyles(element)} />
-                    </ColorPickerWrapper> 
+                    </FieldWrapper> 
+                    <FieldWrapper>
+                        <span>Font-size</span>
+                        <input type="number" name="fontSize" defaultValue={this.props.stylesElement.fontSize ? this.props.stylesElement.fontSize.substring(0,2) : '16'} onChange={(e) => this.props.handlerStyles({'prop':e.target.name, 'value': e.target.value})}  />
+                    </FieldWrapper>
                 </ActionWrapper>
                 <ModalButtons >
                     <Button onClick={this.props.cancelHandler}><span>Cancel</span></Button>

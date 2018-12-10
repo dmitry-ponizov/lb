@@ -6,7 +6,7 @@ const InputStyled = styled.div`
   /* justify-content: center; */
   input {
     padding: 5px;
-    width: 267px;
+    max-width: 267px;
     height: 45px;
     border: 1px solid #ddd;
     border-radius: 2px;

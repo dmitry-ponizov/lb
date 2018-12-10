@@ -59,15 +59,16 @@ class Text extends PureComponent {
         this.setState({ active: true })
     }
     cancelHandler = () => {
-        this.setState({ html: this.props.element.content})
+
+        this.setState({ html: this.props.element.content })
         this.setState({ active: false })
     }
 
     handlerStyles = (element) => {
+        console.log(element)
         let value = element.value;
         if (element.prop === 'fontSize') {
-            value = (this.state.fontSize + 1) + 'px'
-            this.setState({ fontSize: this.state.fontSize + 1 })
+            value = value + 'px'
         }
         this.context.stylesHandler(element.prop, value)
         this.setState({
@@ -86,7 +87,14 @@ class Text extends PureComponent {
     };
 
     saveChanges = () => {
-        if(this.props.element.content !== this.state.html) {
+        this.sendChanges()
+        this.setState({ active: false })
+    }
+    blurHandler = () => {
+        this.sendChanges()
+    }
+    sendChanges = () => {
+        if (this.props.element.content !== this.state.html) {
             this.context.changeContentItem({
                 content: this.state.html,
                 id: this.props.element.id,
@@ -94,25 +102,24 @@ class Text extends PureComponent {
                 styles: this.props.element.styles
             }, this.props.settings)
         }
-        this.setState({ active: false })
     }
     render() {
         return (
             <Draggable draggableId={this.props.settings.id} index={this.props.index}>
                 {provided => (
-                    <DroppableContent {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  className="builder-text">
+                    <DroppableContent {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} className="builder-text">
                         <TextToolStyled>
                             <ContentEditable
                                 onKeyDown={this.keyPressHandler}
                                 className="content-editable"
                                 style={this.props.element.styles}
                                 html={this.state.html}
-                                onBlur={this.saveChanges}
+                                onBlur={this.blurHandler}
                                 disabled={this.props.editable}
                                 onChange={this.handleChange}
                                 tagName='div'
                                 onClick={this.clickHandler}
-                                disabled={!this.props.editable} 
+                                disabled={!this.props.editable}
                             />
                             <SmallModal
                                 show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active}

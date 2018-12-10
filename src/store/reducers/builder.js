@@ -26,7 +26,7 @@ const initialState = {
             content: 'This is a new Text block. Change the text.'
         },
         { id: uuid.v4(), name: 'Button', category: 'any'},
-        { id: uuid.v4(), name: 'Subscribe', category: 'general'},
+        { id: uuid.v4(), name: 'Subscribe', category: 'any'},
         { id: uuid.v4(), name: 'Icon', category: 'any'},
         { id: uuid.v4(), name: 'Image', category: 'any' },
         { id: uuid.v4(), name: 'Link', category: 'any' },

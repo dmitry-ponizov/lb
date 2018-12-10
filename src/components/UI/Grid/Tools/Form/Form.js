@@ -8,7 +8,7 @@ const Field = styled.div`
     margin-top: 10px;
     input {
         display: flex;
-        width: 340px;
+        max-width: 340px;
         height: 50px;
         border: 1px solid #d7d7d7;
         &:focus {
@@ -23,7 +23,7 @@ const Field = styled.div`
         color: #9c9c9c;
     }
     textarea {
-        width: 340px;
+        max-width: 340px;
         height: 210px;
         resize: none;
         border: 1px solid #d7d7d7;
