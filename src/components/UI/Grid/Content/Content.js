@@ -6,6 +6,9 @@ import * as actions from '../../../../store/actions/index'
 import { BuilderContext } from '../../../../containers/Builder/BuilderContext/BuilderContext'
 import Alert from '../../Alert/Alert'
 import styled from 'styled-components'
+import Header from '../Header/Header'
+import { withRouter } from 'react-router-dom';
+
 
 const ContentStyled = styled.div`
     background-color: #f2f3f5;
@@ -36,15 +39,20 @@ class Content extends Component {
 
 
     componentDidMount = () => {
-        if (this.props.website) {
+        if (!this.props.rows.length) {
             this.props.onFetchWebsiteStructure()
+            this.props.onSelectSection('builder')
         }
+    }
+    editPageHandler = () => {
+        this.props.onSelectSection('page_manager')
+        this.props.history.push('/page_manager')
     }
 
     render() {
         return (
-            <ContentStyled>
-                <ContentDraggable style={{ width: this.props.widthWorkspace }}>
+            <ContentStyled >
+                <ContentDraggable className={this.props.selectedTemplate.name + " main-container"} style={{ width: this.props.widthWorkspace }}>
                     <DraggableHeader>
                         {this.props.published && <Alert type="success">
                             <strong>  Your website has been successfully published! </strong>
@@ -54,8 +62,15 @@ class Content extends Component {
                                 <span >&times;</span>
                             </button>
                         </Alert>}
+                        <Header 
+                            pages={this.props.pages} 
+                            currentPage={this.props.currentPage}
+                            editHandler={this.editPageHandler}
+                            editable={this.props.editable}
+                            changePage={ (pageName) => this.props.onChangePage(pageName) }
+                        />
                     </DraggableHeader>
-                    <DraggableBody>
+                    <DraggableBody className="builder-body">
                         <BuilderContext.Provider value={{
                             deleteItemHandler: this.props.onDeleteItemHandler,
                             rowDeleteHandler: this.props.onDropRow,
@@ -85,7 +100,10 @@ const mapStateToProps = state => {
         website: state.websites.website,
         widthWorkspace: state.builder.widthWorkspace,
         published: state.websites.published,
-        selectedItem: state.builder.selectedItem
+        selectedItem: state.builder.selectedItem,
+        pages: state.builder.pages,
+        currentPage: state.builder.currentPage,
+        selectedTemplate: state.templates.selectedTemplate
     }
 }
 
@@ -99,7 +117,9 @@ const mapDispatchToProps = dispatch => {
         onReorderColumnItems: (newColumn, columnId, rowId, gridType) => dispatch(actions.reorderColumnItems(newColumn, columnId, rowId, gridType)),
         onDeleteItemHandler: (item) => dispatch(actions.deleteItem(item)),
         onFetchWebsiteStructure: () => dispatch(actions.fetchWebsiteStructure()),
-        onChangePublishStatus: () => dispatch(actions.changePublishStatus())
+        onChangePublishStatus: () => dispatch(actions.changePublishStatus()),
+        onChangePage: (pageName) => dispatch(actions.changePage(pageName)),
+        onSelectSection: (section) => dispatch(actions.selectSection(section))
     }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Content);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Content));

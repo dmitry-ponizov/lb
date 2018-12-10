@@ -9,6 +9,7 @@ const BackdropStyled = styled.div`
     left: 0;
     top: 0;
     cursor: text;
+    background: rgba(0,0,0,0.5);
 `
 
 const backdrop = (props) => (

@@ -19,10 +19,7 @@ export const ModalStyled = styled.div`
 export const ModalButtons = styled.div`
     border-top:solid 1px #eaeaea;
     display: flex;
-    margin-top: 30px;
-    display: flex;
-
-   
+    margin-top: 10px;
 `
 
 export const Button = styled.div`

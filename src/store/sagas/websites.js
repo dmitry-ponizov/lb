@@ -1,7 +1,7 @@
 import { put, select, call } from "redux-saga/effects";
 import * as api from '../../api'
 import * as actions from "../actions/index";
-import { getToken, getUserId, getTemplateId, getHtml, getWebsiteId, getJson } from './selectors'
+import { getToken, getUserId, getTemplateId, getWebsiteId, getJson, getCurrentPage } from './selectors'
 import { getNoty } from '../../shared/utility'
 import NProgress from 'nprogress'
 
@@ -11,12 +11,14 @@ export function* createWebsiteSaga(action) {
     const token = yield select(getToken);
     const userId = yield select(getUserId)
     const templateId = yield select(getTemplateId)
+    const currentPage = yield select(getCurrentPage)
     const siteName = action.siteName
-
+  
     const webSite = {
         themeId: templateId,
         user_id: userId,
-        name: siteName
+        name: siteName,
+        html: JSON.stringify([{[currentPage]: []}])
     }
 
     yield put(actions.createWebsiteStart());
@@ -24,6 +26,7 @@ export function* createWebsiteSaga(action) {
     try {
         const response = yield call(api.createWebsite, webSite, token);
         yield put(actions.createWebsiteSuccess(response.data.data))
+        yield put(actions.selectSection('builder'))
         yield NProgress.done()
     } catch(error) {
         if(error.response.status === 500) yield getNoty('error','Server error!')
@@ -50,10 +53,9 @@ export function* fetchWebsitesSaga(action) {
 
 export function* publishWebsiteSaga() {
     const token = yield select(getToken);
-    const html = yield select(getHtml);
     const websiteId = yield select(getWebsiteId);
     const structure = yield select(getJson)
-    const data = { websiteId, html, structure }
+    const data = { websiteId, structure }
     yield put(actions.publishWebsiteStart())
     yield NProgress.start()
     try {
