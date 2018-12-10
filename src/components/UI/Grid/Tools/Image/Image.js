@@ -1,7 +1,19 @@
 import React, { Component } from 'react'
 import Resizable from 're-resizable';
-import image from '../../../../../assets/images/logo-zeeasy.png'
+import styled from 'styled-components';
+import Img from '../../../../UI/Grid/Layouts/TemplateLanding/images/IconBig.png'
 
+const ImageWrapper = styled.div`
+  max-width: 459px;
+  height: 320px;
+  margin: 0 auto;
+  border: 1px dashed #4d8ded;
+  background-color: #edf3fd;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
 
 class Image extends Component {
     onDragOver = (e) => {
@@ -13,17 +25,11 @@ class Image extends Component {
     }
     render() {
         return (
-            <Resizable  className="Column" defaultSize={{ width: 100, height: 100,}}>
-                <img 
-                    onDragStart={(e) => this.onDragStart(e, this.props.element.id)}
-                    onDragOver={this.onDragOver}
-                    className="draggable"
-                    style={{ backgroundColor: this.props.element.bgcolor, height:'100%', width: '100%' }}
-                    draggable
-                    src={image}
-                    alt={image}
-                  />
-            </Resizable>
+            // <Resizable  className="Column" defaultSize={{ width: 100, height: 100,}}>
+              <ImageWrapper className="builder-image">
+                <img src={Img} alt="blank-img" />
+              </ImageWrapper>
+            // </Resizable>
         )
     }
 }

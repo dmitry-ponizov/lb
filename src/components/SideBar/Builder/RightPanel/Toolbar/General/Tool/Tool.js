@@ -48,7 +48,7 @@ class Tool extends Component {
                 style={{ backgroundColor: this.props.tool.bgcolor }}
                 draggable
                 >
-                <img src={require(`../../../../../../assets/images/tools/${this.props.tool.name}.svg`)} alt={this.props.tool.name} />
+                <img src={require(`../../../../../../../assets/images/tools/${this.props.tool.name}.svg`)} alt={this.props.tool.name} />
                 <p>Paragraph</p>
             </DraggableStyled>
         )

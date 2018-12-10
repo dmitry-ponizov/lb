@@ -14,13 +14,15 @@ class MyDomains extends Component {
   componentDidMount = () => {
     if(!this.props.domains.length) {
       this.props.onFetchDomains()
+      this.setState({ loading: false})
     }
   }
   
   render() {
     return (
       <MyDomainsStyles>
-        { this.props.domains.length ? <Domains domains={ this.props.domains } /> : <NotDomains /> }
+        { this.props.domains.length ? <Domains domains={ this.props.domains } /> : '' }
+        { !this.props.domains.length && !this.props.loading && <NotDomains activeTabHandler={(tabNumber) => this.props.activeTabHandler(tabNumber)} /> }
       </MyDomainsStyles>
     )
   }
@@ -28,7 +30,8 @@ class MyDomains extends Component {
 
 const mapStateToProps = state => {
   return {
-    domains: state.domains.myDomains
+    domains: state.domains.myDomains,
+    loading: state.domains.loading
   }
 }
 

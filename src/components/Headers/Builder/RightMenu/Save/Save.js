@@ -11,7 +11,8 @@ class Save extends Component {
     }
 
     clickHandler = (e) => {
-        if(this.props.rows.length) {
+        if(this.props.rows.length) {          
+            this.props.onUpdatePages()
             this.props.onTemplateInJson();
             this.props.onSaveHandler();
             this.props.onCreateWebsiteStructure()
@@ -38,14 +39,15 @@ class Save extends Component {
 const mapStateToProps = state => {
     return {
         json: state.builder.json,
-        rows: state.builder.rows
+        rows: state.builder.rows,
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         onTemplateInJson: () => dispatch(actions.templateInJson()),
-        onCreateWebsiteStructure: () => dispatch(actions.createWebsiteStructure())
+        onCreateWebsiteStructure: () => dispatch(actions.createWebsiteStructure()),
+        onUpdatePages: () => dispatch(actions.updatePages()),
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Save);

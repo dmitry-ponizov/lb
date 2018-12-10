@@ -1,12 +1,30 @@
-.template-two-background, .template-two-footer {
+.template-two {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+}
+.template-two .theme-header,.template-two .theme-footer {
     background: lightcoral
 }
-.template-two-wrapper {
+.template-two .theme-header {
+    display: flex;
+    justify-content: flex-end;
+}
+.template-two .theme-header .menu {
+    display: flex;
+}
+.template-two .theme-header  a{
+    display:flex;
+    margin: 30px 30px 30px 0;
+}
+
+.theme-wrapper {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
 
-.template-two-container {
+.theme-container {
     min-height: calc(100vh - 80px);
 }

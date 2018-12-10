@@ -48,6 +48,12 @@ export {
     deleteRow,
     resetRows,
     changeWidthWorkspace,
+    addPageToMenu,
+    changePageName,
+    deletePage,
+    checkPage,
+    updatePages,
+    changePage
 } from './builder'
 
 export {
