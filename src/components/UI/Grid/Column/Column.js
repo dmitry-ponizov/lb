@@ -10,7 +10,7 @@ const ColumnStyled = styled.div`
     justifyContent: 'center';
     background: '#fff';
     padding: 5px;
-    min-height: 200px;
+    min-height: 100px;  
 `
 
 const DroppableContent = styled.div`
@@ -21,7 +21,9 @@ class Column extends Component {
   static contextType = BuilderContext;
 
   onDragOver = (e) => {
+
     e.preventDefault();
+
   }
 
 

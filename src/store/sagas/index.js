@@ -18,7 +18,8 @@ import {
 
 import {
     createWebsiteStructureSaga,
-    fetchWebsiteStructureSaga
+    fetchWebsiteStructureSaga,
+    checkPageSaga
 } from './builder'
 
 import {
@@ -53,6 +54,7 @@ export function* watchTemplates() {
 export function* watchBuilder() {
     yield takeEvery(actionTypes.CREATE_WEBSITE_STRUCTURE, createWebsiteStructureSaga)
     yield takeEvery(actionTypes.FETCH_WEBSITE_STRUCTURE, fetchWebsiteStructureSaga)
+    yield takeEvery(actionTypes.CHANGE_PAGE, checkPageSaga)
 }
 
 export function* watchWebsites() {

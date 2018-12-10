@@ -3,6 +3,7 @@ import ToolElement from '../ToolElement/ToolElement'
 import { ModalButtons, Button  } from '../../../../../../styled/Modal'
 import initElements from './initElements'
 import styled from 'styled-components'
+import ColorPicker from '../ColorPicker/ColorPicker'
 
 const ActionWrapper = styled.div`
     
@@ -35,6 +36,13 @@ const Actions = styled.div`
             }
         }
 `
+const ColorPickerWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    color: #969696;
+    font-size: 12px;
+    padding: 20px;
+`
 
 class TextModalContent extends Component {
     state = {
@@ -62,10 +70,14 @@ class TextModalContent extends Component {
                             </Actions>
                         </ActionsContainer>
                     ))}
+                    <ColorPickerWrapper>
+                        <span>Color</span>
+                        <ColorPicker  stylesElement={this.props.stylesElement} handlerStyles={(element) => this.props.handlerStyles(element)} />
+                    </ColorPickerWrapper> 
                 </ActionWrapper>
                 <ModalButtons >
                     <Button onClick={this.props.cancelHandler}><span>Cancel</span></Button>
-                    <Button onClick={this.props.cancelHandler}><span>Apply</span></Button>
+                    <Button onClick={this.props.saveChanges}><span>Apply</span></Button>
                 </ModalButtons>
             </React.Fragment>
         )

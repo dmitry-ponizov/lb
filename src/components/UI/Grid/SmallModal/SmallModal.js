@@ -11,8 +11,8 @@ const ModalWrapper = styled.div`
     background-color: #ffffff;
     position: absolute;
     top:-26px;
-    display:flex;
-    right: 40%;
+    display: ${props => props.show ? 'flex': 'none'};
+    right: 50%;
     align-items: center;
     justify-content: center;
     cursor: move;
@@ -39,8 +39,8 @@ const ModalIcon= styled.div`
 
 const smallModal = (props) => {
     return (
-            <ModalWrapper>
-                <ModalTitle>Text</ModalTitle>
+            <ModalWrapper style={props.show ? {display:'flex'} : {display:'none'}}>
+                <ModalTitle  >Text</ModalTitle>
                 <ModalIcon onClick={ props.onClickHandler }><ReactSVG src={trashImg} /></ModalIcon>
             </ModalWrapper>
         )

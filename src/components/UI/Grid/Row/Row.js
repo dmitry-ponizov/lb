@@ -37,6 +37,7 @@ class Row extends Component {
                             gridType={this.props.columns}
                             rowNumber={this.props.rowNumber}
                             name={cell}
+                            editable={this.props.editable}
                             components={this.props.row[cell]} />
                     </div>)}
             </div>

@@ -7,6 +7,7 @@ import { BuilderContext } from '../../../../../containers/Builder/BuilderContext
 import TextModalContent from './TextModalContent/TextModalContent'
 import styled from 'styled-components'
 
+
 const DroppableContent = styled.div`
     &:hover {
         .small-modal {
@@ -18,31 +19,19 @@ const TextToolStyled = styled.div`
     cursor: text;
     position: relative;
     margin-bottom: 1px;
-    .small-modal{
-        display: none;
-        background: #fff;
-    }
     &:hover{
         cursor: text;
         outline:solid 1px #e36854;
-        cursor: text;
-        .small-modal {
-            display: flex;
-        }
+        cursor: text;  
     }
     &:focus {
         cursor: text;
-        .small-modal {
-            display: flex;
-        }
+      
     }
     div {
         &:focus {
             cursor: text;
             outline:solid 1px #e36854;
-            .small-modal {
-                display: flex;
-            }
         }
     }
 `
@@ -55,16 +44,11 @@ class Text extends PureComponent {
         html: this.props.element.content,
         active: false,
         currentStyleActive: null,
+        fontSize: 16,
     }
 
     handleChange = evt => {
         this.setState({ html: evt.target.value });
-        this.context.changeContentItem({
-            content: evt.target.value,
-            id: this.props.element.id,
-            name: this.props.element.name,
-            styles: this.props.element.styles
-        }, this.props.settings)
     };
 
     clickHandler = (e) => {
@@ -75,55 +59,79 @@ class Text extends PureComponent {
         this.setState({ active: true })
     }
     cancelHandler = () => {
+        this.setState({ html: this.props.element.content})
         this.setState({ active: false })
     }
 
     handlerStyles = (element) => {
-        this.context.stylesHandler(element.prop, element.value)
+        let value = element.value;
+        if (element.prop === 'fontSize') {
+            value = (this.state.fontSize + 1) + 'px'
+            this.setState({ fontSize: this.state.fontSize + 1 })
+        }
+        this.context.stylesHandler(element.prop, value)
         this.setState({
             currentStyleActive: element.class
         })
     }
     keyPressHandler = (event) => {
         event.stopPropagation();
-        if(event.keyCode === 46){
+        if (event.keyCode === 46) {
             this.context.deleteItemHandler(this.props.settings)
         }
+    }
+    handleChangeComplete = (color) => {
+        this.setState({ background: color.hex });
+
+    };
+
+    saveChanges = () => {
+        if(this.props.element.content !== this.state.html) {
+            this.context.changeContentItem({
+                content: this.state.html,
+                id: this.props.element.id,
+                name: this.props.element.name,
+                styles: this.props.element.styles
+            }, this.props.settings)
+        }
+        this.setState({ active: false })
     }
     render() {
         return (
             <Draggable draggableId={this.props.settings.id} index={this.props.index}>
                 {provided => (
-                    <DroppableContent {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} >
+                    <DroppableContent {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}  className="builder-text">
                         <TextToolStyled>
                             <ContentEditable
                                 onKeyDown={this.keyPressHandler}
                                 className="content-editable"
                                 style={this.props.element.styles}
                                 html={this.state.html}
+                                onBlur={this.saveChanges}
                                 disabled={this.props.editable}
                                 onChange={this.handleChange}
                                 tagName='div'
                                 onClick={this.clickHandler}
+                                disabled={!this.props.editable} 
                             />
-                            <div className="small-modal">
-                                <SmallModal  
-                                    show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active} 
-                                    onClickHandler={ (settings) => this.context.deleteItemHandler(this.props.settings) } />
-                            </div>
+                            <SmallModal
+                                show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active}
+                                onClickHandler={(settings) => this.context.deleteItemHandler(this.props.settings)} />
                         </TextToolStyled>
-                        <Modal 
-                            show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active} 
-                            backdrop={false} 
+                        <Modal
+                            show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active}
+                            backdrop={false}
                             modalClosed={this.cancelHandler}>
-                            <TextModalContent 
-                                    handlerStyles={(element) => this.handlerStyles(element)} 
-                                    cancelHandler={this.cancelHandler} 
-                                    currentStyleActive={this.state.currentStyleActive} />
+                            <TextModalContent
+                                stylesElement={this.props.element.styles}
+                                handlerStyles={(element) => this.handlerStyles(element)}
+                                cancelHandler={this.cancelHandler}
+                                saveChanges={this.saveChanges}
+                                currentStyleActive={this.state.currentStyleActive} />
                         </Modal>
                     </DroppableContent>
-                )}    
-            </Draggable> 
+                )}
+            </Draggable>
         )
     }
 }

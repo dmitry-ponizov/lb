@@ -7,9 +7,9 @@ const SideBarStyled = styled.div`
     width: 61px;
     border-right:  solid 1px #eaeaea;
 `
-const LeftPanel = () => (
+const LeftPanel = (props) => (
     <SideBarStyled className="builder-side-bar-left">
-        <NavigationItem />
+        {props.items.map((item,index) => <NavigationItem key={index}  item={item}  />)}
     </SideBarStyled>
 )
 

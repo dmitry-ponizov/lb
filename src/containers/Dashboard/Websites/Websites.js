@@ -41,22 +41,22 @@ class Websites extends Component {
       <DashboardLayout>
         <WorkspaceWrapper>
             <WorkspaceTitle> My Websites</WorkspaceTitle>
-          {this.props.websites && this.props.websites.data.length ? 
+          {this.props.websites && this.props.websites.data.length ?
           <React.Fragment>
             <CreateWebsite />
             <WebsitesWrapper>
               {this.props.websites.data.map(website => 
                 <Website key={ website.id } website={ website } selectWebsiteHandler={(website) => this.selectWebsiteHandler(website)} />) }
             </WebsitesWrapper>
-          </React.Fragment>
-          :<EmptyWrapper> 
+          </React.Fragment> : ''}
+          {this.props.websites && !this.props.websites.data.length && !this.props.loading && 
+          <EmptyWrapper> 
               <ReactSVG src={manImg} />
               <EmptyTitle>It seems you don’t have any websites yet…</EmptyTitle>
               <WorkspaceLink>
                 <Link to='/templates' onClick={() => this.props.onSelectSection('templates')} >Create a website<i className="fa fa-angle-right"></i></Link>
               </WorkspaceLink>
-           </EmptyWrapper>
-          }
+           </EmptyWrapper>}
         </WorkspaceWrapper>
       </DashboardLayout>
     )
@@ -77,6 +77,7 @@ const mapDispatchToProps = dispatch => {
 const mapStateToProps = state => {
     return {
       websites: state.websites.websites,
+      loading: state.websites.lo
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Websites);

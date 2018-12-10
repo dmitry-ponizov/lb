@@ -8,6 +8,7 @@ import PrivateRoute from './hoc/PrivateRoute/PrivateRoute'
 import asyncComponent from './hoc/AsyncComponent/AsyncComponent'
 import './App.scss'
 import { ThemeProvider } from 'styled-components'
+import PageManager from './containers/Builder/PageManager/PageManager';
 
 const theme = {
   mainColor: '#e36854',
@@ -66,6 +67,7 @@ class App extends Component {
                 <PrivateRoute path="/dashboard" component={asyncDashboard} isAuth={this.props.isAuth}/>
                 <PrivateRoute path="/websites" component={asyncWebsites} isAuth={this.props.isAuth}/>
                 <PrivateRoute path="/domains" component={asyncDomains} isAuth={this.props.isAuth}/>
+                <PrivateRoute path="/page_manager" component={PageManager} isAuth={this.props.isAuth}/>
                 <Redirect to="/" />
             </Switch>
         </div>

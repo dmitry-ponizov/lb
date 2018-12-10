@@ -1,5 +1,5 @@
 import React from 'react'
-import GeneralToolBar from './Toolbar/General/GeneralToolBar'
+import Toolbar from './Toolbar/Toolbar'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
@@ -13,7 +13,7 @@ const RigthPanelStyles = styled.div`
     height: 100%;
 `
 const ToolsWrap = styled.div`
-    padding: 20px;
+    height: 100%;
     min-width: 260px;
 `
 
@@ -21,7 +21,7 @@ const RightPanel = (props) => {
     return (
         <RigthPanelStyles show={props.show} >
             <ToolsWrap>
-                <GeneralToolBar tools={props.tools} />
+                <Toolbar tools={props.tools} component={props.component} onSaveHandler = {props.onSaveHandler}/>
             </ToolsWrap>
         </RigthPanelStyles>
     )

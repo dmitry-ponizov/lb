@@ -152,3 +152,43 @@ export const changeWidthWorkspace = (width) => {
         width
     }
 }
+
+export const addPageToMenu = () => {
+    return {
+        type: actionTypes.ADD_PAGE_TO_MENU
+    }
+}
+
+export const changePageName = (index, pageName) => {
+    return {
+        type: actionTypes.CHANGE_PAGE_NAME,
+        index,
+        pageName
+    }
+}
+
+export const deletePage = pageName => {
+    return {
+        type: actionTypes.DELETE_PAGE,
+        pageName
+    }
+}
+
+export const checkPage = page => {
+    return {
+        type: actionTypes.CHECK_PAGE,
+        page
+    }
+}
+
+export const updatePages = () => {
+    return {
+        type: actionTypes.UPDATE_PAGES
+    }
+}
+export const changePage = (page) => {
+    return {
+        type: actionTypes.CHANGE_PAGE,
+        page
+    }
+}
