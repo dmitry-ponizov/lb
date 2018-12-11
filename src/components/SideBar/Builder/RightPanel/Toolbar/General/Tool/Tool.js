@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import ReactSvg from 'react-svg'
 
 const DraggableStyled = styled.div`
     border-radius: 6px;
@@ -48,8 +49,8 @@ class Tool extends Component {
                 style={{ backgroundColor: this.props.tool.bgcolor }}
                 draggable
                 >
-                <img src={require(`../../../../../../../assets/images/tools/${this.props.tool.name}.svg`)} alt={this.props.tool.name} />
-                <p>Paragraph</p>
+                <ReactSvg src={require(`../../../../../../../assets/images/tools/${this.props.tool.name}.svg`)} alt={this.props.tool.name} />
+                <p>{this.props.tool.name}</p>
             </DraggableStyled>
         )
     }
