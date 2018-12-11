@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components';
-
+import Modal from '../../../Modal/Modal'
 const LinkStyled = styled.div`
   a {
     font-family: Muli;
@@ -14,10 +14,32 @@ const LinkStyled = styled.div`
 `
 
 class Link extends Component {
+    // static contextType = BuilderContext;
+
+    state = {
+        title: this.props.element.content,
+        url: this.props.element.url,
+        active: false,
+    }
+    clickHandler = (e) => {
+        e.preventDefault();
+        console.log(this.props.selectedItem)
+        this.setState({ active: true })
+
+    }
+    cancelHandler = () => {
+
+    }
     render() {
         return (
             <LinkStyled className="builder-link">
-                <a href="http://google.com">Founder of Some company</a>
+                <a href={this.state.url} onClick={this.clickHandler}>{this.state.title}</a>
+                <Modal
+                    show={this.props.selectedItem && this.props.selectedItem.id === this.props.settings.id && this.state.active}
+                    backdrop={false}
+                    modalClosed={this.cancelHandler}>
+                    bla
+                </Modal>
             </LinkStyled>
         )
     }

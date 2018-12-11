@@ -44,8 +44,13 @@ const FieldWrapper = styled.div`
     font-size: 12px;
     padding: 10px 20px;
     input {
+        border: none;
+        border-bottom: 1px solid #c9c9c9;
         padding: 5px;
         width: 50px;
+        &:focus {
+            outline: none;
+        }
     }
 `
 

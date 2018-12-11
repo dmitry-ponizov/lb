@@ -65,7 +65,6 @@ class Text extends PureComponent {
     }
 
     handlerStyles = (element) => {
-        console.log(element)
         let value = element.value;
         if (element.prop === 'fontSize') {
             value = value + 'px'
