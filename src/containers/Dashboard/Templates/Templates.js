@@ -13,7 +13,7 @@ import ErrorMessage from '../../../components/UI/ErrorMessage/ErrorMessage'
 import { Redirect } from 'react-router-dom'
 
 const ButtonStyled = styled(Button)`
-  padding: 13px 75px;
+  /* padding: 13px 75px; */
 `
 
 const CreateWebsite = styled.div`

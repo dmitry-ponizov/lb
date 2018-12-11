@@ -20,13 +20,14 @@ export const ModalButtons = styled.div`
     border-top:solid 1px #eaeaea;
     display: flex;
     margin-top: 10px;
+    height: 50px;
 `
 
 export const Button = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 13px 56px;
+    flex:1;
     cursor:pointer;
     &:first-child{
         border-right:solid 1px #eaeaea;

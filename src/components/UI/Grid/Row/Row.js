@@ -8,38 +8,40 @@ class Row extends Component {
 
     static contextType = BuilderContext;
 
-   
+
     render() {
         let classes = null;
-        switch(this.props.columns) {
-            case('twoUneven'): 
-                classes = [' col-md-4',' col-md-8']
+        switch (this.props.columns) {
+            case ('twoUneven'):
+                classes = [' col-md-4', ' col-md-8']
                 break;
-            case('threeUneven'):
-                classes = [' col-md-3',' col-md-6', ' col-md-3']
+            case ('threeUneven'):
+                classes = [' col-md-3', ' col-md-6', ' col-md-3']
                 break;
             default:
                 classes = [' col-md-' + 12 / (this.props.row.length),
                 ' col-md-' + 12 / (this.props.row.length),
-                ' col-md-' + 12 / (this.props.row.length), 
+                ' col-md-' + 12 / (this.props.row.length),
                 ' col-md-' + 12 / (this.props.row.length)
                 ]
         }
 
         return (
+            <div className="container">
                 <div className={'row' + (this.props.editable ? ' row-hovered' : '')} >
-                <DeleteButton deleteRowHandler={ (rowNumber) => this.context.rowDeleteHandler(this.props.rowNumber) } />
-                {Object.keys(this.props.row).map((cell, index) =>
-                    <div key={index} className={(this.props.editable ? 'row-content' : 'column-ctx') + classes[index]}>
-                        <Column
-                            selectedItem={this.props.selectedItem} 
-                            columnName={cell}
-                            gridType={this.props.columns}
-                            rowNumber={this.props.rowNumber}
-                            name={cell}
-                            editable={this.props.editable}
-                            components={this.props.row[cell]} />
-                    </div>)}
+                    <DeleteButton deleteRowHandler={(rowNumber) => this.context.rowDeleteHandler(this.props.rowNumber)} />
+                    {Object.keys(this.props.row).map((cell, index) =>
+                        <div key={index} className={(this.props.editable ? 'row-content' : 'column-ctx') + classes[index]}>
+                            <Column
+                                selectedItem={this.props.selectedItem}
+                                columnName={cell}
+                                gridType={this.props.columns}
+                                rowNumber={this.props.rowNumber}
+                                name={cell}
+                                editable={this.props.editable}
+                                components={this.props.row[cell]} />
+                        </div>)}
+                </div>
             </div>
         )
     }

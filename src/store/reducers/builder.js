@@ -25,11 +25,17 @@ const initialState = {
             styles: {  color: '#000', textAlign: 'center' },
             content: 'This is a new Text block. Change the text.'
         },
+        { 
+            id: uuid.v4(),
+            name: 'Link', 
+            category: 'any',
+            content: 'This is a new Link block. Change the link.',
+            url: 'http://google.com',
+        },
         { id: uuid.v4(), name: 'Button', category: 'any'},
         { id: uuid.v4(), name: 'Subscribe', category: 'any'},
         { id: uuid.v4(), name: 'Icon', category: 'any'},
-        { id: uuid.v4(), name: 'Image', category: 'any' },
-        { id: uuid.v4(), name: 'Link', category: 'any' },
+        { id: uuid.v4(), name: 'Image', category: 'any' },  
         { id: uuid.v4(), name: 'Map', category: 'any'},
         { id: uuid.v4(), name: 'Form', category: 'any'},
     ],
@@ -68,7 +74,7 @@ const dropItem = (state, action) => {
     const tools = state.tools
 
     let tool = { ...tools.find(tool => tool.id === action.newItem.id) }
-
+ 
     tool.id = uuid.v4();
 
     let rows = [...state.rows]
@@ -145,7 +151,6 @@ const deleteItem = (state, action) => {
 }
 
 const deleteRow = (state, action) => {
-    console.log(action.rowNumber)
     let rows = [...state.rows];
     let newRows = rows.filter((row, index) => index !== action.rowNumber)
     return updateObject(state, { rows: newRows })
